@@ -340,7 +340,6 @@ L_Hr_Or_Month_FastAdd_Prog:
 	BEQ		L_Time_Month_Up_Prog	
 L_Time_Hr_Up_Prog:
 	JSR		L_Update_Time_Hr_Prog
-
 	JSR		L_Load_Speech_Hr_Prog		
 	LDA		#0
 	STA		R_Time_Sec		;���ӵ������塰0��	
@@ -1493,45 +1492,52 @@ L_Up_Time_Day_Prog:
 	JMP		L_Update_YMD_Disp_Prog
 L_Up_Alarm1_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr1-Time_Str_Addr)
-	LDA		#$23
-	JSR		L_Inc_To_Any_Count_Prog
+	JMP		L_AlarmTime_Hr_Up_Common
+	; LDA		#$23
+	; JSR		L_Inc_To_Any_Count_Prog
 
-	JSR		L_Load_Speech_Hr_Prog	
-	JMP		L_Dis_AlarmTime_Prog
+	; JSR		L_Load_Speech_Hr_Prog	
+	; JMP		L_Dis_AlarmTime_Prog
 L_Up_Alarm1_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min1-Time_Str_Addr)
-	JSR		L_Inc_To_60_Prog
+	JMP		L_AlarmTime_Min_Up_Common
+	; JSR		L_Inc_To_60_Prog
 
-	JSR		L_Load_Speech_Min_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	; JSR		L_Load_Speech_Min_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 
 L_Up_Alarm2_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr2-Time_Str_Addr)
-	LDA		#$23
-	JSR		L_Inc_To_Any_Count_Prog
+	JMP		L_AlarmTime_Hr_Up_Common
 
-	JSR		L_Load_Speech_Hr_Prog	
-	JMP		L_Dis_AlarmTime_Prog
+	; LDA		#$23
+	; JSR		L_Inc_To_Any_Count_Prog
+
+	; JSR		L_Load_Speech_Hr_Prog	
+	; JMP		L_Dis_AlarmTime_Prog
 L_Up_Alarm2_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min2-Time_Str_Addr)
-	JSR		L_Inc_To_60_Prog
+	JMP		L_AlarmTime_Min_Up_Common
+	; JSR		L_Inc_To_60_Prog
 
-	JSR		L_Load_Speech_Min_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	; JSR		L_Load_Speech_Min_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 
 L_Up_Alarm3_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr3-Time_Str_Addr)
-	LDA		#$23
-	JSR		L_Inc_To_Any_Count_Prog
+	JMP		L_AlarmTime_Hr_Up_Common
+	; LDA		#$23
+	; JSR		L_Inc_To_Any_Count_Prog
 
-	JSR		L_Load_Speech_Hr_Prog	
-	JMP		L_Dis_AlarmTime_Prog
+	; JSR		L_Load_Speech_Hr_Prog	
+	; JMP		L_Dis_AlarmTime_Prog
 L_Up_Alarm3_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min3-Time_Str_Addr)
-	JSR		L_Inc_To_60_Prog
+	JMP		L_AlarmTime_Min_Up_Common
+	; JSR		L_Inc_To_60_Prog
 
-	JSR		L_Load_Speech_Min_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	; JSR		L_Load_Speech_Min_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 L_Change_Alarm1_OnOff_Prog:
 	BX		Sys_Flag_D,1,1
 	JMP		L_Dis_AlarmTime_Prog
@@ -1628,8 +1634,7 @@ T_DownKey_Alarm_Set:
 	DW		L_Down_Alarm3_Min_Prog-1		;
 	DW	L_Change_Alarm3_OnOff_Prog-1
 	
-;------------------------------------------------
-
+;-----------------------------------------------
 L_Down_Time_Hr_Prog:
 	JSR		L_Dec_Time_Hr_Prog
 	JSR		L_Load_Speech_Hr_Prog
@@ -1657,39 +1662,45 @@ L_Down_Time_Day_Prog:		;DAY
 
 L_Down_Alarm1_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr1-Time_Str_Addr)
+L_AlarmTime_Hr_Down_Common:
 	LDA		#$23
 	JSR		L_Dec_To_0_Prog
 	JSR		L_Load_Speech_Hr_Prog
 	JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm1_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min1-Time_Str_Addr)
+L_AlarmTime_Hr_Down_Common:
 	JSR		L_Dec_To_60_Prog
 	JSR		L_Load_Speech_Min_Prog
 	JMP		L_Dis_AlarmTime_Prog
 
 L_Down_Alarm2_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr2-Time_Str_Addr)
-	LDA		#$23
-	JSR		L_Dec_To_0_Prog
-	JSR		L_Load_Speech_Hr_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	BRA		L_AlarmTime_Hr_Down_Common
+	; LDA		#$23
+	; JSR		L_Dec_To_0_Prog
+	; JSR		L_Load_Speech_Hr_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm2_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min2-Time_Str_Addr)
-	JSR		L_Dec_To_60_Prog
-	JSR		L_Load_Speech_Min_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	BRA		L_AlarmTime_Hr_Down_Common
+	; JSR		L_Dec_To_60_Prog
+	; JSR		L_Load_Speech_Min_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 
 L_Down_Alarm3_Hr_Prog:		;时	
 	LDX		#(R_Alarm_Hr3-Time_Str_Addr)
-	LDA		#$23
-	JSR		L_Dec_To_0_Prog
-	JSR		L_Load_Speech_Hr_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	BRA		L_AlarmTime_Hr_Down_Common
+	; LDA		#$23
+	; JSR		L_Dec_To_0_Prog
+	; JSR		L_Load_Speech_Hr_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm3_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min3-Time_Str_Addr)
-	JSR		L_Dec_To_60_Prog
-	JSR		L_Load_Speech_Min_Prog
-	JMP		L_Dis_AlarmTime_Prog
+	BRA		L_AlarmTime_Hr_Down_Common
+	; JSR		L_Dec_To_60_Prog
+	; JSR		L_Load_Speech_Min_Prog
+	; JMP		L_Dis_AlarmTime_Prog
 ;===================================
 L_Judge_Snz_3S_Prog:
 	; xJNB	Flag_SnzK,Bit_SnzK,L_End_Judge_Snz_3S_Prog	
