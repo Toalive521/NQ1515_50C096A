@@ -1,0 +1,837 @@
+;================================================
+; Purpose	: Play Sentence Table define
+; Edit by 	: John
+; Edit data	: 2013-3-26 14:45
+;================================================
+T_NodeValueX:
+        db      C_NumberX
+        db      C_SpecialX
+        db      C_UnitX
+        db      C_CalendarX
+        db      C_TemperatureX
+        db      C_KeySoundX
+        db      C_AlarmRingX
+        db      C_CalendarY
+        db      C_TemperatureY
+C_NodeValueXLen      equ     $-T_NodeValueX
+;------------------------------------------------
+T_NodeValueY:
+        db      C_NumberX_
+        db      C_SpecialX_
+        db      C_UnitX_
+        db      C_CalendarX_
+        db      C_TemperatureX_
+        db      C_KeySoundX_
+        db      C_AlarmRingX_
+        db      C_CalendarY_
+        db      C_TemperatureY_
+;------------------------------------------------
+T_SentenceTable:
+        dw      T_TableNumberX
+        dw      T_TableSpecialX
+        dw      T_TableUnitX
+        dw      T_TableCalendarX
+        dw      T_TableTemperatureX
+        dw      T_TableKeySoundX
+        dw      T_TableAlarmRingX
+        dw      T_TableCalendarY
+        dw      T_TableTemperatureY
+;================================================
+;================================================
+T_SentenceNumberXXX:
+        db      C_SentenceYear_XX  
+        db      C_SentenceYear_X   
+        db      C_SentenceMonth_XX 
+        db      C_SentenceMonth_X  
+        db      C_SentenceDay_XX   
+        db      C_SentenceDay_X    
+        db      C_SentenceHour_XX  
+        db      C_SentenceHour_X   
+        db      C_SentenceMinute_XX
+        db      C_SentenceMinute_X 
+        db      C_SentenceTemp_XXX 
+        db      C_SentenceTemp_XX  
+        db      C_SentenceTemp_X
+        db      C_SentenceTemp_DotX   
+        db      C_SentenceWeek_X
+        db      C_SentenceTemp_XX_1
+        db      C_SentenceTemp_X_1
+C_SentenceNumberXXXLen      equ     $-T_SentenceNumberXXX
+;------------------------------------------------
+T_TableForNumberX:
+        dw      T_SentenceYear_XX  
+        dw      T_SentenceYear_X   
+        dw      T_SentenceMonth_XX 
+        dw      T_SentenceMonth_X  
+        dw      T_SentenceDay_XX   
+        dw      T_SentenceDay_X    
+        dw      T_SentenceHour_XX  
+        dw      T_SentenceHour_X   
+        dw      T_SentenceMinute_XX
+        dw      T_SentenceMinute_X 
+        dw      T_SentenceTemp_XXX 
+        dw      T_SentenceTemp_XX  
+        dw      T_SentenceTemp_X
+        dw      T_SentenceTemp_DotX
+        dw      T_SentenceWeek_X
+        dw      T_SentenceTemp_XX_1
+        dw      T_SentenceTemp_X_1
+;================================================
+;Unit XX
+T_SentenceYear_XX:
+T_SentenceMonth_XX:
+T_SentenceDay_XX:
+        db      C_TableNotExist
+T_SentenceMinute_XX:
+        db      C_TableExist
+        db      C_SelfTable,T_NumberX_M00,T_NumberX_M00>>8
+        db      C_SelfTable,T_NumberX_M10,T_NumberX_M10>>8
+        db      C_SelfTable,T_NumberX_M20,T_NumberX_M20>>8
+        db      C_SelfTable,T_NumberX_M30,T_NumberX_M30>>8
+        db      C_SelfTable,T_NumberX_M40,T_NumberX_M40>>8
+        db      C_SelfTable,T_NumberX_M50,T_NumberX_M50>>8
+        db      C_SelfTable,T_NumberX_M60,T_NumberX_M60>>8
+        db      C_SelfTable,T_NumberX_M70,T_NumberX_M70>>8
+        db      C_SelfTable,T_NumberX_M80,T_NumberX_M80>>8
+        db      C_SelfTable,T_NumberX_M90,T_NumberX_M90>>8
+T_SentenceHour_XX:
+T_SentenceTemp_XX:
+        db      C_TableExist
+        db      C_SelfTable,T_NumberX_NULL,T_NumberX_NULL>>8
+        db      C_SelfTable,T_NumberX_M10,T_NumberX_M10>>8
+        db      C_SelfTable,T_NumberX_M20,T_NumberX_M20>>8
+        db      C_SelfTable,T_NumberX_M30,T_NumberX_M30>>8
+        db      C_SelfTable,T_NumberX_M40,T_NumberX_M40>>8
+        db      C_SelfTable,T_NumberX_M50,T_NumberX_M50>>8
+        db      C_SelfTable,T_NumberX_M60,T_NumberX_M60>>8
+        db      C_SelfTable,T_NumberX_M70,T_NumberX_M70>>8
+        db      C_SelfTable,T_NumberX_M80,T_NumberX_M80>>8
+        db      C_SelfTable,T_NumberX_M90,T_NumberX_M90>>8
+T_SentenceTemp_XX_1:
+        db      C_TableExist
+        db      C_SelfTable,T_NumberX_M00,T_NumberX_M00>>8
+        db      C_SelfTable,T_NumberX_M10_,T_NumberX_M10_>>8
+        db      C_SelfTable,T_NumberX_M20,T_NumberX_M20>>8
+        db      C_SelfTable,T_NumberX_M30,T_NumberX_M30>>8
+        db      C_SelfTable,T_NumberX_M40,T_NumberX_M40>>8
+        db      C_SelfTable,T_NumberX_M50,T_NumberX_M50>>8
+        db      C_SelfTable,T_NumberX_M60,T_NumberX_M60>>8
+        db      C_SelfTable,T_NumberX_M70,T_NumberX_M70>>8
+        db      C_SelfTable,T_NumberX_M80,T_NumberX_M80>>8
+        db      C_SelfTable,T_NumberX_M90,T_NumberX_M90>>8
+;Unit X
+T_SentenceWeek_X:
+T_SentenceYear_X:
+T_SentenceMonth_X:
+T_SentenceDay_X:
+        db      C_TableNotExist
+T_SentenceMinute_X:
+T_SentenceTemp_X_1:
+        db      C_TableExist
+        db      C_SelfTable,T_NumberX_NULL,T_NumberX_NULL>>8
+        db      C_SelfTable,T_NumberX_M01,T_NumberX_M01>>8
+        db      C_SelfTable,T_NumberX_M02,T_NumberX_M02>>8
+        db      C_SelfTable,T_NumberX_M03,T_NumberX_M03>>8
+        db      C_SelfTable,T_NumberX_M04,T_NumberX_M04>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M06,T_NumberX_M06>>8
+        db      C_SelfTable,T_NumberX_M07,T_NumberX_M07>>8
+        db      C_SelfTable,T_NumberX_M08,T_NumberX_M08>>8
+        db      C_SelfTable,T_NumberX_M09_,T_NumberX_M09_>>8
+T_SentenceTemp_DotX:
+T_SentenceTemp_XXX:
+        db      C_TableExist
+.if Test_Five
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8   
+.else
+        db      C_SelfTable,T_NumberX_M00,T_NumberX_M00>>8      
+        db      C_SelfTable,T_NumberX_M01,T_NumberX_M01>>8      
+        db      C_SelfTable,T_NumberX_M02,T_NumberX_M02>>8      
+        db      C_SelfTable,T_NumberX_M03,T_NumberX_M03>>8      
+        db      C_SelfTable,T_NumberX_M04,T_NumberX_M04>>8      
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8    
+        db      C_SelfTable,T_NumberX_M06,T_NumberX_M06>>8      
+        db      C_SelfTable,T_NumberX_M07,T_NumberX_M07>>8      
+        db      C_SelfTable,T_NumberX_M08,T_NumberX_M08>>8      
+        db      C_SelfTable,T_NumberX_M09_,T_NumberX_M09_>>8 
+.endif
+T_SentenceHour_X:
+        db      C_TableExist
+        db      C_New_Table,T_NumberX_H00,T_NumberX_H00>>8
+        db      C_SelfTable,T_NumberX_M01,T_NumberX_M01>>8
+        db      C_New_Table,T_NumberX_H02,T_NumberX_H02>>8
+        db      C_SelfTable,T_NumberX_M03,T_NumberX_M03>>8
+        db      C_SelfTable,T_NumberX_M04,T_NumberX_M04>>8
+        db      C_SelfTable,T_NumberX_M05,T_NumberX_M05>>8
+        db      C_SelfTable,T_NumberX_M06,T_NumberX_M06>>8
+        db      C_SelfTable,T_NumberX_M07,T_NumberX_M07>>8
+        db      C_SelfTable,T_NumberX_M08,T_NumberX_M08>>8
+        db      C_SelfTable,T_NumberX_M09,T_NumberX_M09>>8
+T_SentenceTemp_X:
+        db      C_TableExist
+.if Test_Five
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+.else        
+        db      C_New_Table,T_NumberX_H00,T_NumberX_H00>>8
+        db      C_SelfTable,T_NumberX_M01,T_NumberX_M01>>8
+        db      C_SelfTable,T_NumberX_M02,T_NumberX_M02>>8
+        db      C_SelfTable,T_NumberX_M03,T_NumberX_M03>>8
+        db      C_SelfTable,T_NumberX_M04,T_NumberX_M04>>8
+        db      C_SelfTable,T_NumberX_M05_,T_NumberX_M05_>>8
+        db      C_SelfTable,T_NumberX_M06,T_NumberX_M06>>8
+        db      C_SelfTable,T_NumberX_M07,T_NumberX_M07>>8
+        db      C_SelfTable,T_NumberX_M08,T_NumberX_M08>>8
+        db      C_SelfTable,T_NumberX_M09_,T_NumberX_M09_>>8
+.endif
+T_NumberX_H00:
+        dw      T_NumberX_M00
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+        dw      T_NumberX_NULL
+T_NumberX_H02:
+        dw      T_NumberX_M02X
+        dw      T_NumberX_M02
+        dw      T_NumberX_M02
+;T_NumberX_M00: ;0    
+;        db      S_sp18,C_SentenceMute,M_Num,M_Num>>8,C_SentenceStop                                 
+T_NumberX_M10: ;10
+        db      S_sp18,C_SentenceMute,M_5X_10,M_5X_10>>8,C_SentenceStop                              
+T_NumberX_M10_: ;10
+        db      S_sp01,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop
+T_NumberX_M20: ;20
+        db      S_sp02,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop                                    
+T_NumberX_M30: ;30
+        db      S_sp03,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop                                    
+T_NumberX_M40: ;40
+        db      S_sp04,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+T_NumberX_M50: ;50
+        db      S_sp05_,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+T_NumberX_M60: ;60
+        db      S_sp06,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+T_NumberX_M70: ;70
+        db      S_sp07,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+T_NumberX_M80: ;80
+        db      S_sp08,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+T_NumberX_M90: ;90
+        db      S_sp09_,C_SentenceMute,M_5X,M_5X>>8,S_sp18,C_SentenceStop      
+;========================================================================================= 
+T_NumberX_NULL:
+        db      C_SentenceStop                           
+T_NumberX_M00:
+        db      S_sp00,C_SentenceStop                                                          
+T_NumberX_M01: ;01
+        db      S_sp01,C_SentenceStop                                    
+T_NumberX_M02: ;02
+        db      S_sp02,C_SentenceStop                                    
+T_NumberX_M02X: ;��  
+        db      S_sp16,C_SentenceStop                                 
+T_NumberX_M03: ;03
+        db      S_sp03,C_SentenceStop              
+T_NumberX_M04: ;04
+        db      S_sp04,C_SentenceStop 
+T_NumberX_M05: ;05
+        db      S_sp05,C_SentenceStop             
+T_NumberX_M05_: ;05
+        db      S_sp05_,C_SentenceMute,288,288>>8,C_SentenceStop                                    
+T_NumberX_M06: ;06
+        db      S_sp06,C_SentenceStop                                    
+T_NumberX_M07: ;07
+        db      S_sp07,C_SentenceStop                                    
+T_NumberX_M08: ;08
+        db      S_sp08,C_SentenceStop                                    
+T_NumberX_M09: ;09
+        db      S_sp09,C_SentenceStop                                    
+T_NumberX_M09_: ;09
+        db      S_sp09_,C_SentenceStop          
+;=========================================================================================   
+T_TableNumberX:
+        dw      T_PlayTableNumberX_100          ;10ʰn1.ads 
+        dw      T_NumberX_M02X                  ;14��02x.ads
+T_TableSpecialX:                                ;
+        dw      T_PlayTableSpecialX_000         ;01����~1.ads
+        dw      T_PlayTableSpecialX_001         ;02�賿.ads  
+        dw      T_PlayTableSpecialX_002         ;06����.ads  
+        dw      T_PlayTableSpecialX_003         ;03����.ads  
+        dw      T_PlayTableSpecialX_004         ;04����.ads  
+        dw      T_PlayTableSpecialX_005         ;05����.ads  
+T_TableUnitX:                                   ;
+        dw      T_PlayTableUnitX_000            ;16��_8.ads
+        dw      T_PlayTableUnitX_001            ;11��b.ads 
+.if Test_Five
+        dw      T_PlayTableTemperatureX_001     ;32��01.ads
+.else
+        dw      T_PlayTableUnitX_002            ;08��01.ads 
+.endif
+        dw      T_PlayTableUnitX_003            ;16��_8.ads
+T_TableCalendarX:                               ;
+        dw      T_PlayTableCalendarX_000        ;24��.ads  
+        dw      T_PlayTableCalendarX_001        ;25��.ads  
+        dw      T_PlayTableCalendarX_002        ;37��_8.ads
+T_TableTemperatureX:                            ;
+        dw      T_PlayTableTemperatureX_000     ;30�¶�.ads 
+        dw      T_PlayTableTemperatureX_001     ;32��01.ads 
+        dw      T_PlayTableTemperatureX_002     ;44��.ads   
+        dw      T_PlayTableTemperatureX_003     ;����   
+        dw      T_PlayTableTemperatureX_004     ;����
+T_TableKeySoundX:                               ;
+        dw      T_PlayTableKeySoundX_000        ;key25.stc
+        dw      T_PlayTableKeySoundX_001        ;05��.ads 
+        dw      T_PlayTableKeySoundX_002        ;key7.stc 
+T_TableAlarmRingX:                              ;
+        dw      T_PlayTableAlarmRingX_000       ;������.ads  
+        dw      T_PlayTableAlarmRingX_001       ;������~1.ads
+        dw      T_PlayTableAlarmRingX_002       ;di2.stc     
+        dw      T_PlayTableAlarmRingX_003       ;26.stc      
+        dw      T_PlayTableAlarmRingX_004       ;22.stc      
+        dw      T_PlayTableAlarmRingX_005       ;21.stc      
+        dw      T_PlayTableAlarmRingX_006       ;23.stc      
+        dw      T_PlayTableAlarmRingX_007       ;17.stc      
+        ;dw      T_PlayTableAlarmRingX_008       ;14.stc  
+        dw      T_PlayTableKeySoundX_003    
+        ;dw      T_PlayTableAlarmRingX_009       ;18.stc      
+        dw      T_PlayTableKeySoundX_004
+T_TableCalendarY:                               ;
+        dw      T_PlayTableCalendarY_000        ;27����.ads
+T_TableTemperatureY:                            ;
+        dw      T_PlayTableTemperatureY_000     ;11��_8.ads
+;================================================
+;T_TableNumberX:
+T_PlayTableNumberX_100:
+;       db      00ah
+        db      C_SentenceStop  ;End flag
+;T_TableSpecialX:
+T_PlayTableSpecialX_000:
+        db      S_sp27,C_SentenceStop
+T_PlayTableSpecialX_001:
+        db      S_sp21,C_SentenceStop
+T_PlayTableSpecialX_002:
+        db      S_sp23,C_SentenceStop
+T_PlayTableSpecialX_003:
+        db      S_sp22,C_SentenceStop
+T_PlayTableSpecialX_004:
+        db      S_sp26,C_SentenceStop
+T_PlayTableSpecialX_005:
+        db      S_sp25,C_SentenceStop
+; ;T_TableSpecialX:
+; T_PlayTableSpecialX_000:
+;         db      S_sp27,C_SentenceMute,189,189>>8
+;         db      S_sp28,C_SentenceMute,194,194>>8
+;         db      S_sp29,C_SentenceMute,387,387>>8
+;         db      S_sp30,C_SentenceMute,05Ah,003h,C_SentenceStop
+; T_PlayTableSpecialX_001:
+;         db      S_sp21,C_SentenceMute,185,185>>8
+;         db      S_sp31,C_SentenceStop
+; T_PlayTableSpecialX_002:
+;         db      S_sp23,C_SentenceMute,064,064>>8
+;         db      S_sp22,C_SentenceStop
+; T_PlayTableSpecialX_003:
+;         db      S_sp22,C_SentenceMute,283,283>>8
+;         db      S_sp32,C_SentenceStop
+; T_PlayTableSpecialX_004:
+;         db      S_sp26,C_SentenceMute,375,375>>8
+;         db      S_sp32,C_SentenceStop
+; T_PlayTableSpecialX_005:
+;         db      S_sp25,C_SentenceMute,302,302>>8
+;         db      S_sp32,C_SentenceStop
+;T_TableUnitX:
+T_PlayTableUnitX_000:
+        ;Hour X
+        db      C_TableExist
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        db      C_SelfTable,T_HourS_sp19,T_HourS_sp19>>8
+        ;Hour XX
+T_PlayTableUnitX_003:
+T_HourS_sp19:
+        db  S_sp12,C_SentenceMute,M_Num,M_Num>>8,C_SentenceStop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+T_PlayTableUnitX_001:
+        db  S_sp19,C_SentenceMute,M_Num,M_Num>>8,C_SentenceStop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+T_PlayTableUnitX_002:
+        ;Minute X
+        db      C_TableExist
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        db      C_SelfTable,T_MinuteS_sp14,T_MinuteS_sp14>>8
+        ;Minute XX
+T_MinuteS_sp14:
+        db      S_sp14,C_SentenceMute,001h,001h,C_SentenceStop
+;T_TableCalendarX:
+T_PlayTableCalendarX_000:
+        ;db      015h
+        ;db      C_SentenceStop  ;End flag
+T_PlayTableCalendarX_001:
+        ;db      016h
+        ;db      C_SentenceStop  ;End flag
+T_PlayTableCalendarX_002:
+        ;db      017h
+        db      C_SentenceStop  ;End flag
+;T_TableTemperatureX:
+T_PlayTableTemperatureX_000:
+        db      S_sp24,C_SentenceMute,543,543>>8
+        ;db      S_sp13,C_SentenceMute,543,543>>8,C_SentenceNewT,C_SentenceNewT_Temp,T_TempNewT,T_TempNewT>>8,C_SentenceStop
+T_Temp_Degree:
+        db      C_SentenceMute,005h,001h,S_sp13,C_SentenceStop
+T_TempNewT:
+        db      C_TableExist
+        dw      T_PlayTableTemperatureX_003
+        dw      T_PlayTableTemperatureX_004
+T_PlayTableTemperatureX_001:
+        db      C_TableExist
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+        db      C_SelfTable,T_Temp_Degree,T_Temp_Degree>>8
+T_PlayTableTemperatureX_002:
+        db      S_sp20,C_SentenceStop
+T_PlayTableTemperatureX_003:
+        db      S_C,C_SentenceMute,011h,002h,C_SentenceStop
+T_PlayTableTemperatureX_004:
+        db      C_SentenceMute,05Ah,002h,S_F,C_SentenceMute,011h,003h,C_SentenceStop
+;T_TableKeySoundX:
+T_PlayTableKeySoundX_000:
+        db      S_VdiY,C_SentenceMute,05Ah,002h,C_SentenceStop
+T_PlayTableKeySoundX_001:
+        db      S_sp11,C_SentenceStop
+T_PlayTableKeySoundX_002:
+        db      S_Vdi,C_SentenceStop
+T_PlayTableKeySoundX_003:
+        db      S_Vdi,C_SentenceMute,05Ah,002h,S_Vdi,C_SentenceStop
+T_PlayTableKeySoundX_004:
+        db      S_Vdi,C_SentenceMute,05Ah,002h,S_Vdi,C_SentenceMute,05Ah,002h,S_Vdi,C_SentenceStop
+;T_TableAlarmRingX:
+T_PlayTableAlarmRingX_000:
+        db      S_Bugu,C_SentenceMute,087h,001h,C_SentenceStop 
+T_PlayTableAlarmRingX_001:
+        db      S_A01,C_SentenceMute,08Ch,000h,S_A02,C_SentenceStop
+T_PlayTableAlarmRingX_002:
+        db      S_Bird,C_SentenceMute,087h,001h,C_SentenceStop
+T_PlayTableAlarmRingX_003:      ;song5
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;01      S02,1314        222	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;02      S03,1313        221	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;03      S07,2507        446	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;04      S02,1314        222	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;05      S03,0635        152	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;06      S07,2507        446	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;07      S02,1314        222	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;08      S03,1313        221	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;09      S02,1314        222	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;10      S07,1328        221	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;11      S02,0621        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;12      S06,1311        222	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;13      S09,0629        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;14      S09,0000        960	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;15      S02,0621        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;16      S09,0629        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;17      S06,1311        222	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;18      S06,0633        151	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;19      S09,1287        221	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;20      S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;21      S09,0629        151	
+        db      S_s09,C_SentenceSamp,2549,2549>>8,C_SentenceMute,446,446>>8		;22      S09,2549        446	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;23      S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;24      S03,0635        152	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;25      S07,0613        152	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;26      S03,1313        221	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;27      S03,0635        152	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;28      S02,0621        151	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;29      S03,1313        221	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;30      S07,0613        152	
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,929,929>>8		;31      S03,3604        929	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;32      S02,1314        222	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;33      S03,1313        221	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;34      S07,2507        446	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;35      S02,1314        222	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;36      S03,0635        152	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;37      S07,2507        446	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;38      S02,1314        222	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;39      S03,1313        221	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;40      S02,1314        222	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;41      S07,1328        221	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;42      S07,0613        152	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;43      S06,1311        222	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;44      S09,0629        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;45      S09,0000        960	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;46      S02,0621        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;47      S09,0629        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;48      S06,1311        222	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;49      S06,0633        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;50      S11,1304        222	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;51      S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;52      S09,0629        151	
+        db      S_s09,C_SentenceSamp,2549,2549>>8,C_SentenceMute,446,446>>8		;53      S09,2549        446	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;54      S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;55      S03,0635        152	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;56      S07,0613        152	
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;57      S03,2538        445	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;58      S07,0613        152	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;59      S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;60      S03,0635        152	
+        db      S_s03,C_SentenceSamp,1822,1822>>8,C_SentenceMute,460,460>>8		;61      S03,1822        460	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;62      S02,1314        222	
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8		;63      S02,1314        222	
+        db      S_s03,C_SentenceSamp,1822,1822>>8,C_SentenceMute,460,460>>8		;64      S03,1822        460	
+        db      S_s07,C_SentenceSamp,0000,0000>>8,C_SentenceStop                ;65      S07,0000        	    
+T_PlayTableAlarmRingX_004:		;song4	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8	    ;01      S07,1328        221		
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;02      S11,1304        222	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;03      S08,0000        254	
+        db      S_s06,C_SentenceSamp,2575,2575>>8,C_SentenceMute,445,445>>8		;04      S06,2575        445	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;05      S06,1311        222	
+        db      S_s08,C_SentenceSamp,0695,0695>>8,C_SentenceMute,151,151>>8		;06      S08,0695        151	
+        db      S_s06,C_SentenceSamp,2575,2575>>8,C_SentenceMute,445,445>>8		;07      S06,2575        445	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;08      S06,1311        222	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;09      S08,0000        254	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;10      S06,1311        222	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;11      S08,0000        254	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;12      S06,1311        222	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;13      S09,0629        151	
+        db      S_s10,C_SentenceSamp,2564,2564>>8,C_SentenceMute,444,444>>8		;14      S10,2564        444	
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;15      S10,1300        224	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;16      S06,1311        222	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;17      S11,1304        222	
+        db      S_s04,C_SentenceSamp,2601,2601>>8,C_SentenceMute,444,444>>8		;18      S04,2601        444	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;19      S04,1323        221	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;20      S04,0635        151	
+        db      S_s11,C_SentenceSamp,1840,1840>>8,C_SentenceMute,459,459>>8		;21      S11,1840        459	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;22      S09,1287        221	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;23      S09,1287        221	
+        db      S_s08,C_SentenceSamp,0695,0695>>8,C_SentenceMute,151,151>>8		;24      S08,0695        151	
+        db      S_s06,C_SentenceSamp,3616,3616>>8,C_SentenceMute,930,930>>8		;25      S06,3616        930	
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;26      S10,1300        224	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;27      S06,1311        222	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;28      S11,1304        222	
+        db      S_s04,C_SentenceSamp,2601,2601>>8,C_SentenceMute,444,444>>8		;29      S04,2601        444	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;30      S04,1323        221	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;31      S04,0635        151	
+        db      S_s11,C_SentenceSamp,1840,1840>>8,C_SentenceMute,459,459>>8		;32      S11,1840        459	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;33      S09,1287        221	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;34      S09,1287        221	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;35      S08,0000        254	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;36      S06,1311        222	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;37      S08,0000        254	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;38      S06,1311        222	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;39      S09,0629        151	
+        db      S_s10,C_SentenceSamp,2564,2564>>8,C_SentenceMute,444,444>>8		;40      S10,2564        444	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;41      S09,1287        221	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;42      S06,1311        222	
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;43      S03,2538        445	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;44      S03,1313        221	
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;45      S10,1300        224	
+        db      S_s10,C_SentenceSamp,2564,2564>>8,C_SentenceMute,444,444>>8		;46      S10,2564        444	
+        db      S_s02,C_SentenceSamp,0000,0000>>8,C_SentenceMute,475,475>>8		;47      S02,0000        475	
+        db      S_s10,C_SentenceSamp,0000,0000>>8,C_SentenceStop                ;48      S10,0000        	    
+T_PlayTableAlarmRingX_005:		;song3	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;01      S06,1311        222    
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,223,223>>8     ;02      S06,1311        223    
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8     ;03      S06,0633        151    
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8	    ;04      S09,0629        151	
+        db      S_s10,C_SentenceSamp,1306,1306>>8,C_SentenceMute,225,225>>8     ;05      S10,1306        225    
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,222,222>>8     ;06      S09,1287        222    
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8     ;07      S09,0629        151    
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8	    ;08      S02,0621        151	
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;09      S03,2538        445	
+        db      S_s04,C_SentenceSamp,1829,1829>>8,C_SentenceMute,461,461>>8		;10      S04,1829        461	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;11      S04,0635        151	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;12      S11,0616        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;13      S09,0629        151	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,222,222>>8		;14      S09,1287        222	
+        db      S_s06,C_SentenceSamp,3616,3616>>8,C_SentenceMute,930,930>>8		;15      S06,3616        930	
+        db      S_s04,C_SentenceSamp,1829,1829>>8,C_SentenceMute,461,461>>8		;16      S04,1829        461	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;17      S04,0635        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;18      S04,0635        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;19      S04,0635        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,223,223>>8		;20      S06,1311        223	
+        db      S_s11,C_SentenceSamp,1840,1840>>8,C_SentenceMute,459,459>>8		;21      S11,1840        459	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;22      S06,0633        151	
+        db      S_s06,C_SentenceSamp,2575,2575>>8,C_SentenceMute,445,445>>8		;23      S06,2575        445	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;24      S09,1858        460	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;25      S09,0629        151	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;26      S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;27      S03,0635        152	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;28      S07,0613        152	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;29      S03,0635        152	
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,929,929>>8		;30      S03,3604        929	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,222,222>>8		;31      S04,1323        222	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,222,222>>8		;32      S04,1323        222	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,222,222>>8		;33      S04,1323        222	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;34      S04,0635        151	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;35      S11,0616        151	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,222,222>>8		;36      S04,1323        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;37      S11,0616        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;38      S06,0633        151	
+        db      S_s06,C_SentenceSamp,2575,2575>>8,C_SentenceMute,445,445>>8		;39      S06,2575        445	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,223,223>>8		;40      S11,1304        223	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;41      S11,0616        151	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;42      S11,0616        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;43      S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;44      S09,0629        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;45      S06,0633        151	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;46      S11,0616        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;47      S09,0000        960	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;48      S09,1858        460	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;49      S06,0633        151	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,222,222>>8		;50      S04,1323        222	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;51      S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;52      S09,0629        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,223,223>>8		;53      S06,1311        223	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;54      S10,0644        152	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;55      S02,0621        151	
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;56      S03,2538        445	
+        db      S_s10,C_SentenceSamp,1830,1830>>8,C_SentenceMute,461,461>>8		;57      S10,1830        461	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;58      S09,0629        151	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;59      S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;60      S03,0635        152	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,222,222>>8		;61      S07,1328        222	
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceStop                ;62      S03,3604			    
+T_PlayTableAlarmRingX_006:	    ;song2
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8	    ;001     S06,1311        222		
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;002     S06,0633        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;003     S06,0633        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;004     S06,1311	    222	    
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;005     S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;006     S03,0635        152	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;007     S07,1328        221	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;008     S07,2507        446	
+        db      S_s01,C_SentenceSamp,0000,0000>>8,C_SentenceMute,002,002>>8		;009     S01,0000        2	    
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;010     S03,1313        221	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;011     S03,0635        152	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;012     S10,0644        152	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;013     S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;014     S03,0635        152	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;015     S07,1328	    221	    
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,928,928>>8		;016     S03,3604	    928	    
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;017     S03,2538	    445	    
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;018     S10,1300	    224	    
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;019     S03,1313	    221	    
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;020     S04,1323	    221	    
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;021     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;022     S09,0629        151	
+        db      S_s10,C_SentenceSamp,1830,1830>>8,C_SentenceMute,461,461>>8		;023     S10,1830        461	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;024     S03,0635        152	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;025     S09,1287        221	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;026     S09,0629        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;027     S06,0633        151	
+        db      S_s08,C_SentenceSamp,0000,0000>>8,C_SentenceMute,254,254>>8		;028     S08,0000        254	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;029     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;030     S09,0629        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;031     S09,0000        960	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;032     S06,1311        222	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;033     S06,0633        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;034     S06,0633        151	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;035     S06,1311        222	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;036     S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;037     S03,0635        152	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;038     S07,1328        221	
+        db      S_s07,C_SentenceSamp,2507,2507>>8,C_SentenceMute,446,446>>8		;039     S07,2507        446	
+        db      S_s01,C_SentenceSamp,0000,0000>>8,C_SentenceMute,002,002>>8		;040     S01,0000        2	    
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;041     S03,1313        221	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;042     S03,0635        152	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;043     S10,0644        152	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;044     S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;045     S03,0635        152	
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8		;046     S07,1328        221	
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,929,929>>8		;047     S03,3604        929	
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8		;048     S03,2538        445	
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;049     S10,1300        224	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;050     S03,1313        221	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;051     S04,1323        221	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;052     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;053     S09,0629        151	
+        db      S_s10,C_SentenceSamp,1830,1830>>8,C_SentenceMute,461,461>>8		;054     S10,1830        461	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;055     S03,0635        152	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;056     S09,1287        221	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;057     S09,0629        151	
+        db      S_s08,C_SentenceSamp,0695,0695>>8,C_SentenceMute,151,151>>8		;058     S08,0695        151	
+        db      S_s06,C_SentenceSamp,1827,1827>>8,C_SentenceMute,460,460>>8		;059     S06,1827        460	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;060     S09,0629        151	
+        db      S_s10,C_SentenceSamp,0000,0000>>8,C_SentenceMute,958,958>>8		;061     S10,0000        958	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;062     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;063     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;064     S04,0635        151	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;065     S04,1323        221	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;066     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;067     S09,0629        151	
+        db      S_s10,C_SentenceSamp,0000,0000>>8,C_SentenceMute,958,958>>8		;068     S10,0000        958	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;069     S03,1313        221	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;070     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;071     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;072     S04,0635        151	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;073     S04,1323        221	
+        db      S_s08,C_SentenceSamp,0695,0695>>8,C_SentenceMute,151,151>>8		;074     S08,0695        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;075     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;076     S09,0000        960	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;077     S09,1858        460	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;078     S10,0644        152	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;079     S09,1287        221	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;080     S09,0629        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;081     S06,0633        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;082     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;083     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;084     S04,0635        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;085     S11,1304        222	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;086     S06,1311        222	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;087     S09,1858        460	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;088     S10,0644        152	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;089     S09,0629        151	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;090     S10,0644        152	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;091     S09,0629        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;092     S06,0633        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;093     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0000,0000>>8,C_SentenceMute,473,473>>8		;094     S11,0000        473	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;095     S11,1304        222	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;096     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;097     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;098     S04,0635        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,221,221>>8		;099     S11,1304        221	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;100     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;101     S09,0629        151	
+        db      S_s10,C_SentenceSamp,0000,0000>>8,C_SentenceMute,958,958>>8		;102     S10,0000        958	
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8		;103     S03,1313        221	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;104     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;105     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;106     S04,0635        151	
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8		;107     S04,1323        221	
+        db      S_s08,C_SentenceSamp,0695,0695>>8,C_SentenceMute,151,151>>8		;108     S08,0695        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;109     S06,0633        151	
+        db      S_s09,C_SentenceSamp,0000,0000>>8,C_SentenceMute,960,960>>8		;110     S09,0000        960	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;111     S09,1858        460	
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8		;112     S10,0644        152	
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8		;113     S09,1287        221	
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8		;114     S09,0629        151	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;115     S06,0633        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;116     S11,1304        222	
+        db      S_s11,C_SentenceSamp,0616,0616>>8,C_SentenceMute,151,151>>8		;117     S11,0616        151	
+        db      S_s04,C_SentenceSamp,0635,0635>>8,C_SentenceMute,151,151>>8		;118     S04,0635        151	
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8		;119     S11,1304        222	
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8		;120     S06,1311        222	
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8		;121     S09,1858        460	
+        db      S_s06,C_SentenceSamp,0633,0633>>8,C_SentenceMute,151,151>>8		;122     S06,0633        151	
+        db      S_s02,C_SentenceSamp,0621,0621>>8,C_SentenceMute,151,151>>8		;123     S02,0621        151	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;124     S03,0635        152	
+        db      S_s07,C_SentenceSamp,0613,0613>>8,C_SentenceMute,152,152>>8		;125     S07,0613        152	
+        db      S_s03,C_SentenceSamp,0635,0635>>8,C_SentenceMute,152,152>>8		;126     S03,0635        152	
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8		;127     S10,1300        224	
+        db      S_s10,C_SentenceSamp,2564,2564>>8,C_SentenceStop                ;128     S10,2564			    
+T_PlayTableAlarmRingX_007:	    ;song1
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;01      S03,1313        221 
+        db      S_s01,C_SentenceSamp,0000,0000>>8,C_SentenceMute,002,002>>8     ;02      S01,0000        2   
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;03      S10,1300        224 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;04      S03,1313        221 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;05      S06,1311        222 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;06      S03,1313        221 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;07      S10,1300        224 
+        db      S_s03,C_SentenceSamp,2538,2538>>8,C_SentenceMute,445,445>>8     ;08      S03,2538        445 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;09      S03,1313        221 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;10      S10,1300        224 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;11      S03,1313        221 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;12      S06,1311        222 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;13      S03,1313        221 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;14      S10,1300        224 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;15      S03,1313        221 
+        db      S_s03,C_SentenceSamp,1313,1313>>8,C_SentenceMute,221,221>>8     ;16      S03,1313        221 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;17      S06,1311        222 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;18      S06,1311        222 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;19      S06,1311        222 
+        db      S_s06,C_SentenceSamp,3616,3616>>8,C_SentenceMute,929,929>>8     ;20      S06,3616        929 
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8     ;21      S09,1287        221 
+        db      S_s10,C_SentenceSamp,1830,1830>>8,C_SentenceMute,461,461>>8     ;22      S10,1830        461 
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8     ;23      S09,0629        151 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;24      S10,1300        224 
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8     ;25      S02,1314        222 
+        db      S_s03,C_SentenceSamp,0000,0000>>8,C_SentenceMute,1166,1166>>8   ;26      S03,0000        1166
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;27      S04,1323        221 
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;28      S04,1323        221 
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;29      S04,1323        221 
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;30      S04,1323        221 
+        db      S_s04,C_SentenceSamp,0000,0000>>8,C_SentenceMute,956,956>>8     ;31      S04,0000        956 
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8     ;32      S11,1304        222 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;33      S06,1311        222 
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8     ;34      S11,1304        222 
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8     ;35      S11,1304        222 
+        db      S_s05,C_SentenceSamp,0000,0000>>8,C_SentenceMute,252,252>>8     ;36      S05,0000        252 
+        db      S_s06,C_SentenceSamp,0000,0000>>8,C_SentenceMute,1168,1168>>8   ;37      S06,0000        1168
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;38      S06,1311        222 
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;39      S04,1323        221 
+        db      S_s04,C_SentenceSamp,1323,1323>>8,C_SentenceMute,221,221>>8     ;40      S04,1323        221 
+        db      S_s11,C_SentenceSamp,1304,1304>>8,C_SentenceMute,222,222>>8     ;41      S11,1304        222 
+        db      S_s06,C_SentenceSamp,3616,3616>>8,C_SentenceMute,929,929>>8     ;42      S06,3616        929 
+        db      S_s09,C_SentenceSamp,1287,1287>>8,C_SentenceMute,221,221>>8     ;43      S09,1287        221 
+        db      S_s10,C_SentenceSamp,1830,1830>>8,C_SentenceMute,461,461>>8     ;44      S10,1830        461 
+        db      S_s09,C_SentenceSamp,0629,0629>>8,C_SentenceMute,151,151>>8     ;45      S09,0629        151 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;46      S10,1300        224 
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8     ;47      S02,1314        222 
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,928,928>>8     ;48      S03,3604        928 
+        db      S_s01,C_SentenceSamp,0000,0000>>8,C_SentenceMute,002,002>>8     ;49      S01,0000        2   
+        db      S_s01,C_SentenceSamp,0000,0000>>8,C_SentenceMute,002,002>>8     ;50      S01,0000        2   
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;51      S10,1300        224 
+        db      S_s10,C_SentenceSamp,1300,1300>>8,C_SentenceMute,224,224>>8     ;52      S10,1300        224 
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8     ;53      S02,1314        222 
+        db      S_s03,C_SentenceSamp,3604,3604>>8,C_SentenceMute,928,928>>8     ;54      S03,3604        928 
+        db      S_s06,C_SentenceSamp,1311,1311>>8,C_SentenceMute,222,222>>8     ;55      S06,1311        222 
+        db      S_s09,C_SentenceSamp,1858,1858>>8,C_SentenceMute,460,460>>8     ;56      S09,1858        460 
+        db      S_s10,C_SentenceSamp,0644,0644>>8,C_SentenceMute,152,152>>8     ;57      S10,0644        152 
+        db      S_s02,C_SentenceSamp,1314,1314>>8,C_SentenceMute,222,222>>8     ;58      S02,1314        222 
+        db      S_s07,C_SentenceSamp,1328,1328>>8,C_SentenceMute,221,221>>8     ;59      S07,1328        221 
+        db      S_s03,C_SentenceSamp,0000,0000>>8,C_SentenceStop                ;60      S03,0000                    
+        db      C_SentenceStop  ;End flag
+T_PlayTableAlarmRingX_008:
+        ;db      026h
+        ;db      C_SentenceStop  ;End flag
+T_PlayTableAlarmRingX_009:
+        ;db      027h
+        ;db      C_SentenceStop  ;End flag
+;T_TableCalendarY:
+T_PlayTableCalendarY_000:
+        db      S_Vdi
+        db      C_SentenceStop  ;End flag
+;T_TableTemperatureY:
+T_PlayTableTemperatureY_000:
+        db      C_SentenceMute,05Ah,001h,S_Hundred
+        db      C_SentenceStop  ;End flag
+;================================================

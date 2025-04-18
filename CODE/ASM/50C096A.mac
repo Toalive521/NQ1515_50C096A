@@ -1,0 +1,370 @@
+;------------------------------------
+PB2_PB2 MACRO
+        RMB0    padf0
+        ENDM
+PB2_PWM MACRO
+        SMB0    padf0
+		RMB3	AUDCR
+        ENDM
+PB3_PB3 MACRO
+        RMB1    padf0		
+        ENDM
+PB3_PWM MACRO
+        SMB1    padf0
+		RMB3	AUDCR
+        ENDM
+		
+PB1_DAC MACRO
+        SMB7    padf0		
+        ENDM
+PB2_DAC MACRO
+        SMB0    padf0
+		SMB3	AUDCR
+        ENDM		
+		
+PA4_PA4         MACRO
+        RMB3    padf0
+        RMB4    padf0
+        ENDM
+PA4_IR_FSUB     MACRO
+        SMB3    padf0
+        RMB4    padf0
+        ENDM
+PA4_IR_TMR0_D2  MACRO
+        RMB3    padf0
+        SMB4    padf0
+        ENDM
+PA4_IR_TMR0_D3  MACRO
+        SMB3    padf0
+        SMB4    padf0
+        ENDM
+
+PA7_PA7 MACRO
+        RMB2    padf0
+        ENDM
+
+PA7_EXT MACRO
+        SMB2    padf0
+        ENDM
+
+PC67_PC67       MACRO
+        RMB5    pseg
+        RMB4    divc
+        ENDM
+
+PC67_EL01       MACRO
+        RMB5    pseg
+        SMB4    divc
+        ENDM
+
+;------------------------------------
+Fext_WEAK       MACRO
+        RMB0    sysclk
+        ENDM
+Fext_STRONG     MACRO
+        SMB0    sysclk
+        ENDM
+
+Fext_OFF        MACRO
+        RMB1    sysclk
+        ENDM
+Fext_ON         MACRO
+        SMB1    sysclk
+        ENDM
+
+Fosc_OFF        MACRO
+        RMB2    sysclk
+        ENDM
+Fosc_ON         MACRO
+        SMB2    sysclk
+        ENDM
+
+Fext_Xtal       MACRO
+        RMB3    sysclk
+        ENDM
+Fext_RC         MACRO
+        SMB3    sysclk
+        ENDM
+
+Fsys_4MHZ MACRO
+        RMB4    sysclk
+        RMB5    sysclk
+        ENDM
+Fsys_2MHZ MACRO
+        SMB4    sysclk
+        RMB5    sysclk
+        ENDM
+Fsys_1MHZ MACRO
+        RMB4    sysclk
+        SMB5    sysclk
+        ENDM
+Fsys_500K MACRO
+        SMB4    sysclk
+        SMB5    sysclk
+        ENDM
+
+F4m_Fosc_2 MACRO
+        SMB6    sysclk
+        ENDM
+F4m_Fosc_1     MACRO
+        RMB6    sysclk
+        ENDM
+
+Fcpu_Fext  MACRO
+        SMB7    sysclk
+        ENDM
+Fcpu_Fsys    MACRO
+        RMB7    sysclk
+        ENDM
+		
+Fext_XR    MACRO
+        RMB3    sysclk
+        ENDM
+
+Fext_ER    MACRO
+        SMB3    sysclk
+        ENDM		
+;------------------------------------
+DIV_8KHZ  MACRO
+        RMB0    divc
+        RMB1    divc
+        ENDM
+DIV_16KHZ  MACRO
+        SMB0    divc
+        RMB1    divc
+        ENDM
+DIV_512HZ  MACRO
+        RMB0    divc
+;        SMB1    divc
+        ENDM
+DIV_1KHZ  MACRO
+        SMB0    divc
+;        SMB1    divc
+        ENDM
+;------------------------------------
+;------------------------------------
+;TMR0_ON MACRO
+ ;       SMB0    tmrc
+  ;      ENDM
+;TMR0_OFF MACRO
+;        RMB0    tmrc
+;        ENDM
+
+;TMR0_CLK_TMR2O     MACRO
+;        RMB0    tmrclk
+;        RMB1    tmrclk
+;        ENDM
+TMR0_CLK_FSYS   MACRO
+        SMB0    tmrclk
+        RMB1    tmrclk
+        ENDM
+TMR0_CLK_FSUB    MACRO
+        RMB0    tmrclk
+        rMB1    tmrclk
+        rMB0	padf1
+        ENDM
+TMR0_CLK_F4Mdiv32	macro
+		RMB0    tmrclk
+        sMB1    tmrclk
+        ENDM
+TMR0_CLK_F4Mdiv128	macro
+		RMB0    tmrclk
+        RMB1    tmrclk
+        SMB0	padf1
+        ENDM     
+TMR0_CLK_1024KHz   MACRO
+        SMB0    tmrclk
+        SMB1    tmrclk
+        rmb6	tmrc
+        ENDM
+;========================
+TMR1_CLK_TMR0    MACRO
+        RMB2    tmrclk
+        RMB3    tmrclk
+        RMB1	padf1		
+        ENDM
+TMR1_CLK_F4Mdiv128	macro
+		RMB2    tmrclk
+        RMB3    tmrclk
+        SMB1	padf1
+        ENDM		
+TMR1_CLK_512Hz  MACRO
+        SMB2    tmrclk
+        RMB3    tmrclk
+        ENDM
+TMR1_CLK_F4Mdiv32      MACRO
+        RMB2    tmrclk
+        SMB3    tmrclk
+        ENDM
+TMR1_CLK_FSYS    MACRO
+        SMB2    tmrclk
+        SMB3    tmrclk
+        ENDM		
+				
+;TMR2_ON MACRO
+;        SMB2    tmrc
+;        ENDM
+;TMR2_OFF MACRO
+;        RMB2    tmrc
+;        ENDM
+
+TONE_2KHZ_1_2DUTY       MACRO
+        RMB2    divc
+        RMB3    divc
+        RMB7    divc		
+        ENDM
+TONE_TMR0_2_1_2DUTY     MACRO
+        SMB2    divc
+        RMB3    divc
+        RMB7    divc
+        ENDM
+TONE_2KHZ_3_4DUTY       MACRO
+        RMB2    divc
+        RMB3    divc
+        SMB7    divc		
+        ENDM
+TONE_4KHZ_3_4DUTY       MACRO
+        SMB2    divc
+        RMB3    divc
+        SMB7    divc
+        ENDM
+
+;------------------------------------
+EN_DIV_IRQ     MACRO
+        SMB0    ier
+        ENDM
+EN_TMR0_IRQ     MACRO
+        SMB1    ier
+        ENDM
+EN_TMR2_IRQ     MACRO
+        SMB3    ier
+        ENDM
+EN_KEY_IRQ      MACRO
+        SMB4    ier
+        ENDM
+EN_EXT_IRQ      MACRO
+        SMB5    ier
+        ENDM
+EN_LCD_IRQ      MACRO
+        SMB6    ier
+        ENDM
+
+DIS_DIV_IRQ     MACRO
+        RMB0    ier
+        ENDM
+DIS_TMR0_IRQ     MACRO
+        RMB1    ier
+        ENDM
+DIS_TMR2_IRQ     MACRO
+        RMB3    ier
+        ENDM
+DIS_KEY_IRQ      MACRO
+        RMB4    ier
+        ENDM
+DIS_EXT_IRQ      MACRO
+        RMB5    ier
+        ENDM
+DIS_LCD_IRQ      MACRO
+        RMB6    ier
+        ENDM
+
+CLR_DIV_IRQ_FLAG MACRO
+        RMB0    ifr
+        ENDM
+CLR_TMR0_IRQ_FLAG      MACRO
+        RMB1    ifr
+        ENDM
+CLR_TMR2_IRQ_FLAG      MACRO
+        RMB3    ifr
+        ENDM
+CLR_KEY_IRQ_FLAG      MACRO
+        RMB4    ifr
+        ENDM
+CLR_EXT_IRQ_FLAG       MACRO
+        RMB5    ifr
+        ENDM
+CLR_LCD_IRQ_FLAG       MACRO
+        RMB6    ifr
+        ENDM
+
+IF_DIV_IRQ_FLAG MACRO   LAB1
+        BBS0    ifr,LAB1
+        ENDM
+
+IF_TMR0_IRQ_FLAG MACRO   LAB1
+        BBS1    ifr,LAB1
+        ENDM
+IF_TMR2_IRQ_FLAG MACRO   LAB1
+        BBS3    ifr,LAB1
+        ENDM
+IF_KEY_IRQ_FLAG MACRO   LAB1
+        BBS4    ifr,LAB1
+        ENDM
+IF_EXT_IRQ_FLAG MACRO   LAB1
+        BBS5    ifr,LAB1
+        ENDM
+IF_LCD_IRQ_FLAG MACRO   LAB1
+        BBS6    ifr,LAB1
+        ENDM
+
+;------------------------------------
+PWM_ON  MACRO
+		smb0	sysclk	;Strong Mode
+        SMB7    tmrc
+        ENDM
+PWM_OFF MACRO
+        RMB7    tmrc
+		lda		R_Strong_Time
+		bne		?Exit11
+		rmb0	sysclk	;WeakMode
+?Exit11:		
+        ENDM
+
+IF_PWM_ON       MACRO   LAB
+        BBS7    tmrc,LAB
+        ENDM
+IF_PWM_OFF      MACRO   LAB
+        BBR7    tmrc,LAB
+        ENDM
+
+SEL_PWM MACRO	
+        RMB3    AUDCR
+        ENDM
+DAC_LATCH_TMR0	MACRO
+		SMB5	AUDCR
+		ENDM
+SEL_TONE MACRO
+        RMB1    AUDCR
+		RMB2    AUDCR		
+		RMB4	AUDCR
+        ENDM
+SEL_VOICE   MACRO
+;		BBR0	R_Bop_Flag,?L_SelDac	
+;		LDA		#01100100B
+;		STA		AUDCR
+;		BRA		?L_EXIT
+;?L_SelDac:		
+		LDA		#01101100B
+		STA		AUDCR			
+;?L_EXIT		
+        ENDM
+		
+SEL_MELODY  MACRO
+        RMB1    AUDCR
+		RMB2    AUDCR		
+		SMB4	AUDCR
+        ENDM
+    
+IF_NOT_TMR1_IRQ_FLAG MACRO   LAB1
+        BBR2    ifr,LAB1        ;IFR
+        ENDM
+CLR_TMR1_IRQ_FLAG      MACRO
+        RMB2    ifr     ;IFR
+        ENDM
+;------------------------------------
+;LCD_ON           MACRO
+ ;       SMB4    tmrc
+ ;       ENDM
+;LCD_OFF          MACRO
+;        RMB4    tmrc
+;        ENDM

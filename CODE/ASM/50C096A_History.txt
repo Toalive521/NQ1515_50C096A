@@ -1,0 +1,6 @@
+50C096A history
+
+/// 1.00 第一板																		2016/05/11
+/// 1.01 fix timer 1 選擇div 不會工作問題       2016/11/17
+/// 1.02 fix PD function bug                     2016/11/18
+/// 1.03 fix PB N-MOS working don't right        2017/01/09

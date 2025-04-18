@@ -1,0 +1,576 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ET50C096A</title>
+<style type="text/css">
+<!--
+table { font-size: 8pt}
+#ww{color:#ffffff;background:#808080}
+-->
+</style>
+</head>
+<body  >
+
+<table border="1" width="100%" style="border-collapse: collapse" bordercolor="#000000" cellspacing="0">
+  <tr>
+    <td width="10%" rowspan="2" align="center">
+Main Clock</td>     
+    <td width="10%" rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >Fosc</td>
+    <td width="10%" align="center" id=ww >Fsys</td>
+    <td width="10%" align="center" id=ww >FCpu</td>
+    <td width="10%" align="center" id=ww >Helt</td>
+    <td width="10%" align="center" id=ww>F4M </td>
+    <td width="10%" align="center" > </td>
+    <td width="10%" align="center" > </td>
+    <td width="10%" align="center" > </td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >9.12MHz(On)</td>
+    <td width="10%" align="center" >0Hz(Fosc/2)</td>
+    <td width="10%" align="center" >0Hz(Fext)</td>
+    <td width="10%" align="center" >Normal</td>
+    <td width="10%" align="center" >8.00MHz(Fosc/2)</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" rowspan="2" align="center">Sub Clock</td>         
+    <td width="10%" rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >FextType</td>
+    <td width="10%" align="center" id=ww >FextWS</td>
+    <td width="10%" align="center" id=ww >FextOn</td>
+    <td width="10%" align="center" id=ww >FSubSelect</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >X'tal(--)</td>
+    <td width="10%" align="center" >Strong</td>
+    <td width="10%" align="center" >On</td>
+    <td width="10%" align="center" >Fext(0Hz)</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  
+  <tr>
+    <td width="10%" rowspan="2" align="center">WDT</td>         
+    <td width="10%" rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >WDTSelect</td>
+    <td width="10%" align="center" id=ww >WDT</td>
+    <td width="10%" align="center" id=ww >TO</td>
+    <td width="10%" align="center"></td>
+    <td width="10%" align="center"></td>
+    <td width="10%" align="center"></td>
+    <td width="10%" align="center"></td>
+    <td width="10%" align="center"></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >TMR1 OV</td>
+    <td width="10%" align="center" >Off</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  
+  <tr>
+    <td width="10%" rowspan="3" align="center">Interrupt</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >LCD</td>
+    <td width="10%" align="center" id=ww >INTx</td>
+    <td width="10%" align="center" id=ww >PA</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >TMR1</td>
+    <td width="10%" align="center" id=ww >TMR0</td>
+    <td width="10%" align="center" id=ww >DIV</td>
+  </tr>
+  <tr>
+    <td width="10%"   align="center" >IER</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%"   align="center" >IFR</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%" rowspan="2" align="center">Timer0</td>
+    <td width="10%" rowspan="2" align="center"> &nbsp; </td>
+    <td width="10%" align="center" id=ww >Tmr0S</td>
+    <td width="10%" align="center" id=ww >Tmr0On</td>
+    <td width="10%" align="center" id=ww >Tmr0</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >F4M/4</td>
+    <td width="10%" align="center" >On</td>
+    <td width="10%" align="center" > 0H</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" rowspan="2" align="center">Timer1</td>
+    <td width="10%" rowspan="2" align="center"> &nbsp; </td>
+    <td width="10%" align="center" id=ww >Tmr1S</td>
+    <td width="10%" align="center" id=ww >Tm1On</td>
+    <td width="10%" align="center" id=ww >Tmr1</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >F4M/4</td>
+    <td width="10%" align="center" >On</td>
+    <td width="10%" align="center" > 0H</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+
+  <tr>
+    <td width="10%"  rowspan="4" align="center">LCD</td>
+    <td width="10%"  rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >LCDOn</td>
+    <td width="10%" align="center" id=ww >LCDCom</td>
+    <td width="10%" align="center" id=ww >LCDSeg</td>
+    <td width="10%" align="center" id=ww >LCD_SAdr</td>
+    <td width="10%" align="center" id=ww >Type</td>
+    <td width="10%" align="center" id=ww >BIS</td>
+    <td width="10%" align="center" id=ww >ENCH</td>
+    <td width="10%" align="center" id=ww >　</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >On</td>
+    <td width="10%" align="center" >Reserved</td>
+    <td width="10%" align="center" >Reserved</td>
+    <td width="10%" align="center" >1800H</td>
+    <td width="10%" align="center" >C-Type</td>
+    <td width="10%" align="center" >1/3</td>
+    <td width="10%" align="center" >Enable</td>
+    <td width="10%" align="center" >　</td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="2" align="center"> &nbsp; </td>
+    <td width="10%" align="center" id=ww >HiDr</td>
+    <td width="10%" align="center" id=ww >Clock</td>
+    <td width="10%" align="center" id=ww >FrameRate</td>
+    <td width="10%" align="center" id=ww >FrameSet</td>
+    <td width="10%" align="center" id=ww >LCDIS</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Level 4</td>
+    <td width="10%" align="center" >FSub/16</td>
+    <td width="10%" align="center" >0</td>
+    <td width="10%" align="center" >fH</td>
+    <td width="10%" align="center" >Frame Rate</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="4" align="center">Sound</td>
+    <td width="10%"  rowspan="2" align="center"> &nbsp; </td>
+    <td width="10%" align="center" id=ww >PP</td>
+    <td width="10%" align="center" id=ww >PN</td>
+    <td width="10%" align="center" id=ww >SoundOn</td>
+    <td width="10%" align="center" id=ww >AudioType</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >On</td>
+    <td width="10%" align="center" >Error</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="2" align="center"> &nbsp; </td>
+    <td width="10%" align="center" id=ww>Tone0s</td>
+    <td width="10%" align="center" id=ww>AUD</td>
+    <td width="10%" align="center" id=ww>AUDL</td>
+    <td width="10%" align="center" id=ww>　</td>
+    <td width="10%" align="center" id=ww>　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >VDD(1)</td>
+    <td width="10%" align="center" >FFH</td>
+    <td width="10%" align="center" >TMR0</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" rowspan="2" align="center">DIV</td>
+    <td width="10%" rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >DIVS</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >FSub/32(0Hz)</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="2" align="center">EL</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >EL</td>
+    <td width="10%" align="center"id=ww >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" >Off</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="6" align="center">PA</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >PA7</td>
+    <td width="10%" align="center" id=ww >PA6</td>
+    <td width="10%" align="center" id=ww >PA5</td>
+    <td width="10%" align="center" id=ww >PA4</td>
+    <td width="10%" align="center" id=ww >PA3</td>
+    <td width="10%" align="center" id=ww >PA2</td>
+    <td width="10%" align="center" id=ww >PA1</td>
+    <td width="10%" align="center" id=ww >PA0</td>
+  </tr>
+  <tr>
+    <td width="10%"   align="center" >
+      PAx</td>
+    <td width="10%" align="center" >PA7</td>
+    <td width="10%" align="center" >PA6</td>
+    <td width="10%" align="center" >PA5</td>
+    <td width="10%" align="center" >PA4</td>
+    <td width="10%" align="center" >PA3</td>
+    <td width="10%" align="center" >PA2</td>
+    <td width="10%" align="center" >PA1</td>
+    <td width="10%" align="center" >PA0</td>
+  </tr>
+  <tr>
+    <td width="10%"   align="center" >
+      <p>IO</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+    <td width="10%" align="center" >inputonly</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Data</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PullLow</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+  </tr>
+    <tr>
+    <td width="10%" align="center" >WakeUp</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="4" align="center">PB</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >Px</td>
+    <td width="10%" align="center" id=ww >PB6</td>
+    <td width="10%" align="center" id=ww >PB5</td>
+    <td width="10%" align="center" id=ww >PB4</td>
+    <td width="10%" align="center" id=ww >PB3</td>
+    <td width="10%" align="center" id=ww >PB2</td>
+    <td width="10%" align="center" id=ww >PB1</td>
+    <td width="10%" align="center" id=ww >PB0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PBx</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >PB1</td>
+    <td width="10%" align="center" >PB0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Type</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >C-MOS</td>
+    <td width="10%" align="center" >C-MOS</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Data</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >--</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%"  rowspan="5" align="center">PC</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >PC7</td>
+    <td width="10%" align="center" id=ww >PC6</td>
+    <td width="10%" align="center" id=ww >PC5</td>
+    <td width="10%" align="center" id=ww >PC4</td>
+    <td width="10%" align="center" id=ww >PC3</td>
+    <td width="10%" align="center" id=ww >PC2</td>
+    <td width="10%" align="center" id=ww >PC1</td>
+    <td width="10%" align="center" id=ww >PC0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PCx</td>
+    <td width="10%" align="center" >EL1</td>
+    <td width="10%" align="center" >EL0</td>
+    <td width="10%" align="center" >PC5</td>
+    <td width="10%" align="center" >PC4</td>
+    <td width="10%" align="center" >V2</td>
+    <td width="10%" align="center" >V1</td>
+    <td width="10%" align="center" >CC1</td>
+    <td width="10%" align="center" >CC0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >IO</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Data</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PullLow</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+  </tr>
+  
+    <tr>
+    <td width="10%"  rowspan="5" align="center">PD</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >　</td>
+    <td width="10%" align="center" id=ww >PD3</td>
+    <td width="10%" align="center" id=ww >PD2</td>
+    <td width="10%" align="center" id=ww >PD1</td>
+    <td width="10%" align="center" id=ww >PD0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PDx</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >PD3</td>
+    <td width="10%" align="center" >PD2</td>
+    <td width="10%" align="center" >PD1</td>
+    <td width="10%" align="center" >PD0</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >IO</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+    <td width="10%" align="center" >Input</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >Data</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >1</td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >PullLow</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+    <td width="10%" align="center" >Yes</td>
+  </tr>
+
+   <tr>
+    <td width="10%"  rowspan="2">
+	<p align="center">LVC</td>
+    <td width="10%" ></td>
+    <td width="10%" id=ww align="center" >ENLVR</td>
+    <td width="10%" id=ww align="center" >LVRF</td>
+    <td width="10%" id=ww align="center" >　</td>
+    <td width="10%" id=ww align="center" >　</td>
+    <td width="10%" id=ww align="center" >　</td>
+    <td width="10%" id=ww align="center" >　</td>
+    <td width="10%" id=ww align="center" >　</td>
+    <td width="10%" id=ww align="center" >　</td>
+  </tr>
+  <tr>
+    <td width="10%" >　</td>
+    <td width="10%" align="center" >LVR enable.</td>
+    <td width="10%" align="center" >1</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" >　</td>
+  </tr>
+
+
+  <tr>
+    <td width="10%" rowspan="2" align="center">Other</td>
+    <td width="10%" rowspan="2" align="center"></td>
+    <td width="10%" align="center" id=ww >Bot</td>
+    <td width="10%" align="center" id=ww >Top</td>
+    <td width="10%" align="center" id=ww>Bank</td>
+    <td width="10%" align="center" id=ww>　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+  <tr>
+    <td width="10%" align="center" >00H</td>
+    <td width="10%" align="center" >00H</td>
+    <td width="10%" align="center" >07H</td>
+    <td width="10%" align="center" >　</td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+    <td width="10%" align="center" ></td>
+  </tr>
+</table>
+</body>
+
+</html>

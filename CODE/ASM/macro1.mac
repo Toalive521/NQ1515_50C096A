@@ -1,0 +1,1489 @@
+wdt_off		macro
+	rmb3	wdtc
+	endm
+cpu_halt		macro
+	sta	halt
+	endm
+lcd_on		macro
+	smb4	tmrc
+	endm
+lcd_off		macro
+	rmb4	tmrc
+	endm
+;-------------------------------------------------	
+letter_addrm	macro	;�����ַ
+
+	DB	0+c0*(D_LcdMostSegment/8+1)+s42/8	;A3
+	DB	0+c1*(D_LcdMostSegment/8+1)+s41/8	;B3
+	DB	0+c3*(D_LcdMostSegment/8+1)+s41/8	;C3
+	DB	0+c4*(D_LcdMostSegment/8+1)+s42/8	;D3
+	DB	0+c3*(D_LcdMostSegment/8+1)+s42/8	;E3
+	DB	0+c1*(D_LcdMostSegment/8+1)+s42/8	;F3
+	DB	0+c2*(D_LcdMostSegment/8+1)+s41/8	;G3
+
+	DB	0+c0*(D_LcdMostSegment/8+1)+s39/8	;A4
+	DB	0+c1*(D_LcdMostSegment/8+1)+s39/8	;B4
+	DB	0+c3*(D_LcdMostSegment/8+1)+s38/8	;C4
+	DB	0+c4*(D_LcdMostSegment/8+1)+s39/8	;D4
+	DB	0+c4*(D_LcdMostSegment/8+1)+s40/8	;E4
+	DB	0+c2*(D_LcdMostSegment/8+1)+s39/8	;F4
+	DB	0+c3*(D_LcdMostSegment/8+1)+s39/8	;G4
+
+	DB	0+c0*(D_LcdMostSegment/8+1)+s27/8	;A5
+	DB	0+c2*(D_LcdMostSegment/8+1)+s27/8	;B5
+	DB	0+c4*(D_LcdMostSegment/8+1)+s27/8	;C5
+	DB	0+c4*(D_LcdMostSegment/8+1)+s28/8	;D5
+	DB	0+c3*(D_LcdMostSegment/8+1)+s28/8	;E5
+	DB	0+c1*(D_LcdMostSegment/8+1)+s27/8	;F5
+	DB	0+c3*(D_LcdMostSegment/8+1)+s27/8	;G5
+
+	DB	0+c0*(D_LcdMostSegment/8+1)+s26/8	;A6
+	DB	0+c1*(D_LcdMostSegment/8+1)+s25/8	;B6
+	DB	0+c3*(D_LcdMostSegment/8+1)+s25/8	;C6
+	DB	0+c4*(D_LcdMostSegment/8+1)+s26/8	;D6
+	DB	0+c3*(D_LcdMostSegment/8+1)+s26/8	;E6
+	DB	0+c1*(D_LcdMostSegment/8+1)+s26/8	;F6
+	DB	0+c2*(D_LcdMostSegment/8+1)+s26/8	;G6
+
+	DB	0+c2*(D_LcdMostSegment/8+1)+s24/8	;A7
+	DB	0+c2*(D_LcdMostSegment/8+1)+s15/8	;B7
+	DB	0+c3*(D_LcdMostSegment/8+1)+s15/8	;C7
+	DB	0+c4*(D_LcdMostSegment/8+1)+s15/8	;D7
+	DB	0+c4*(D_LcdMostSegment/8+1)+s24/8	;E7
+	DB	0+c2*(D_LcdMostSegment/8+1)+s25/8	;F7
+	DB	0+c3*(D_LcdMostSegment/8+1)+s24/8	;G7
+
+	DB	0+c4*(D_LcdMostSegment/8+1)+s13/8	;A2
+	DB	0+c3*(D_LcdMostSegment/8+1)+s13/8	;B2
+	DB	0+c1*(D_LcdMostSegment/8+1)+s13/8	;C2
+	DB	0+c0*(D_LcdMostSegment/8+1)+s13/8	;D2
+	DB	0+c0*(D_LcdMostSegment/8+1)+s12/8	;E2
+	DB	0+c2*(D_LcdMostSegment/8+1)+s12/8	;F2
+	DB	0+c2*(D_LcdMostSegment/8+1)+s13/8	;G2
+
+	DB	0+c4*(D_LcdMostSegment/8+1)+s12/8	;A1
+	DB	0+c3*(D_LcdMostSegment/8+1)+s12/8	;B1
+	DB	0+c1*(D_LcdMostSegment/8+1)+s12/8	;C1
+	DB	0+c0*(D_LcdMostSegment/8+1)+s11/8	;D1
+	DB	0+c1*(D_LcdMostSegment/8+1)+s11/8	;E1
+	DB	0+c3*(D_LcdMostSegment/8+1)+s11/8	;F1
+	DB	0+c2*(D_LcdMostSegment/8+1)+s11/8	;G1
+
+	DB	0+c4*(D_LcdMostSegment/8+1)+s10/8	;A0
+	DB	0+c3*(D_LcdMostSegment/8+1)+s10/8	;B0
+	DB	0+c1*(D_LcdMostSegment/8+1)+s10/8	;C0
+	DB	0+c0*(D_LcdMostSegment/8+1)+s10/8	;D0
+	DB	0+c0*(D_LcdMostSegment/8+1)+s9/8	;E0
+	DB	0+c2*(D_LcdMostSegment/8+1)+s9/8	;F0
+	DB	0+c2*(D_LcdMostSegment/8+1)+s10/8	;G0
+
+	endm
+
+show_lettersm	macro	;��ʾ8Ҫд��Ķ���
+	DB	1<<(s42&7)	;A3
+	DB	1<<(s41&7)	;B3
+	DB	1<<(s41&7)	;C3
+	DB	1<<(s42&7)	;D3
+	DB	1<<(s42&7)	;E3
+	DB	1<<(s42&7)	;F3
+	DB	1<<(s41&7)	;G3
+
+	DB	1<<(s39&7)	;A4
+	DB	1<<(s39&7)	;B4
+	DB	1<<(s38&7)	;C4
+	DB	1<<(s39&7)	;D4
+	DB	1<<(s40&7)	;E4
+	DB	1<<(s39&7)	;F4
+	DB	1<<(s39&7)	;G4
+
+	DB	1<<(s27&7)	;A5
+	DB	1<<(s27&7)	;B5
+	DB	1<<(s27&7)	;C5
+	DB	1<<(s28&7)	;D5
+	DB	1<<(s28&7)	;E5
+	DB	1<<(s27&7)	;F5
+	DB	1<<(s27&7)	;G5
+
+	DB	1<<(s26&7)	;A6
+	DB	1<<(s25&7)	;B6
+	DB	1<<(s25&7)	;C6
+	DB	1<<(s26&7)	;D6
+	DB	1<<(s26&7)	;E6
+	DB	1<<(s26&7)	;F6
+	DB	1<<(s26&7)	;G6
+
+	DB	1<<(s24&7)	;A7
+	DB	1<<(s15&7)	;B7
+	DB	1<<(s15&7)	;C7
+	DB	1<<(s15&7)	;D7
+	DB	1<<(s24&7)	;E7
+	DB	1<<(s25&7)	;F7
+	DB	1<<(s24&7)	;G7
+
+	DB	1<<(s13&7)	;A2
+	DB	1<<(s13&7)	;B2
+	DB	1<<(s13&7)	;C2
+	DB	1<<(s13&7)	;D2
+	DB	1<<(s12&7)	;E2
+	DB	1<<(s12&7)	;F2
+	DB	1<<(s13&7)	;G2
+
+	DB	1<<(s12&7)	;A1
+	DB	1<<(s12&7)	;B1
+	DB	1<<(s12&7)	;C1
+	DB	1<<(s11&7)	;D1
+	DB	1<<(s11&7)	;E1
+	DB	1<<(s11&7)	;F1
+	DB	1<<(s11&7)	;G1
+
+	DB	1<<(s10&7)	;A0
+	DB	1<<(s10&7)	;B0
+	DB	1<<(s10&7)	;C0
+	DB	1<<(s10&7)	;D0
+	DB	1<<(s9&7)	;E0
+	DB	1<<(s9&7)	;F0
+	DB	1<<(s10&7)	;G0
+
+	endm
+
+shift_datam		macro
+	db 	3fh	;0
+	db	06h	;1
+	db	5bh	;2
+	db	4fh	;3
+	db	66h	;4
+	db	6dh	;5
+	db	7dh	;6
+	db	07h	;7
+	db	7fh	;8
+	db	6fh	;9
+	db	40h	;����
+	DB	71H	;F
+	DB	37H	;N
+	
+;	db	77h	;A
+;	db	38h	;L
+	endm
+show_dot_datam		macro
+	db	80h	;8
+	db	10h	;7
+	db	02h	;6
+	db	40h	;5
+	db	08h	;4
+	db	01h	;3
+	db	20h	;2
+	db	04h	;��һ�����Ķ���
+	endm
+show_dot_addrm		macro
+	db	0Ah	;8
+	db	0Ah	;7
+	db	0Ah	;6
+	db	09h	;5
+	db	09h	;4
+	db	09h	;3
+	db	07h	;2
+	db	07h	;1
+	endm
+cpu_ext_on		macro
+	lda	#11000010b	;#0c3h
+	sta	sysclk
+	endm
+sys_on		macro
+	smb2	sysclk
+	endm
+sys_week	macro
+	RMB0	sysclk
+	endm
+cpu_sys		macro
+;	lda	#01000110b	;#01000111b
+	rmb7	sysclk
+	endm
+dis_ext		macro
+	lda	#01000101b
+	sta	sysclk
+	endm
+tmr0_4ms	macro
+	rmb0	tmrclk
+	smb1	tmrclk
+	lda	#3fh	;#5fh
+	sta	tmr0l
+	lda	#0f3h	;#0ebh
+	sta	tmr0h
+	endm
+tmr0_on		macro
+	smb0	tmrc
+	endm
+tmr0_off	macro
+	rmb0	tmrc
+	endm
+tmr1_500ms	macro
+	smb2	tmrclk
+	rmb3	tmrclk
+	lda		#00h
+	sta		tmr1h
+	endm
+tmr1_250ms	macro
+	DIV_1KHZ
+	smb2	tmrclk
+	rmb3	tmrclk
+	lda		#00h
+	sta		tmr1h
+	endm
+tmr1_on		macro
+	smb1	tmrc
+	endm
+tmr1_off	macro
+	rmb1	tmrc
+	endm
+;TMR1_CLK_F4Mdiv32	MACRO
+;	RMB2	tmrclk
+;	SMB3	tmrclk
+;	ENDM
+Tmr1Clk_FusbDIV32	MACRO
+	SMB2	tmrclk
+	RMB3	tmrclk
+	ENDM
+pbc_checkdatam	macro
+	db	01111111b	;pc7=0
+	db	10111111b	;pc6=0
+	db	11011111b	;pc5=0
+	db	11101111b	;pc4=0
+	db	11111110b	;pB0=0
+	db	11101111b	;PB4=0
+	endm
+en_pa_int	macro
+	smb4	ier
+	endm
+dis_pa_int	macro
+	rmb4	ier
+	endm
+TMR1_CLK_F4Mdiv4	macro
+	SMB2	tmrclk
+	smb3	tmrclk
+	endm
+en_tmr1_int	macro
+	smb2	ier
+	endm
+dis_tmr1_int	macro
+	rmb2	ier
+	endm
+DIS_TMR1_IRQ     MACRO
+	RMB2    ier
+	ENDM
+SEL_MELODY_1M	  MACRO
+	RMB2    DAC_CTL
+	SMB4    DAC_CTL
+	RMB5    DAC_CTL
+	ENDM
+SEL_MELODY2  	MACRO
+	SMB2    DAC_CTL
+	SMB4    DAC_CTL
+	RMB5    DAC_CTL
+	ENDM
+TMR0_CLK_F4M	MACRO
+	SMB0	tmrclk
+	RMB1	tmrclk
+	ENDM
+en_tmr0_int	macro
+	smb1	ier
+	endm
+dis_tmr0_int	macro
+	rmb1	ier
+	endm	
+en_lcdi		macro
+	smb6	ier
+	endm
+dis_lcdi	macro
+	rmb6	ier
+	endm
+Fcpu_osc_div2	MACRO
+	SMB4	sysclk
+	ENDM
+Fcpu_osc	MACRO
+	RMB4	sysclk
+	ENDM
+	
+AM_SHOW		MACRO
+	xSETB_Lcd	c3,s8	;;AM	;SMB2	R_Lcd93
+	ENDM
+AM_OFF		MACRO
+	xCLRB_Lcd	c3,s8	;;AM	;RMB2	R_Lcd93
+	ENDM
+PM_SHOW		MACRO
+	xSETB_Lcd	c2,s8	;;PM	;SMB1	R_Lcd93
+	ENDM
+PM_OFF		MACRO
+	xCLRB_Lcd	c2,s8	;;PM	;RMB1	R_Lcd93
+	ENDM
+SEC_SHOW	MACRO
+	xSETB_Lcd	c4,s11	;;COL	;SMB4	R_Lcd81
+	ENDM
+SEC_OFF	MACRO
+	xCLRB_Lcd	c4,s11	;;COL	;RMB4	R_Lcd81
+	ENDM
+;--------------------------------
+LABA_X      MACRO
+    xEORB_Lcd   c2,s14  ;R_Lcd93,40h
+	ENDM
+LABA_SHOW	MACRO
+	xSETB_Lcd	c2,s14	;SMB0	R_Lcd95
+	ENDM	
+LABA_OFF	MACRO
+	xCLRB_Lcd	c2,s14	;RMB0	R_Lcd95
+	ENDM	
+;--------------------------------
+NAOL_SHOW	MACRO
+	xSETB_Lcd	c0,s14	;SMB0	R_Lcd9B
+	ENDM
+NAOL_OFF	MACRO
+	xCLRB_Lcd	c0,s14	;RMB0	R_Lcd9B
+	ENDM
+SNZ_SHOW	MACRO
+	xSETB_Lcd	c1,s14	;SMB0	R_Lcd8F
+	ENDM
+SNZ_OFF		MACRO
+	xCLRB_Lcd	c1,s14	;RMB0	R_Lcd8F
+	ENDM	
+;--------------------------------
+CHM_X   MACRO
+    xEORB_Lcd   c0,s14  ;R_Lcd9B,01h
+    ENDM
+CHM_JNB  MACRO  LABLE
+    xJNB_Lcd    c0,s14,LABLE	;BBR0   R_Lcd9B,SNZ_RAY3
+    ENDM
+;--------------------------------
+AML_Show	MACRO
+	xSETB_Lcd	c3,s14	;SMB0	R_Lcd89
+	ENDM	
+AML_Off		MACRO
+	xCLRB_Lcd	c3,s14	;RMB0	R_Lcd89
+	ENDM	
+;--------------------------------
+YEAR_SHOW	MACRO
+	;xSETB_Lcd	c4,s14	;SMB0	R_Lcd83
+	xSETB   R_SentenceCtrl_1,C_SentenceYearBitBit
+	ENDM
+YEAR_OFF	MACRO
+	;xCLRB_Lcd	c4,s14	;RMB0	R_Lcd83
+	xCLRB   R_SentenceCtrl_1,C_SentenceYearBitBit
+	ENDM
+YEAR_JB     MACRO  LABLE
+    ;xJB_Lcd     c4,s14,LABLE
+	xJB     R_SentenceCtrl_1,C_SentenceYearBitBit,LABLE
+    ENDM
+YEAR_JNB     MACRO  LABLE
+    ;xJNB_Lcd    c4,s14,LABLE
+	xJNB     R_SentenceCtrl_1,C_SentenceYearBitBit,LABLE
+    ENDM
+;--------------------------------
+Time_SHOW	MACRO
+	xSETB_Lcd	c4,s14	;SMB0	R_Lcd83
+	ENDM
+Time_OFF	MACRO
+	xCLRB_Lcd	c4,s14	;RMB0	R_Lcd83
+	ENDM
+;--------------------------------
+WENDU_SHOW	MACRO
+	xSETB_Lcd	c0,s25	;;A,E,F,Du	;SMB5	R_Lcd83
+	ENDM
+WENDU_OFF	MACRO
+	xCLRB_Lcd	c0,s25	;RMB5	R_Lcd83
+	ENDM
+	
+TEMP_DOT_SHOW	MACRO
+	xSETB_Lcd	c4,s25	;;DOT	;SMB2	R_Lcd9B
+	ENDM
+TEMP_DOT_OFF	MACRO
+	xCLRB_Lcd	c4,s25	;RMB2	R_Lcd9B
+	ENDM
+TEMP_FU_SHOW	MACRO
+	xSETB_Lcd	c3,s27	;SMB5	R_Lcd95
+	;xSETB_Lcd	c1,s28	;SMB5	R_Lcd95
+	ENDM
+TEMP_FU_1_SHOW	MACRO
+	xSETB_Lcd	c2,s26	;SMB5	R_Lcd95
+	ENDM
+TEMP_FU_2_SHOW	MACRO
+	xSETB_Lcd	c1,s28	;SMB5	R_Lcd95
+	ENDM
+TEMP_FU_2_OFF	MACRO
+	xCLRB_Lcd	c1,s28	;SMB5	R_Lcd95
+	ENDM
+TEMP_FU_OFF	MACRO
+	xCLRB_Lcd	c3,s27	;RMB5	R_Lcd95
+	;xCLRB_Lcd	c1,s28	;RMB5	R_Lcd95
+	ENDM
+	
+TEMP_HI_SHOW	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_TEMP_HI_SHOW_5COM?
+	xSETB_Lcd	c1,s14	;SMB2	R_Lcd83
+	xSETB_Lcd	c2,s14	;SMB2	R_Lcd83
+	BRA     L_TEMP_HI_SHOW_NOT5COM?
+L_TEMP_HI_SHOW_5COM?:
+    .if C_LeftMoveOne
+	    xSETB_Lcd	c2,s28	;SMB2	R_Lcd83
+    .else
+	    xSETB_Lcd	c2,s27	;SMB2	R_Lcd83
+	    xSETB_Lcd	c4,s27	;SMB2	R_Lcd83
+	.endif
+L_TEMP_HI_SHOW_NOT5COM?:
+.else
+	xSETB_Lcd	c2,s28	;SMB6	R_Lcd89
+.endif
+	ENDM
+	
+TEMP_HI_OFF	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_TEMP_HI_OFF_5COM?
+	xCLRB_Lcd	c1,s14	;SMB2	R_Lcd83
+	xCLRB_Lcd	c2,s14	;SMB2	R_Lcd83
+	BRA     L_TEMP_HI_OFF_NOT5COM?
+L_TEMP_HI_OFF_5COM?:
+    .if C_LeftMoveOne
+	    xCLRB_Lcd	c2,s28	;RMB6	R_Lcd89
+	.else
+	    xCLRB_Lcd	c2,s27	;SMB2	R_Lcd83
+	    xCLRB_Lcd	c4,s27	;SMB2	R_Lcd83
+	.endif
+L_TEMP_HI_OFF_NOT5COM?:
+.else
+	xCLRB_Lcd	c2,s28	;RMB6	R_Lcd89
+.endif
+	ENDM
+	
+TEMP_HI_JNB     MACRO  LABLE
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_TEMP_HI_JNB_5COM?
+    xJNB_Lcd    c1,s14,LABLE
+	BRA     L_TEMP_HI_JNB_NOT5COM?
+L_TEMP_HI_JNB_5COM?:
+    .if C_LeftMoveOne
+        xJNB_Lcd    c2,s28,LABLE
+    .else
+        xJNB_Lcd    c2,s27,LABLE
+    .endif
+L_TEMP_HI_JNB_NOT5COM?:
+.else
+    xJNB_Lcd    c2,s28,LABLE
+.endif
+    ENDM
+    
+TEMP_HI_JB     MACRO  LABLE
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_TEMP_HI_JB_5COM?
+    xJB_Lcd     c1,s14,LABLE
+	BRA     L_TEMP_HI_JB_NOT5COM?
+L_TEMP_HI_JB_5COM?:
+    .if C_LeftMoveOne
+        xJB_Lcd     c2,s28,LABLE
+    .else
+        xJB_Lcd     c2,s27,LABLE
+    .endif
+L_TEMP_HI_JB_NOT5COM?:
+.else
+    xJB_Lcd     c2,s28,LABLE
+.endif
+    ENDM
+    
+HUASHI_SHOW	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_HUASHI_SHOW_5COM?
+	xSETB_Lcd	c1,s9	;SMB2	R_Lcd83
+	BRA     L_HUASHI_SHOW_NOT5COM?
+L_HUASHI_SHOW_5COM?:
+	xSETB_Lcd	c0,s24	;SMB2	R_Lcd83
+L_HUASHI_SHOW_NOT5COM?:
+.else
+	xSETB_Lcd	c0,s24	;SMB2	R_Lcd83
+.endif
+	ENDM
+	
+HUASHI_OFF	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_HUASHI_OFF_5COM?
+	xCLRB_Lcd	c1,s9	;SMB2	R_Lcd83
+	BRA     L_HUASHI_OFF_NOT5COM?
+L_HUASHI_OFF_5COM?:
+	xCLRB_Lcd	c0,s24	;RMB2	R_Lcd83
+L_HUASHI_OFF_NOT5COM?:
+.else
+	xCLRB_Lcd	c0,s24	;RMB2	R_Lcd83
+.endif
+	ENDM
+	
+SHESHI_SHOW	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_SHESHI_SHOW_5COM?
+	xSETB_Lcd	c0,s9	;SMB2	R_Lcd83
+	BRA     L_SHESHI_SHOW_NOT5COM?
+L_SHESHI_SHOW_5COM?:
+	xSETB_Lcd	c1,s24	;SMB4	R_Lcd83
+L_SHESHI_SHOW_NOT5COM?:
+.else
+	xSETB_Lcd	c1,s24	;SMB4	R_Lcd83
+.endif
+	ENDM
+	
+SHESHI_OFF	MACRO
+.if C_Fathrenheit&C_EnglishLang
+    BBR3    ID_TIAO,L_SHESHI_OFF_5COM?
+	xCLRB_Lcd	c0,s9	;SMB2	R_Lcd83
+	BRA     L_SHESHI_OFF_NOT5COM?
+L_SHESHI_OFF_5COM?:
+	xCLRB_Lcd	c1,s24	;RMB4	R_Lcd83
+L_SHESHI_OFF_NOT5COM?:
+.else
+	xCLRB_Lcd	c1,s24	;RMB4	R_Lcd83
+.endif
+	ENDM
+	
+TEMP_SHOW	MACRO
+.if C_ForeignTemp
+	xSETB_Lcd	c0,s29	;;TEMP	;SMB6	R_Lcd83
+.else
+	xSETB_Lcd	c0,s28	;;TEMP	;SMB6	R_Lcd83
+.endif
+	ENDM
+TEMP_OFF	MACRO
+.if C_ForeignTemp
+	xCLRB_Lcd	c0,s29	;RMB6	R_Lcd83
+.else
+	xCLRB_Lcd	c0,s28	;RMB6	R_Lcd83
+.endif
+	ENDM
+MONTH_SHOW	MACRO
+	xSETB_Lcd	c0,s41	;;MONTH/DATE/WEEKDAY	;SMB6	R_Lcd8A
+	ENDM
+MONTH_OFF	MACRO
+	xCLRB_Lcd	c0,s41	;RMB6	R_Lcd8A
+	ENDM
+MONTH_HI_SHOW	MACRO
+	xSETB_Lcd	c2,s42	;SMB2	R_Lcd85
+	ENDM
+MONTH_HI_OFF	MACRO
+	xCLRB_Lcd	c2,s42	;RMB2	R_Lcd85
+	ENDM
+WEEK_SHOW	MACRO
+.if C_ForeignWeek
+	xSETB_Lcd	c0,s41	;;MONTH/DATE/WEEKDAY	;	;SMB6	R_Lcd84
+.else
+	xSETB_Lcd	c3,s37	;;MONTH/DATE/WEEKDAY	;	;SMB6	R_Lcd84
+.endif
+	ENDM
+WEEK_OFF	MACRO
+.if C_ForeignWeek
+	xCLRB_Lcd	c0,s41	;RMB6	R_Lcd84
+.else
+	xCLRB_Lcd	c3,s37	;RMB6	R_Lcd84
+.endif
+	ENDM
+P_LCDSAY	MACRO
+	BBS4	pc,LCDP1
+	SMB0	ID_TIAO
+	;RMB6	padf0
+	;BRA	LCDP2
+LCDP1:
+
+    jsr F_PB4OutputLow
+
+	jsr F_LoopDelay10ms
+	jsr F_LoopDelay10ms
+	jsr F_LoopDelay10ms
+
+	BBS4	pc,LCDP2
+	BBS0    ID_TIAO,LCDP2X
+	SMB1	ID_TIAO
+	bra     LCDP2
+LCDP2X:
+	LDA     #0EFH
+	sta     pcdir
+	LDA     #0EFH
+	sta     pc
+LCDP2:
+
+.if C_60ANot2Com
+    jsr     F_PB4OutputHigh
+    jsr     F_LoopDelayShort
+	BBS7    pc,L_2comNotConnectFirst
+	bra     L_2comNotConnect
+L_2comNotConnectFirst:
+
+    jsr     F_PB4OutputLow
+    jsr     F_LoopDelayShort
+	BBS7    pc,L_2comNotConnect
+	xSETB   R_SentenceCtrl_1,C_Sentence2ComBit
+	RMB1    ID_TIAO
+	bra     L_3ComSet
+L_2comNotConnect:
+
+    jsr F_PB4OutputLow
+	jsr F_LoopDelay10ms
+	jsr F_LoopDelay10ms
+.endif
+
+	BBS2	pa,LCDP4
+	
+L_3ComSet:
+	SMB3	ID_TIAO
+;----------------------------
+    RMB0    ID_TIAO
+;----------------------------
+
+LCDP4:
+    jsr F_PB4OutputHigh
+	ENDM
+;------------------------------------------------------
+show_lettersm_2C	macro	;��ʾ8Ҫд��Ķ���
+	DB	1<<(s30_2c&7)	;A0
+	DB	1<<(s29_2c&7)	;B0
+	DB	1<<(s29_2c&7)	;C0
+	DB	1<<(s32_2c&7)	;D0
+	DB	1<<(s31_2c&7)	;E0
+	DB	1<<(s31_2c&7)	;F0
+	DB	1<<(s30_2c&7)	;G0
+	
+	DB	1<<(s26_2c&7)	;A1
+	DB	1<<(s25_2c&7)	;B1
+	DB	1<<(s25_2c&7)	;C1
+	DB	1<<(s26_2c&7)	;D1
+	DB	1<<(s27_2c&7)	;E1
+	DB	1<<(s27_2c&7)	;F1
+	DB	1<<(s26_2c&7)	;G1
+	
+	DB	1<<(s15_2c&7)	;A2
+	DB	1<<(s14_2c&7)	;B2
+	DB	1<<(s14_2c&7)	;C2
+	DB	1<<(s28_2c&7)	;D2
+	DB	1<<(s24_2c&7)	;E2
+	DB	1<<(s24_2c&7)	;F2
+	DB	1<<(s15_2c&7)	;G2
+               
+	;db 40H,40H,40H,80H,01H,80H,80H		;0
+	;db 08h,08h,08h,08h,10h,10h,10h		;1
+	;db 40h,40h,40h,80h,01h,80h,80h		;3
+	;db 10h,10h,10h,20h,01h,20h,20h		;4
+	;db 04h,04h,04h,08h,02h,08h,08h		;5
+	;db 02h,02h,02h,04h,20h,04h,04h		;2
+	endm
+letter_addrm_2C		macro	;�����ַ
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s30_2c/8	;A0
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s29_2c/8	;B0
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s29_2c/8	;C0
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s32_2c/8	;D0
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s31_2c/8	;E0
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s31_2c/8	;F0
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s30_2c/8	;G0
+	    
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s26_2c/8	;A1
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s25_2c/8	;B1
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s25_2c/8	;C1
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s26_2c/8	;D1
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s27_2c/8	;E1
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s27_2c/8	;F1
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s26_2c/8	;G1
+	    
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s15_2c/8	;A2
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s14_2c/8	;B2
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s14_2c/8	;C2
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s28_2c/8	;D2
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s24_2c/8	;E2
+	DB	0+c1_2c*(D_LcdMostSegment/8+1)+s24_2c/8	;F2
+	DB	0+c0_2c*(D_LcdMostSegment/8+1)+s15_2c/8	;G2
+
+	;db 0FH,09h,03h,03h,04h,0Fh,09h		;0
+	;db 0FH,09h,03h,0Fh,03h,0Fh,09h		;1
+	;db 01h,07h,0Dh,01h,0fh,0Dh,07h		;3
+	;db 01h,07h,0Dh,0Dh,09h,01h,07h		;4
+	;db 01h,07h,0Dh,0Dh,0Dh,01h,07h		;5
+	;db 0FH,09h,03h,03h,03h,0Fh,09h		;2
+	endm
+PM_2C_SHOW	MACRO
+	xSETB_Lcd	c0_2c,s34_2c	;c0,s34	;;PM
+	ENDM
+PM_2C_OFF	MACRO
+	xCLRB_Lcd	c0_2c,s34_2c	;c0,s34	;;PM
+	ENDM
+AL_2C_SHOW	MACRO
+	xSETB_Lcd	c1_2c,s34_2c	;c1,s34	;;AL
+	ENDM
+AL_2C_OFF	MACRO
+	xCLRB_Lcd	c1_2c,s34_2c	;c1,s34	;;AL
+	ENDM
+	
+COL_2C_SHOW	MACRO
+	xSETB_Lcd	c1_2c,s28_2c	;c1,s28	;;Col
+	ENDM	
+COL_2C_OFF	MACRO
+	xCLRB_Lcd	c1_2c,s28_2c	;c1,s28	;;Col
+	ENDM
+COL_2C_JNB     MACRO  LABLE
+    xJNB_Lcd    c1_2c,s28_2c,LABLE
+    ENDM
+COL_2C_JB     MACRO  LABLE
+    xJB_Lcd     c1_2c,s28_2c,LABLE
+    ENDM
+	
+ALM_2C_SHOW	MACRO
+	xSETB_Lcd	c0_2c,s13_2c	;c0,s13	;;AL-Flag	
+	ENDM
+ALM_2C_OFF	MACRO
+	xCLRB_Lcd	c0_2c,s13_2c	;c0,s13	;;AL-Flag	
+	ENDM
+CHM1_2C_SHOW	MACRO
+	xSETB_Lcd	c1_2c,s13_2c	;c1,s13	;;CHM-Flag
+	ENDM
+CHM1_2C_OFF	MACRO
+	xCLRB_Lcd	c1_2c,s13_2c	;c1,s13	;;CHM-Flag
+	ENDM
+;------------------------------------------------------
+show_lettersm_AN	macro	;��ʾ8Ҫд��Ķ���
+	db 40H,40H,40H,80H,01H,80H,80H		;0
+	db 08h,08h,08h,08h,10h,10h,10h		;1
+	db 40h,40h,40h,80h,01h,80h,80h		;3
+	db 10h,10h,10h,20h,01h,20h,20h		;4
+	db 04h,04h,04h,08h,02h,08h,08h		;5
+	db 02h,02h,02h,04h,20h,04h,04h		;2
+	endm
+letter_addrm_AN		macro	;�����ַ
+	db 0FH,09h,03h,03h,04h,0Fh,09h		;0
+	db 0FH,09h,03h,0Fh,03h,0Fh,09h		;1
+	db 01h,07h,0Dh,01h,0fh,0Dh,07h		;3
+	db 01h,07h,0Dh,0Dh,09h,01h,07h		;4
+	db 01h,07h,0Dh,0Dh,0Dh,01h,07h		;5
+	db 0FH,09h,03h,03h,03h,0Fh,09h		;2
+	endm
+PM_AN_SHOW	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_PM_2C_SHOW
+	SMB1	R_Lcd8A
+	bra     L_PM_AN_SHOW
+L_PM_2C_SHOW:
+    PM_2C_SHOW
+L_PM_AN_SHOW:
+.else
+    SMB1	R_Lcd8A
+.endif
+	ENDM
+;----------------
+PM_AN_OFF	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_PM_2C_OFF
+	RMB1	R_Lcd8A
+	bra     L_PM_AN_OFF
+L_PM_2C_OFF:
+    PM_2C_OFF
+L_PM_AN_OFF
+.else
+    RMB1	R_Lcd8A
+.endif
+	ENDM
+;----------------
+AL_AN_SHOW	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_AL_2C_SHOW
+	SMB5	R_Lcd89
+	BRA     L_AL_AN_SHOW
+L_AL_2C_SHOW:
+    AL_2C_SHOW
+L_AL_AN_SHOW:
+.else
+    SMB5	R_Lcd89
+.endif
+	ENDM
+;----------------
+AL_AN_OFF	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_AL_2C_OFF?
+	RMB5	R_Lcd89
+	BRA     L_AL_AN_OFF?
+L_AL_2C_OFF?:
+    AL_2C_OFF
+L_AL_AN_OFF?
+.else
+    RMB5	R_Lcd89
+.endif
+	ENDM
+;----------------
+COL_AN_SHOW	MACRO 
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_COL_2C_SHOW?
+	SMB5	R_Lcd8F
+	BRA     L_COL_AN_SHOW?
+L_COL_2C_SHOW?:
+    COL_2C_SHOW
+L_COL_AN_SHOW?:
+.else
+    SMB5	R_Lcd8F
+.endif
+	ENDM	
+;----------------
+COL_AN_OFF	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_COL_2C_OFF?
+	RMB5	R_Lcd8F
+	BRA     L_COL_AN_OFF?
+L_COL_2C_OFF?:
+    COL_2C_OFF
+L_COL_AN_OFF?:
+.else
+    RMB5	R_Lcd8F
+.endif
+	ENDM
+;----------------
+COL_AN_JNB     MACRO  LABLE
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_COL_2C_JNB
+    xJNB_Lcd    c2,s29,LABLE
+    BRA     L_COL_AN_JNB
+L_COL_2C_JNB:
+    COL_2C_JNB  LABLE
+L_COL_AN_JNB:
+.else
+    xJNB_Lcd    c2,s29,LABLE
+.endif
+    ENDM
+;----------------
+COL_AN_JB     MACRO  LABLE
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_COL_2C_JB
+    xJB_Lcd     c2,s29,LABLE
+    BRA     L_COL_AN_JB
+L_COL_2C_JB:
+    COL_2C_JB   LABLE
+L_COL_AN_JB:
+.else
+    xJB_Lcd     c2,s29,LABLE
+.endif
+    ENDM
+;----------------
+ALM_AN_SHOW	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_ALM_2C_SHOW?
+	SMB2	R_Lcd84
+	BRA     L_ALM_AN_SHOW?
+L_ALM_2C_SHOW?:
+    ALM_2C_SHOW
+L_ALM_AN_SHOW?:
+.else
+    SMB2	R_Lcd84
+.endif
+	ENDM
+;----------------
+ALM_AN_OFF	MACRO
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_ALM_2C_OFF?
+	RMB2	R_Lcd84	
+	BRA     L_ALM_AN_OFF?
+L_ALM_2C_OFF?:
+    ALM_2C_OFF
+L_ALM_AN_OFF?:
+.else
+    RMB2	R_Lcd84	
+.endif
+	ENDM
+;----------------
+CHM2_AN_SHOW	MACRO
+	xJB     R_SoundCtrl,C_ChmInvalidBit,L_CHM2_AN_SHOW?
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_CHM2_AN_SHOW?
+.endif
+	SMB2	R_Lcd8A
+L_CHM2_AN_SHOW?:
+	ENDM
+CHM2_AN_OFF	MACRO
+	xJB     R_SoundCtrl,C_ChmInvalidBit,L_CHM2_AN_OFF?
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_CHM2_AN_OFF?
+.endif
+	RMB2	R_Lcd8A
+L_CHM2_AN_OFF?:
+	ENDM
+;----------------
+CHM1_AN_SHOW	MACRO
+	xJB     R_SoundCtrl,C_ChmInvalidBit,L_CHM1_AN_SHOW?
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_CHM1_2C_SHOW?
+	SMB2	R_Lcd90
+	BRA     L_CHM1_AN_SHOW?
+L_CHM1_2C_SHOW?:
+    CHM1_2C_SHOW
+L_CHM1_AN_SHOW?:
+.else
+	SMB2	R_Lcd90
+L_CHM1_AN_SHOW?:
+.endif
+	ENDM
+;----------------
+CHM1_AN_OFF	MACRO
+	xJB     R_SoundCtrl,C_ChmInvalidBit,L_CHM1_AN_OFF?
+.if C_60ANot2Com
+	xJB     R_SentenceCtrl_1,C_Sentence2ComBit,L_CHM1_2C_OFF?
+	RMB2	R_Lcd90
+	BRA     L_CHM1_AN_OFF?
+L_CHM1_2C_OFF?:
+    CHM1_2C_OFF
+L_CHM1_AN_OFF?:
+.else
+    RMB2	R_Lcd90
+L_CHM1_AN_OFF?:
+.endif
+	ENDM
+;----------------
+TEMP_AN_SHOW	MACRO
+	SMB1	R_Lcd90
+	ENDM
+TEMP_AN_OFF	MACRO
+	RMB1	R_Lcd90
+	ENDM
+TEMP_FU_AN_SHOW	MACRO
+	SMB7	R_Lcd87
+	ENDM
+TEMP_FU_1_AN_SHOW	MACRO
+	xSETB_Lcd   c1,s13  ;SMB7	R_Lcd87
+	ENDM
+TEMP_FU_AN_OFF	MACRO
+	RMB7	R_Lcd87
+	ENDM
+DOT_AN_SHOW	MACRO
+	SMB0	R_Lcd83
+	ENDM
+DOT_AN_OFF	MACRO
+	RMB0	R_Lcd83
+	ENDM
+SHESHI_AN_SHOW	MACRO
+	SMB1	R_Lcd81
+	ENDM	
+SHESHI_AN_OFF	MACRO
+	RMB1	R_Lcd81
+	ENDM
+HUASHI_AN_SHOW	MACRO
+	SMB1	R_Lcd87
+	ENDM
+HUASHI_AN_OFF	MACRO
+	RMB1	R_Lcd87
+	ENDM
+HOUR_HI_SHOW1	MACRO
+	SMB0	R_Lcd90
+	SMB0	R_Lcd8A
+	ENDM
+HOUR_HI_SHOW2	MACRO
+	SMB1	R_Lcd8A
+	SMB0	R_Lcd90
+	ENDM
+;------------------------------
+time_init	MACRO
+;------------------------------
+	LDA	#0
+	stA	R_Minute
+	stA	R_Second
+	sta	R_Hour
+	STA	TIME_CNT
+	STA	Crt_500ms
+	ENDM
+;------------------------------
+RING_init	MACRO
+;------------------------------
+	LDA	#0
+	STA	R_AlarmHour
+	STA	R_AlarmMinute
+	LDA	#Num_di
+	STA	R_AlarmMusic
+	RMB7	ID_SETP
+	ENDM
+;-------------------------------
+date_init	MACRO
+;-------------------------------
+	LDA	#07
+	STA	R_Year
+	LDA	#1
+	STA	R_Month
+	STA	R_Day
+	LDA	#1
+	STHN	R_Week
+	ENDM
+;-------------------------------------
+ONE_AN_CLR	MACRO
+;-------------------------------------
+	RMB3	R_Lcd8F
+	RMB3	R_Lcd89
+	RMB3	R_Lcd83
+	RMB3	R_Lcd8F
+	RMB4	R_Lcd83
+	RMB4	R_Lcd8F
+	RMB4	R_Lcd89
+	ENDM
+;----------------------------------
+RAM_INI		MACRO	;�õ���RAM��ʼ��
+;----------------------------------
+	LDA	#01H
+	STA	ID_KEYSCN
+	LDA	#07H
+	AND	ID_WHNCOPM
+	STA	ID_WHNCOPM
+	LDA	#07H
+	AND	ID_TIMUPDT
+	STA	ID_TIMUPDT
+	
+	lda R_SoundCtrl
+	ora #C_BitPA7
+	sta R_SoundCtrl
+	
+	LDA	#0
+	STHN	R_SETCNT
+;	sta	ID_SORT2
+	STA	R_SetDelay
+	STA	ID_Say
+	STA	R_TempCnt
+	STA	R_TempCnt+1
+	STA	R_TempIntCnt1
+	STA	R_TempIntCnt1+1
+	STA	R_TempIntCnt2
+	STA	R_TempIntCnt2+1
+	STA	R_SoundStatus
+	LDX	#R_TempIntCnt1_ADDR
+WENDU_INI:
+	STA	0,X
+	INX
+	CPX	#R_TempIntCnt1_ADDR+8
+	BNE	WENDU_INI
+;	STLN	R_TempCnt+1
+	sta	ID_SORT
+	STA	R_Lcd2ModeCnt
+	STLN	ID_DateSay
+	STA	R_TEMPCMP+1
+	STA	R_Volumn
+	
+	LDA	#07H
+	AND	ID_SETP
+	STA	ID_SETP
+	
+	LDA	#0FFH
+	STA	R_TEMPCMP
+	
+	RMB3	R_SETCNT
+	RMB3	SEC_CNT
+	
+.if C_Fathrenheit
+	SMB0    ID_SORT
+.endif
+	ENDM
+
+SNZ_SAY		MACRO
+	BBR4	ID_TIMUPDT,time_set21
+	BBR3	SEC_CNT,time_set21
+	LDHN	R_TimSnz
+	INC
+	STHN	R_TimSnz
+
+.if C_60ANot2Com
+	xJB   R_SentenceCtrl_1,C_Sentence2ComBit,L_SnzTimer
+	CMP	#10     ;���: 10����
+	bra time_set2A1
+L_SnzTimer:
+    cmp #5      ;2com: 5����
+time_set2A1:
+.else
+	CMP	#10     ;���: 10����
+.endif
+
+	BCC	time_set21
+	BBS3	ID_TIAO,time_set2A2
+	RMB3	SEC_CNT
+	SNZ_OFF
+time_set2A2:
+	LDA	#0
+	STHN	R_TimSnz
+	STA	R_MINSNZ
+	JSR	ring_comp0
+time_set21:
+	ENDM
+
+;=================================================
+JUDGE_LCD_TIME_HRH	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_HRH
+	LDX		#LCD_TIME_HRH
+	BRA		?END_TIME_HRH
+	?LCD2_TIME_HRH:
+	LDX		#LCD2_TIME_HRH
+	?END_TIME_HRH:
+	ENDM
+
+JUDGE_LCD_TIME_HRL	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_HRL
+	LDX		#LCD_TIME_HRL
+	BRA		?END_TIME_HRL
+	?LCD2_TIME_HRL:
+	LDX		#LCD2_TIME_HRL
+	?END_TIME_HRL:
+	ENDM
+
+JUDGE_LCD_TIME_MINH	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_MINH
+	LDX		#LCD_TIME_MINH
+	BRA		?END_TIME_MINH
+	?LCD2_TIME_MINH:
+	LDX		#LCD2_TIME_MINH
+	?END_TIME_MINH:
+	ENDM
+JUDGE_LCD_TIME_MINL	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_MINL
+	LDX		#LCD_TIME_MINL
+	BRA		?END_TIME_MINL
+	?LCD2_TIME_MINL:
+	LDX		#LCD2_TIME_MINL
+	?END_TIME_MINL:
+	ENDM
+
+
+JUDGE_LCD_ALARM_HRH	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM_HRH
+	LDX		#LCD_ALARM_HRH
+	BRA		?END_ALARM_HRH
+	?LCD2_ALARM_HRH:
+	LDX		#LCD2_ALARM_HRH
+	?END_ALARM_HRH:
+	ENDM
+
+JUDGE_LCD_ALARM_HRL	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM_HRL
+	LDX		#LCD_ALARM_HRL
+	BRA		?END_ALARM_HRL
+	?LCD2_ALARM_HRL:
+	LDX		#LCD2_ALARM_HRL
+	?END_ALARM_HRL:
+	ENDM
+JUDGE_LCD_ALARM_MINH	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM_MINH
+	LDX		#LCD_ALARM_MINH
+	BRA		?END_ALARM_MINH
+	?LCD2_ALARM_MINH:
+	LDX		#LCD2_ALARM_MINH
+	?END_ALARM_MINH:
+	ENDM
+
+JUDGE_LCD_ALARM_MINL	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM_MINL
+	LDX		#LCD_ALARM_MINL
+	BRA		?END_ALARM_MINL
+	?LCD2_ALARM_MINL:
+	LDX		#LCD2_ALARM_MINL
+	?END_ALARM_MINL:
+	ENDM
+
+JUDGE_LCD_TIME_YEAR_20	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_YEAR_20
+	LDX		#LCD_TIME_YEAR_20
+	BRA		?END_TIME_YEAR_20
+	?LCD2_TIME_YEAR_20:
+	LDX		#LCD2_TIME_YEAR_20
+	?END_TIME_YEAR_20:
+	ENDM
+JUDGE_LCD_TIME_YEAR_H	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_YEAR_H
+	LDX		#LCD_TIME_YEAR_H
+	BRA		?END_TIME_YEAR_H
+	?LCD2_TIME_YEAR_H:
+	LDX		#LCD2_TIME_YEAR_H
+	?END_TIME_YEAR_H:
+	ENDM
+JUDGE_LCD_TIME_YEAR_L	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_YEAR_L
+	LDX		#LCD_TIME_YEAR_L
+	BRA		?END_TIME_YEAR_L
+	?LCD2_TIME_YEAR_L:
+	LDX		#LCD2_TIME_YEAR_L
+	?END_TIME_YEAR_L:
+	ENDM
+JUDGE_LCD_TIME_MONTH_H	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_MONTH_H
+	LDX		#LCD_TIME_MONTH_H
+	BRA		?END_TIME_MONTH_H
+	?LCD2_TIME_MONTH_H:
+	LDX		#LCD2_TIME_MONTH_H
+	?END_TIME_MONTH_H:
+	ENDM
+JUDGE_LCD_TIME_MONTH_L	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_MONTH_L
+	LDX		#LCD_TIME_MONTH_L
+	BRA		?END_TIME_MONTH_L
+	?LCD2_TIME_MONTH_L:
+	LDX		#LCD2_TIME_MONTH_L
+	?END_TIME_MONTH_L:
+	ENDM
+JUDGE_LCD_TIME_DAY_H	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_DAY_H
+	LDX		#LCD_TIME_DAY_H
+	BRA		?END_TIME_DAY_H
+	?LCD2_TIME_DAY_H:
+	LDX		#LCD2_TIME_DAY_H
+	?END_TIME_DAY_H:
+	ENDM
+JUDGE_LCD_TIME_DAY_L	MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_DAY_L
+	LDX		#LCD_TIME_DAY_L
+	BRA		?END_TIME_DAY_L
+	?LCD2_TIME_DAY_L:
+	LDX		#LCD2_TIME_DAY_L
+	?END_TIME_DAY_L:
+	ENDM
+JUDGE_LCD_TEMP_HHBC		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMP_HHBC
+	LDX		#LCD_TEMP_HHBC
+	BRA		?END_TEMP_HHBC
+	?LCD2_TEMP_HHBC:
+	LDX		#LCD2_TEMP_HHBC
+	?END_TEMP_HHBC:
+	ENDM
+
+JUDGE_LCD_TEMPH			MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMPH
+	LDX		#LCD_TEMPH
+	BRA		?END_TEMPH
+	?LCD2_TEMPH:
+	LDX		#LCD2_TEMPH
+	?END_TEMPH:
+	ENDM
+JUDGE_LCD_TEMPL			MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMPL
+	LDX		#LCD_TEMPL
+	BRA		?END_TEMPL
+	?LCD2_TEMPL:
+	LDX		#LCD2_TEMPL
+	?END_TEMPL:
+	ENDM
+
+JUDGE_DOT_TEMP_CF			MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?DOT_TEMP_CF
+	LDX		#LCD_TEMP_CF
+	BRA		?END_TEMPL
+	?DOT_TEMP_CF:
+	LDX		#LCD2_TEMP_CF
+	?END_TEMPL:
+	ENDM
+
+JUDGE_DOT_TEMP_C		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMP_C
+	LDX		#DOT_TEMP_C
+	BRA		?END_TEMP_C
+	?LCD2_TEMP_C:
+	LDX		#DOT2_TEMP_C
+	?END_TEMP_C:
+	ENDM
+JUDGE_DOT_TEMP_F		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMP_F
+	LDX		#DOT_TEMP_F
+	BRA		?END_TEMP_F
+	?LCD2_TEMP_F:
+	LDX		#DOT2_TEMP_F
+	?END_TEMP_F:
+	ENDM
+JUDGE_LCD_TEMPD		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TEMPD
+	LDX		#LCD_TEMPD
+	BRA		?END_TEMPD
+	?LCD2_TEMPD:
+	LDX		#LCD2_TEMPD
+	?END_TEMPD:
+	ENDM
+JUDGE_LCD_WEEK		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_WEEK
+	LDX		#LCD1_WEEK
+	BRA		?END_WEEK
+	?LCD2_WEEK:
+	LDX		#LCD2_WEEK
+	?END_WEEK:
+	ENDM
+
+JUDGE_LCD_ALARM1		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM1
+	LDX		#LCD1_ALARM1
+	BRA		?END_ALARM1
+	?LCD2_ALARM1:
+	LDX		#LCD2_ALARM1
+	?END_ALARM1:
+	ENDM
+JUDGE_LCD_ALARM2		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM2
+	LDX		#LCD1_ALARM2
+	BRA		?END_ALARM2
+	?LCD2_ALARM2:
+	LDX		#LCD2_ALARM2
+	?END_ALARM2:
+	ENDM
+JUDGE_LCD_ALARM3		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM3
+	LDX		#LCD1_ALARM3
+	BRA		?END_ALARM3
+	?LCD2_ALARM3:
+	LDX		#LCD2_ALARM3
+	?END_ALARM3:
+	ENDM
+JUDGE_LCD_ALARM4		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM4
+	LDX		#LCD1_ALARM4
+	BRA		?END_ALARM4
+	?LCD2_ALARM4:
+	LDX		#LCD2_ALARM4
+	?END_ALARM4:
+	ENDM
+JUDGE_LCD_ALARM5		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM5
+	LDX		#LCD1_ALARM5
+	BRA		?END_ALARM5
+	?LCD2_ALARM5:
+	LDX		#LCD2_ALARM5
+	?END_ALARM5:
+	ENDM
+JUDGE_LCD_ALARM6		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_ALARM6
+	LDX		#LCD1_ALARM6
+	BRA		?END_ALARM6
+	?LCD2_ALARM6:
+	LDX		#LCD2_ALARM6
+	?END_ALARM6:
+	ENDM
+
+JUDGE_LCD_COL1		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_COL1
+	LDX		#LCD1_COL1
+	BRA		?END_COL1
+	?LCD2_COL1:
+	LDX		#LCD2_COL1
+	?END_COL1:
+	ENDM
+
+JUDGE_LCD_COL2		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_COL2
+	LDX		#LCD1_COL2
+	BRA		?END_COL2
+	?LCD2_COL2:
+	LDX		#LCD2_COL2
+	?END_COL2:
+	ENDM
+
+
+JUDGE_LCD_AM1		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_AM1
+	LDX		#LCD1_AM1
+	BRA		?END_AM1
+	?LCD2_AM1:
+	LDX		#LCD2_AM1
+	?END_AM1:
+	ENDM
+
+JUDGE_LCD_PM1		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_PM1
+	LDX		#LCD1_PM1
+	BRA		?END_PM1
+	?LCD2_PM1:
+	LDX		#LCD2_PM1
+	?END_PM1:
+	ENDM
+
+JUDGE_LCD_SNZ		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_SNZ
+	LDX		#LCD1_SNZ
+	BRA		?END_SNZ
+	?LCD2_SNZ:
+	LDX		#LCD2_SNZ
+	?END_SNZ:
+	ENDM
+
+JUDGE_LCD_CHM		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_CHM
+	LDX		#LCD1_CHM
+	BRA		?END_CHM
+	?LCD2_CHM:
+	LDX		#LCD2_CHM
+	?END_CHM:
+	ENDM
+
+JUDGE_LCD_BZ		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_BZ
+	LDX		#LCD1_BZ
+	BRA		?END_BZ
+	?LCD2_BZ:
+	LDX		#LCD2_BZ
+	?END_BZ:
+	ENDM
+JUDGE_LCD_PM2		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_PM2
+	LDX		#LCD1_PM2
+	BRA		?END_PM2
+	?LCD2_PM2:
+	LDX		#LCD2_PM2
+	?END_PM2:
+	ENDM
+
+JUDGE_LCD_AM2		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_AM2
+	LDX		#LCD1_AM2
+	BRA		?END_AM2
+	?LCD2_AM2:
+	LDX		#LCD2_AM2
+	?END_AM2:
+	ENDM
+
+JUDGE_LCD_YEAR		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_YEAR
+	LDX		#LCD1_YEAR
+	BRA		?END_YEAR
+	?LCD2_YEAR:
+	LDX		#LCD2_YEAR
+	?END_YEAR:
+	ENDM
+JUDGE_LCD_GL		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_GL
+	LDX		#LCD1_GL
+	BRA		?END_GL
+	?LCD2_GL:
+	LDX		#LCD2_GL
+	?END_GL:
+	ENDM
+
+JUDGE_LCD_NL		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_NL
+	LDX		#LCD1_NL
+	BRA		?END_NL
+	?LCD2_NL:
+	LDX		#LCD2_NL
+	?END_NL:
+	ENDM
+JUDGE_LCD_DAY1		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_DAY1
+	LDX		#LCD1_DAY1
+	BRA		?END_DAY1
+	?LCD2_DAY1:
+	LDX		#LCD2_DAY1
+	?END_DAY1:
+	ENDM
+
+JUDGE_LCD_DAY2		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_DAY2
+	LDX		#LCD1_DAY2
+	BRA		?END_DAY2
+	?LCD2_DAY2:
+	LDX		#LCD2_DAY2
+	?END_DAY2:
+	ENDM
+
+JUDGE_LCD_RUN		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_RUN
+	LDX		#LCD1_RUN
+	BRA		?END_RUN
+	?LCD2_RUN:
+	LDX		#LCD2_RUN
+	?END_RUN:
+	ENDM
+
+JUDGE_LCD_MD		MACRO
+	xJB		Flag_NongLi,Bit_NongLi,?LCD2_MDTW
+	LDX		#DOT_MDTW
+	BRA		?END
+	?LCD2_MDTW:
+	LDX		#LCD2_MD
+	?END:
+	ENDM
+;=================================================
+

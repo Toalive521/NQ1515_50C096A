@@ -1,0 +1,68 @@
+;***********************************************************************
+	.PAGE0
+	.ORG	98H
+
+BIT7:	EQU	7
+BIT6:	EQU	6
+BIT5:	EQU	5
+BIT4:	EQU	4
+BIT3:	EQU	3
+BIT2:	EQU	2
+BIT1:	EQU	1
+BIT0:	EQU	0
+
+;TR_Temp:		DS	6
+;T
+;TR_Celsius:	DS	2				;Display Celsius degree, bit7 of R_DispTemp+1 is sign
+;TR_Fahren:	DS	2				;Display Fahrenheit degree, bit7 of R_Fahren+1 is sign
+;T
+;TR_Test:		DS	1
+
+
+R_Option:	DS	1
+D_LCD1		EQU	BIT7
+D_LCD2		EQU	BIT6
+D_BackLED	EQU	BIT5				;Just background LED valid
+D_LED_ON	EQU	BIT2
+D_LED_OFF	EQU	BIT1
+D_LED_TR	EQU	BIT0				;One time trigger
+
+R_Flag:		DS	1
+D_24Hr		EQU	BIT7
+D_Fahr		EQU	BIT6				;Fahrenheit
+D_TimerRun	EQU	BIT5
+D_LcdInt	EQU	BIT4
+D_GetLedEnd	EQU	BIT3				;Need calculate LED new end state
+D_LedSel	EQU	BIT2				;Selecting led mode
+D_HoldValid	EQU	BIT1
+D_Temp		EQU	BIT0
+
+R_AlarmFlag:	DS	1
+D_AlarmOn	EQU	BIT7
+D_SnoozeOn	EQU	BIT6
+D_Alarm2On	EQU	BIT5				;Year month day . alarm
+D_TimerOver	EQU	BIT3
+D_Alr2Reach	EQU	BIT2
+D_AlrReach	EQU	BIT1
+D_PlayMusic	EQU	BIT0
+
+R_Temp:		DS	6
+
+R_SoundNum	DS	1			;High nibble
+R_EnvCnt:	DS	1
+R_SpeedCnt:	DS	1
+R_Speed:	DS	1
+R_BeatCnt:	DS	1
+R_ToneIdx:	DS	2
+
+R_BiLength:	DS	1				;Misic 1 ~ 3 lenght, 50 times (about 40s)
+
+R_LedStatus:	DS	1				;Higher nibble(bit4~6,RGB) : start status. 1 -> light,0 -> extinct
+							;Lower nibble : objective status
+
+R_BeatBak:	DS	1
+
+	.ENDS
+
+;***********************************************************************
+;=======================================================

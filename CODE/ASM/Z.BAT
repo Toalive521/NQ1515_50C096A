@@ -1,0 +1,19 @@
+zas -GLS KSD055A.asm
+PAUSE
+zln -G -HB -SZ -T KSD055A.obj
+PAUSE
+CheckAsm KSD055A.lst
+PAUSE
+ToRV9E KSD055A.lst KSD055A.bin 0 C002 KSD055A.9e
+PAUSE
+copy /b Clock.voc+KSD055A.9e KSD055A.tap
+PAUSE
+Checksum KSD055A.tap
+PAUSE
+copy KSD055A.tap ..\LCD1
+copy KSD055A.9ls ..\LCD1
+copy KSD055A.tap ..\LCD2
+copy KSD055A.9ls ..\LCD2
+copy KSD055A.tap ..\LCD3
+copy KSD055A.9ls ..\LCD3
+PAUSE

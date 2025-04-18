@@ -1,0 +1,66 @@
+;ZPAddr          DS      3
+R_SoundAddr		DS      3	;;;;;;;;;;;
+
+;VoiceLen        DS      2
+VoiceLen:
+R_EvpCntCh2		DS	2	;;;;;;;;;;;;;;;
+
+;PN              DS      2
+R_PnReg         	DS      2	;;;;;;;;;;;;;;;
+
+;NewCode         DS      1
+R_AdpcmNewCode		DS	1	;;;;;;;;;;;;;;;;;
+
+;EnvCnt:
+;ZPTMode         DS      1
+R_MelodyStatus		ds	1	;;;;;;;;;;;;;;;;;;;
+
+;BeatCnt:
+;BFreq           DS      1
+;Speed           DS      1
+R_InstCh1	      	DS      2	;;;;;;;;;;;;;;;;;
+
+
+
+;RandomSeed	DS      2
+R_InstCh2	DS      2	;;;;;;;;;;;;;;;;
+
+;SpeedCnt	DS      1
+;FlagX		DS	1
+R_EvpCntCh1	ds	2	;;;;;;;;;;;;;;;;;;
+
+;ZPVoiceFlag	DS      1    ; b0: (silence bit  ) 0 : silence, 1 : is 3bit ADPCM loop in the isr
+                             ; b1: (8bit PCM     ) 1 : 8bit PCM
+                             ; b4: (4bit ADPCM   ) 1 : 4bit ADPCM
+                             ; b5: Melody
+                             ; b6: Tone
+                             ; b7: (end of setion) 1 : the end of section; ADPCM even/Odd toggle
+
+;ZPVoiceFlag1	DS      1
+
+fVolDown        EQU	5
+fVocReset       EQU	6       ; b6 : (Voice Reset ) 1 : do the reset loop in the isr,  0 : normal
+fEndOfSec       EQU	7       ; b7 : (Voice Ending) 1 : do the ending loop in the isr, 0 : normal
+
+
+;Temp		DS	1
+R_EvpDividerCh1		ds	3	;;;;;;;;;;;;;;;
+
+SOUND_START 	EQU 	2C000h
+
+ZPFlagBN    	EQU     1
+
+;r_tone_temp	equ	ebh
+;r_tone_temp	ds	1		;19
+R_SoundStatus		DS	1
+
+;r_tone_envelope	EQU	a0h
+;r_tone_envelope	DS	1		;20
+R_CtrlRegister		DS	1	;;;;;;;;;;;;;;;;
+
+SpeechFlag	equ	01h
+~SpeechFlag	equ	0FEh
+
+R_EvpDividerCh2		ds	3	;3B
+
+KEY_NUM		EQU	21H

@@ -1,0 +1,985 @@
+JMP_IDX MACRO   MEM
+        if MEM<$1000
+        JMP     ($0F80+MEM)
+        else
+        JMP     (MEM)
+        endif
+        ENDM
+
+INCD    MACRO   MEM
+        LDA     MEM
+        SED
+        CLC
+        ADC     #01h
+        STA     MEM
+        CLD
+        ENDM
+
+INCDHN  MACRO   MEM
+        LDHN    MEM
+        SED
+        CLC
+        ADC     #01h
+        STHN    MEM
+        CLD
+        ENDM
+
+INCD_X  MACRO   MEM
+        if MEM<$1000
+        LDA     $0F80+MEM,X
+        else
+        LDA     MEM,X
+        endif
+        SED
+        CLC
+        ADC     #01h
+        if MEM<$1000
+        STA     $0F80+MEM,X
+        else
+        STA     MEM,X
+        endif
+        CLD
+        ENDM
+
+DECD_X  MACRO   MEM
+        if MEM<$1000
+        LDA     $0F80+MEM,X
+        else
+        LDA     MEM,X
+        endif
+        SED
+        SEC
+        SBC     #01h
+        if MEM<$1000
+        STA     $0F80+MEM,X
+        else
+        STA     MEM,X
+        endif
+        CLD
+        ENDM
+
+INCDA   MACRO
+        SED
+        CLC
+        ADC     #01h
+        CLD
+        ENDM
+
+INCWD   MACRO   MEM
+        LDA     MEM
+        SED
+        CLC
+        ADC     #01h
+        STA     MEM
+        LDA     MEM+1
+        ADC     #00h
+        STA     MEM+1
+        CLD
+        ENDM
+
+DECD    MACRO   MEM
+        LDA     MEM
+        SED
+        SEC
+        SBC     #01h
+        STA     MEM
+        CLD
+        ENDM
+
+DECXD   MACRO   MEM
+        LDA     MEM,X
+        SED
+        SEC
+        SBC     #01h
+        STA     MEM,X
+        CLD
+        ENDM
+
+DECDA   MACRO
+        SED
+        SEC
+        SBC     #01h
+        CLD
+        ENDM
+
+DECWD   MACRO   MEM
+        LDA     MEM
+        SED
+        SEC
+        SBC     #01h
+        STA     MEM
+        LDA     MEM+1
+        SBC     #00h
+        STA     MEM+1
+        CLD
+        ENDM
+
+ADCDi   MACRO   MEM,DD
+        SED
+        LDA     MEM
+        CLC
+        ADC     #DD
+        STA     MEM
+        CLD
+        ENDM
+
+ADCi    MACRO   MEM,DD
+        LDA     MEM
+        CLC
+        ADC     #DD
+        STA     MEM
+        ENDM
+
+ADCWi   MACRO   MEM,DD
+        LDA     MEM
+        CLC
+        ADC     #DD
+        STA     MEM
+        LDA     MEM+1
+        ADC     #00h
+        STA     MEM+1
+        ENDM
+
+ADCDi_X MACRO   MEM,DD
+        SED
+        if MEM<$1000
+        LDA     $0F80+MEM,X
+        else
+        LDA     MEM,X
+        endif
+        CLC
+        ADC     #DD
+        if MEM<$1000
+        STA     $0F80+MEM,X
+        else
+        STA     MEM,X
+        endif
+        CLD
+        ENDM
+
+ADCW    MACRO   MEM
+        CLC
+        ADC     MEM
+        STA     MEM
+        LDA     #00h
+        ADC     MEM+1
+        STA     MEM+1
+        ENDM
+
+ADCWDi  MACRO   MEM,DD
+        SED
+        LDA     MEM
+        CLC
+        ADC     #DD
+        STA     MEM
+        LDA     MEM+1
+        ADC     #00h
+        STA     MEM+1
+        CLD
+        ENDM
+
+SBCDi   MACRO   MEM,DD
+        SED
+        LDA     MEM
+        SEC
+        SBC     #DD
+        STA     MEM
+        CLD
+        ENDM
+
+SBCWDi  MACRO   MEM,DD
+        SED
+        LDA     MEM
+        SEC
+        SBC     #DD
+        STA     MEM
+        LDA     MEM+1
+        SBC     #00h
+        STA     MEM+1
+        CLD
+        ENDM
+
+ADCDm   MACRO   MEM,MEM2
+        SED
+        LDA     MEM
+        CLC
+        ADC     MEM2
+        STA     MEM
+        CLD
+        ENDM
+
+ADCWDm  MACRO   MEM,MEM2
+        SED
+        LDA     MEM
+        CLC
+        ADC     MEM2
+        STA     MEM
+        LDA     MEM+1
+        ADC     MEM2+1
+        STA     MEM+1
+        CLD
+        ENDM
+
+SBCDm   MACRO   MEM,MEM2
+        SED
+        LDA     MEM
+        SEC
+        SBC     MEM2
+        STA     MEM
+        CLD
+        ENDM
+
+SBCWDm  MACRO   MEM,MEM2
+        SED
+        LDA     MEM
+        SEC
+        SBC     MEM2
+        STA     MEM
+        LDA     MEM+1
+        SBC     MEM2+1
+        STA     MEM+1
+        CLD
+        ENDM
+
+INCW    MACRO   MEM
+        INC     MEM
+        BNE     ?skip#
+        INC     MEM+1
+?skip#
+        ENDM
+
+DECW    MACRO   MEM
+        PHA
+        LDA     MEM
+        BNE     ?skip#
+        DEC     MEM+1
+?skip#
+        DEC     MEM
+        PLA
+        ENDM
+
+HERE    MACRO
+?HHH#
+        WDT_RST
+        JMP     ?HHH#
+        ENDM
+
+SMBx    MACRO   MEM,BIT
+        LDA     #(01h<<BIT)
+        ORA     MEM
+        STA     MEM
+        ENDM
+
+RMBx    MACRO   MEM,BIT
+        LDA     #(0FFh^(01h<<BIT))
+        AND     MEM
+        STA     MEM
+        ENDM
+
+XMBx    MACRO   MEM,BIT
+        LDA     #(01h<<BIT)
+        EOR     MEM
+        STA     MEM
+        ENDM
+
+
+BR0     MACRO   PARA,VAR,LABLE
+        BBR@<VAR> PARA,LABLE
+        ENDM
+
+BR1     MACRO   PARA,VAR,LABLE
+        BBS@<VAR> PARA,LABLE
+        ENDM
+
+LBR0    MACRO   PARA,VAR,LABLE
+        LDA     #(01h<<VAR)
+        AND     PARA
+        BEQ     LABLE
+        ENDM
+
+LBR1     MACRO   PARA,VAR,LABLE
+        LDA     #(01h<<VAR)
+        AND     PARA
+        BNE     LABLE
+        ENDM
+
+LSETB    MACRO   PARA,VAR
+        LDA     #(01h<<VAR)
+        ORA     PARA
+        STA     PARA
+        ENDM
+
+LCLRB    MACRO   PARA,VAR
+        LDA     #(0FFh^(01h<<VAR))
+        AND     PARA
+        STA     PARA
+        ENDM
+
+;ZPFlagBN        EQU    Bytes
+;ZPFlag          DB     ZPFlagBN
+;fMelody         EQU    0
+
+JB      MACRO   var,label
+        if  ZPFlagBN>(var/8)
+        BBS@<var.mod.8>  ZPFlag+var/8,label
+        else
+        ----- Flag out of range
+        endif
+        ENDM
+
+JNB     MACRO   var,label
+        if  ZPFlagBN>(var/8)
+        BBR@<var.mod.8>  ZPFlag+var/8,label
+        else
+;        ----- Flag out of range
+        endif
+        ENDM
+
+SETB    MACRO   var
+        if  ZPFlagBN>(var/8)
+        SMB@<var.mod.8>  ZPFlag+var/8
+        else
+        ----- Flag out of range
+        endif
+        ENDM
+
+CLRB    MACRO   var
+        if  ZPFlagBN>(var/8)
+        RMB@<var.mod.8>  ZPFlag+var/8
+        else
+        ----- Flag out of range
+        endif
+        ENDM
+
+EORB    MACRO   var
+        if  ZPFlagBN>(var/8)
+        LDA     #(01h<<(var.mod.8))
+        EOR     ZPFlag+var/8
+        STA     ZPFlag+var/8
+        else
+        ----- Flag out of range
+        endif
+        ENDM
+
+xJB     MACRO   flag,bit,label
+        BBS@<bit>  flag,label
+        ENDM
+
+xJNB    MACRO   flag,bit,label
+        BBR@<bit>  flag,label
+        ENDM
+
+xSETB   MACRO   flag,bit
+        SMB@<bit>  flag
+        ENDM
+
+xCLRB   MACRO   flag,bit
+        RMB@<bit>  flag
+        ENDM
+
+xEORB   MACRO   flag,bit
+        LDA     #(01h<<bit)
+        EOR     flag
+        STA     flag
+        ENDM
+
+LCD32CxSx       MACRO   Cx,Sx
+                DB      32/8*Cx+Sx/8,(01h<<(Sx.mod.8))
+                ENDM
+
+LCD32CxSS       MACRO   Cx,Sx,Sxx
+                DB      32/8*Cx+Sx/8,(01h<<(Sx.mod.8))+(01h<<(Sxx.mod.8))
+                ENDM
+
+LCD32CxSb       MACRO   Cx,Sx
+                DB      32/8*Cx+Sx/8
+                ENDM
+
+LCD40CxSx       MACRO   Cx,Sx
+                DB      40/8*Cx+Sx/8,(01h<<(Sx.mod.8))
+                ENDM
+
+LCD48CxSx       MACRO   Cx,Sx
+                DB      48/8*Cx+Sx/8,(01h<<(Sx.mod.8))
+                ENDM
+
+LCD40CxSS       MACRO   Cx,Sx,Sxx
+                DB      40/8*Cx+Sx/8,(01h<<(Sx.mod.8))+(01h<<(Sxx.mod.8))
+                ENDM
+
+LCD40CxSb       MACRO   Cx,Sx
+                DB      40/8*Cx+Sx/8
+                ENDM
+
+LCD40CxSxb      MACRO   Cx,Sx
+                DB      40/8*Cx+Sx/8,Sx.mod.8
+                ENDM
+
+
+LDHN    MACRO   mem
+        if mem<$1000
+        LDA     $0F80+mem
+        else
+        LDA     $2000+mem
+        endif
+        ENDM
+
+LDLN    MACRO   mem
+        if mem<$1000
+        LDA     $0780+mem
+        else
+        LDA     $1000+mem
+        endif
+        ENDM
+
+LXHN    MACRO   mem
+        if mem<$1000
+        LDX     $0F80+mem
+        else
+        LDX     $2000+mem
+        endif
+        ENDM
+
+LXLN    MACRO   mem
+        if mem<$1000
+        LDX     $0780+mem
+        else
+        LDX     $1000+mem
+        endif
+        ENDM
+
+STHN    MACRO   mem
+        if mem<$1000
+        STA     $0F80+mem
+        else
+        STA     $2000+mem
+        endif
+        ENDM
+
+STLN    MACRO   mem
+        if mem<$1000
+        STA     $0780+mem
+        else
+        STA     $1000+mem
+        endif
+        ENDM
+
+SXHN    MACRO   mem
+        if mem<$1000
+        STX     $0F80+mem
+        else
+        STX     $2000+mem
+        endif
+        ENDM
+
+SXLN    MACRO   mem
+        if mem<$1000
+        STX     $0780+mem
+        else
+        STX     $1000+mem
+        endif
+        ENDM
+
+INCHN   MACRO   mem
+        if mem<$1000
+        INC     $0F80+mem
+        else
+        INC     $2000+mem
+        endif
+        ENDM
+
+INCLN   MACRO   mem
+        if mem<$1000
+        INC     $0780+mem
+        else
+        INC     $1000+mem
+        endif
+        ENDM
+
+DECHN   MACRO   mem
+        if mem<$1000
+        DEC     $0F80+mem
+        else
+        DEC     $2000+mem
+        endif
+        ENDM
+
+DECLN   MACRO   mem
+        if mem<$1000
+        DEC     $0780+mem
+        else
+        DEC     $1000+mem
+        endif
+        ENDM
+ASLHN   MACRO   mem
+        if mem<$1000
+        ASL	$0F80+mem
+        else
+        ASL	$2000+mem
+        endif
+        ENDM  
+ASLLN   MACRO   mem
+        if mem<$1000
+        ASL	$0780+mem
+        else
+        ASL	$1000+mem
+        endif
+        ENDM  
+SBCHN   MACRO   mem
+        if mem<$1000
+        SBC     $0F80+mem
+        else
+        SBC     $2000+mem
+        endif
+        ENDM
+        
+SBCLN   MACRO   mem
+        if mem<$1000
+        SBC     $0780+mem
+        else
+        SBC     $1000+mem
+        endif
+        ENDM
+ADCHN   MACRO   mem
+        if mem<$1000
+        ADC     $0F80+mem
+        else
+        ADC     $2000+mem
+        endif
+        ENDM
+        
+ADCLN   MACRO   mem
+        if mem<$1000
+        ADC     $0780+mem
+        else
+        ADC     $1000+mem
+        endif
+        ENDM
+        
+ORAHN   MACRO   mem
+        if mem<$1000
+        ORA     $0F80+mem
+        else
+        ORA     $2000+mem
+        endif
+        ENDM
+
+ORALN   MACRO   mem
+        if mem<$1000
+        ORA     $0780+mem
+        else
+        ORA     $1000+mem
+        endif
+        ENDM
+
+CPLN    MACRO   mem
+        if mem<$1000
+        CMP     $0780+mem
+        else
+        CMP     $1000+mem
+        endif
+        ENDM
+
+CPHN    MACRO   mem
+        if mem<$1000
+        CMP     $0F80+mem
+        else
+        CMP     $2000+mem
+        endif
+        ENDM
+
+LDA_X   MACRO   mem
+        if mem<$1000
+        LDA     $0F80+mem,X
+        else
+        LDA     mem,X
+        endif
+        ENDM
+
+STA_X   MACRO   mem
+        if mem<$1000
+        STA     $0F80+mem,X
+        else
+        STA     mem,X
+        endif
+        ENDM
+
+ORA_X   MACRO   mem
+        if mem<$1000
+        ORA     $0F80+mem,X
+        else
+        ORA     mem,X
+        endif
+        ENDM
+
+AND_X   MACRO   mem
+        if mem<$1000
+        AND     $0F80+mem,X
+        else
+        AND     mem,X
+        endif
+        ENDM
+
+EOR_X   MACRO   mem
+        if mem<$1000
+        EOR     $0F80+mem,X
+        else
+        EOR     mem,X
+        endif
+        ENDM
+
+ADC_X   MACRO   mem
+        if mem<$1000
+        ADC     $0F80+mem,X
+        else
+        ADC     mem,X
+        endif
+        ENDM
+
+SBC_X   MACRO   mem
+        if mem<$1000
+        SBC     $0F80+mem,X
+        else
+        SBC     mem,X
+        endif
+        ENDM
+
+CMP_X   MACRO   mem
+        if mem<$1000
+        CMP     $0F80+mem,X
+        else
+        CMP     mem,X
+        endif
+        ENDM
+
+STZ_X   MACRO   mem
+        if mem<$1000
+        STZ     $0F80+mem,X
+        else
+        STZ     mem,X
+        endif
+        ENDM
+
+LDLN_X  MACRO   mem
+        if mem<$1000
+        LDA     $0780+mem,X
+        else
+        LDA     $1000+mem,X
+        endif
+        ENDM
+
+STLN_X  MACRO   mem
+        if mem<$1000
+        STA     $0780+mem,X
+        else
+        STA     $1000+mem,X
+        endif
+        ENDM
+
+INLN_X  MACRO   mem
+        if mem<$1000
+        INC     $0780+mem,X
+        else
+        INC     $1000+mem,X
+        endif
+        ENDM
+
+DELN_X  MACRO   mem
+        if mem<$1000
+        DEC     $0780+mem,X
+        else
+        DEC     $1000+mem,X
+        endif
+        ENDM
+
+LDHN_X  MACRO   mem
+        if mem<$1000
+        LDA     $0F80+mem,X
+        else
+        LDA     $2000+mem,X
+        endif
+        ENDM
+
+STHN_X  MACRO   mem
+        if mem<$1000
+        STA     $0F80+mem,X
+        else
+        STA     $2000+mem,X
+        endif
+        ENDM
+
+INHN_X  MACRO   mem
+        if mem<$1000
+        INC     $0F80+mem,X
+        else
+        INC     $2000+mem,X
+        endif
+        ENDM
+
+DEHN_X  MACRO   mem
+        if mem<$1000
+        DEC     $0F80+mem,X
+        else
+        DEC     $2000+mem,X
+        endif
+        ENDM
+
+
+;DEFHN   MACRO   mem
+;        if mem<$1000
+;        $0F80+mem
+;        else
+;        $2000+mem
+;        endif
+;        ENDM
+
+;DEFLN   MACRO   mem
+;        if mem<$1000
+;        $0780+mem
+;        else
+;        $1000+mem
+;        endif
+;        ENDM
+
+SHIFT_LEFT_B    MACRO   memL,memH
+        LDLN    memH
+        STHN    memH
+        LDHN    memL
+        STLN    memH
+        ENDM
+
+SHIFT_LEFT_B0   MACRO   mem
+        LDLN    mem
+        STHN    mem
+        LDA     #00h
+        STLN    mem
+        ENDM
+
+SHIFT_RIGHT_B   MACRO   memL,memH
+        LDHN    memL
+        STLN    memL
+        LDLN    memH
+        STHN    memL
+        ENDM
+
+SHIFT_RIGHT_B0  MACRO   mem
+        LDHN    mem
+        STLN    mem
+        LDA     #00h
+        STHN    mem
+        ENDM
+
+SHIFT_RIGHT_B1  MACRO   mem
+        LDHN    mem
+        STLN    mem
+        LDA     #01h
+        STHN    mem
+        ENDM
+
+SHIFT_LEFT_B1    MACRO   memL,memH
+        LDHN    memL
+        STLN    memH
+        ENDM
+
+SHIFT_LEFT_X    MACRO   memL,memH
+        LDLN_X  memH
+        STHN_X  memH
+        LDHN_X  memL
+        STLN_X  memH
+        ENDM
+
+SHIFT_LEFT_X0   MACRO   mem
+        LDLN_X  mem
+        STHN_X  mem
+        LDA     #00h
+        STLN_X  mem
+        ENDM
+
+SHIFT_RIGHT_X   MACRO   memL,memH
+        LDHN_X  memL
+        STLN_X  memL
+        LDLN_X  memH
+        STHN_X  memL
+        ENDM
+
+SHIFT_RIGHT_X0  MACRO   mem
+        LDHN_X  mem
+        STLN_X  mem
+        LDA     #00h
+        STHN_X  mem
+        ENDM
+
+SHIFT_RIGHT_X1  MACRO   mem
+        LDHN_X  mem
+        STLN_X  mem
+        LDA     #01h
+        STHN_X  mem
+        ENDM
+
+SHIFT_LEFT_X1    MACRO   memL,memH
+        LDHN_X  memL
+        STLN_X  memH
+        ENDM
+;/***********************************************/
+xbits           .MACRO   i,L             ;BYTE i;
+                 LDA     i               ;ex.
+                 ora     #L              ;  %bits 10H,_BIT0
+                 STA     i               ;  10H.0=1
+                .ENDM
+
+;/***********************************************/
+xbitr           .MACRO   i,L             ;BYTE i;
+                 LDA     i               ;ex.
+                 and     #(0FFH^(L))       ;  %bitr 10H,_BIT0
+                 STA     i               ;  10H.0=0
+                .ENDM
+
+;/***********************************************/
+IOOUT   MACRO   Port,Pin,BFlag             ;
+        if      Port=PC
+                if      BFlag
+                RMBx            P_PC_IO_Backup,Pin
+                LDA             P_PC_IO_Backup
+                STA             P_PC_IO
+                else
+                LDA     P_PC_IO_Backup
+                and     #(0FFH^(Pin))       ;  %bitr 10H,_BIT0
+                STA     P_PC_IO_Backup
+                STA     P_PC_IO
+                endif
+        else
+                if      BFlag
+                RMBx            P_PD_IO_Backup,Pin
+                LDA             P_PD_IO_Backup
+                STA             P_PD_IO
+                else
+                LDA     P_PD_IO_Backup
+                and     #(0FFH^(Pin))       ;  %bitr 10H,_BIT0
+                STA     P_PD_IO_Backup
+                STA     P_PD_IO
+                endif
+        endif
+        ENDM
+
+IOIN    MACRO   Port,Pin,BFlag             ;
+        if      Port=PC
+                if      BFlag
+                SMBx           P_PC_IO_Backup,Pin
+                LDA             P_PC_IO_Backup
+                STA             P_PC_IO
+                else
+                LDA     P_PC_IO_Backup
+                ORA     #Pin       ; 
+                STA     P_PC_IO_Backup
+                STA     P_PC_IO
+                endif
+        else
+                if      BFlag
+                SMBx            P_PD_IO_Backup,Pin
+                LDA             P_PD_IO_Backup
+                STA             P_PD_IO
+                else
+                LDA     P_PD_IO_Backup
+                ORA     #Pin       ;        ;  %bitr 10H,_BIT0
+                STA     P_PD_IO_Backup
+                STA     P_PD_IO
+                endif
+        endif
+        ENDM
+
+IOH     MACRO   Port,Pin,BFlag             ;
+        if      Port=PC
+                if      BFlag
+                SMBx            P_PC_Backup,Pin
+                LDA             P_PC_Backup
+                STA             P_PC
+                else
+                LDA     P_PC_Backup
+                ORA     #Pin       ;  %bitr 10H,_BIT0
+                STA     P_PC_Backup
+                STA     P_PC
+                endif
+        else
+                if      BFlag
+                SMBx            P_PD_Backup,Pin
+                LDA             P_PD_Backup
+                STA             P_PD
+                else
+                LDA     P_PD_Backup
+                ORA     #Pin       ;  %bitr 10H,_BIT0
+                STA     P_PD_Backup
+                STA     P_PD
+                endif
+        endif
+        ENDM
+
+IOL     MACRO   Port,Pin,BFlag             ;
+        if      Port=PC
+                if      BFlag
+                RMBx            P_PC_Backup,Pin
+                LDA             P_PC_Backup
+                STA             P_PC
+                else
+                LDA     P_PC_Backup
+                and     #(0FFH^(Pin))       ;  %bitr 10H,_BIT0
+                STA     P_PC_Backup
+                STA     P_PC
+                endif
+        else    
+                if      BFlag
+                RMBx            P_PD_Backup,Pin
+                LDA             P_PD_Backup
+                STA             P_PD
+                else
+                LDA     P_PD_Backup
+                and     #(0FFH^(Pin))       ;  %bitr 10H,_BIT0
+                STA     P_PD_Backup
+                STA     P_PD
+                endif
+        endif
+        ENDM
+
+
+BS      MACRO   RAM,VAL,BFlag             ;
+        if      BFlag
+        SMBx    RAM,VAL
+        else
+        LDA     RAM
+        ORA     #VAL       ;  %bitr 10H,_BIT0
+        STA     RAM
+        endif
+        ENDM
+
+BC      MACRO   RAM,VAL,BFlag             ;
+        if      BFlag
+        RMBx    RAM,VAL
+        else
+        LDA     RAM
+        and     #(0FFH^(VAL))       ;  %bitr 10H,_BIT0
+        STA     RAM
+        endif
+        ENDM
+
+BX      MACRO   RAM,VAL,BFlag             ;
+        if      BFlag
+        XMBx    RAM,VAL
+	else
+	LDA		Ram
+	EOR		#Val
+	STA		Ram
+        endif
+        ENDM
+
+JADDR   MACRO   RAM,TADDRE             ;
+        LDA     RAM
+        CLC
+        ROL
+	TAX
+	LDA		TADDRE+1,X
+	PHA
+	LDA		TADDRE,X
+	PHA
+	RTS
+        ENDM
+;---------------------------------------------------
+
