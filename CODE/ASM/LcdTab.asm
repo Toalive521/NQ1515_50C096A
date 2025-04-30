@@ -1091,3 +1091,6 @@ Lcd2_bit:
 	db_c_y	c0,s30	;;MD	
 	db_c_y	c2,s43	;;RUN	
 ; ;;LCD2_end_here
+
+
+

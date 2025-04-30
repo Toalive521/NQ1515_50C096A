@@ -51,10 +51,13 @@ TMP					DS	1		;98
 FLAG				DS	1
 Flag_NongLi		EQU		FLAG		
 Bit_NongLi		EQU		0			;农历标志位	
+Flag_3sDAlarm	EQU		FLAG
+Bit_3sDAlarm	EQU		1			;显示3级闹钟 
+
 Flag_KeyXing	EQU		FLAG		;按键型号标志位	
-Bit_AXing		EQU		1			;A型按键标志位	
-Bit_BXing		EQU		2			;B型按键标志位	
-Bit_CXing		EQU		3			;C型按键标志位	
+Bit_AXing		EQU		3			;A型按键标志位	
+Bit_BXing		EQU		4			;B型按键标志位	
+Bit_CXing		EQU		5			;C型按键标志位	
 
 KNOB_OLD		.DS		1
 KNOB_LNG		.DS		1
@@ -130,10 +133,11 @@ R_TimeYearL				EQU	R_Time_Year
 R_Time_Week	    		DS	1	;6
 
 R_Alarm_Min1	   		DS	1	;7
-R_Alarm_Hr1		    	DS	1	;8
 R_Alarm_Min2	   		DS	1	;
-R_Alarm_Hr2		    	DS	1	;
 R_Alarm_Min3	   		DS	1	;
+R_Alarm_Hr1		    	DS	1	;8	
+R_Alarm_Hr2		    	DS	1	;
+
 R_Alarm_Hr3		    	DS	1	;
 
 R_Alarm_Mode		    DS	1	;

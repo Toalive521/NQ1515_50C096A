@@ -1100,12 +1100,25 @@ time_set21:
 	ENDM
 
 ;=================================================
+LBS		MACRO	Com,Seg
+	.if(LCDRAM.mod.6=0)
+	SMB@<(Seg.mod.8)> 80H+Com*6+(Seg/8)
+	.else
+	SMB@<(Seg.mod.8)> 80H+Com*5+(Seg/8)
+	.endif
+	ENDM
+
+;=================================================
 JUDGE_LCD_TIME_HRH	MACRO
 	xJB		Flag_NongLi,Bit_NongLi,?LCD2_TIME_HRH
+	; xJB		Flag_3sDAlarm,Bit_3sDAlarm,?LCD3_TIME_HRH
 	LDX		#LCD_TIME_HRH
 	BRA		?END_TIME_HRH
 	?LCD2_TIME_HRH:
 	LDX		#LCD2_TIME_HRH
+	; BRA		?END_TIME_HRH
+	; ?LCD3_TIME_HRH:
+	; LDX		#LCD3_TIME_HRH
 	?END_TIME_HRH:
 	ENDM
 

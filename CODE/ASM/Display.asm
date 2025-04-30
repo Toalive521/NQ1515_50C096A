@@ -23,6 +23,7 @@ L_1S_Display_Prog:
 	LDA		R_Mode_Flag
 	BNE		L_Display_Prog
 	JSR		L_Judge_Dis_AlarmModeFlag_Prog
+	JSR		L_Judge_Alarm_ONOFF_Prog
 	JSR		L_Judge_Dis_Snz_Flag
 	LDX		#LCD1_COL1
 	JSR		F_DispSymbol
@@ -557,7 +558,7 @@ L_Dis_Temperature_Prog:		;Temp_Disp
 	JUDGE_DOT_TEMP_CF
 	JSR		F_DispSymbol
 	JUDGE_LCD_TEMP_HHBC
-	LDX		P_Temp+15		;Clear ����5G
+	; LDX		P_Temp+15		;Clear ����5G
 	JSR		F_ClrpSymbol
 	; LDX		#LCD1_D21_G			;Clear Digit5_bc
 	; JSR		F_ClrpSymbol
@@ -915,15 +916,30 @@ L_End_Judge_Flash_SnzFlag_Prog:
 L_Judge_Flash_AlarmFlag_Prog:
 	BBR4	Sys_Flag_B,L_End_Judge_Flash_AlarmFlag_Prog
 	
-	JUDGE_LCD_ALARM1
-	; LDX		#LCD1_ALARM1
-	JSR		F_ClrpSymbol	
-	JUDGE_LCD_ALARM2
-	; LDX		#LCD1_ALARM2
-	JSR		F_ClrpSymbol	
+	LDA		R_Alarm_Mode
+	BEQ		?FLASH1
+	CMP		#1
+	BEQ		?FLASH2
+	?FLASH3:
 	JUDGE_LCD_ALARM3
 	; LDX		#LCD1_ALARM3
-	JSR		F_ClrpSymbol
+	; JSR		F_ClrpSymbol
+	JMP		F_ClrpSymbol
+
+
+	?FLASH1:
+	JUDGE_LCD_ALARM1
+	; LDX		#LCD1_ALARM1
+	; JSR		F_ClrpSymbol
+	JMP		F_ClrpSymbol
+	
+
+	?FLASH2:	
+	JUDGE_LCD_ALARM2
+	; LDX		#LCD1_ALARM2
+	; JSR		F_ClrpSymbol
+	JMP		F_ClrpSymbol
+	
 L_End_Judge_Flash_AlarmFlag_Prog:	
 	RTS
 	

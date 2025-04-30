@@ -1257,14 +1257,21 @@ L_End_Judge_TimeSet_3S_Prog:
 L_TimeSet_Prog:		;hold-key timeset
 	BBS4	Sys_Flag_A,L_Judge_TimeSet_3S_Prog	
 	SMB4	Sys_Flag_A		;
-	SMBx	Flag_TimeSetK,Bit_TimeSetK		
-	; BBS4	Sys_Flag_B,L_12Hr_24Hr_Or_Year_Clr_Alarm_Prog	
+	JSR		L_Key_Beep_Prog	
+	BBR4	Sys_Flag_B,?CON
+	JMP		L_Clr_Snz_Prog
+	?CON:
+	SMBx	Flag_TimeSetK,Bit_TimeSetK
 	RTS
 L_Star_TimeSet_Enter3S:			;long-key timeset
 	RMBx	Flag_TimeSetK,Bit_TimeSetK		
 	LDA		R_Mode_Flag
 	BNE		?END
 
+	LDA		R_SnoozeTime_Minute
+	BEQ		?CON
+	JSR		L_Clr_Snz_Prog
+	?CON:
 	LDA		#1
 	STA		R_Mode_Flag
 	BC		FLAG_AlarmSet,Bit_AlarmSet,1
@@ -1320,6 +1327,10 @@ L_End_Judge_AlarmSet_3S_Prog:
 L_AlarmSet_Prog:			;hold-key alarmset
 	BBS4	Sys_Flag_A,L_Judge_AlarmSet_3S_Prog	
 	SMB4	Sys_Flag_A		;
+	JSR		L_Key_Beep_Prog	
+	BBR4	Sys_Flag_B,?CON
+	JMP		L_Clr_Snz_Prog
+	?CON:
 	SMBx	Flag_AlarmSetK,Bit_AlarmSetK		
     RTS
 
@@ -1329,6 +1340,12 @@ L_Star_AlarmSet_Enter3S:		;long-key alarmset
 
 	LDA		R_Mode_Flag
 	BNE		?END
+
+	LDA		R_SnoozeTime_Minute
+	BEQ		?CON
+	JSR		L_Clr_Snz_Prog
+	?CON:
+
 	LDA		#1
 	STA		R_Mode_Flag
 	BS		FLAG_AlarmSet,Bit_AlarmSet,1
@@ -1377,12 +1394,16 @@ L_End_Judge_Up_3S_Prog:		;3S
 L_Up_Prog:
     BBS4	Sys_Flag_A,L_Judge_Up_3S_Prog	
 	SMB4	Sys_Flag_A		;
+	JSR		L_Key_Beep_Prog	
+	BBR4	Sys_Flag_B,?CON
+	JMP		L_Clr_Snz_Prog
+	?CON:
 	SMBx	Flag_UpK,Bit_UpK		
-
+	JSR		L_Key_Beep_Prog
     RTS
 L_Star_Up_Enter3S:		;	long-key up		;3S	
 	RMBx	Flag_UpK,Bit_UpK			;3S
-
+	
 	LDA		R_Mode_Flag		;
 	BEQ		?NORMAL		;
 
@@ -1394,6 +1415,7 @@ L_Star_Up_Enter3S:		;	long-key up		;3S
 	LDA		#0
 	STA		R_Fast_Time
 	SMB6	Sys_Flag_D
+	SMB0	Sys_Flag_B
 	BRA		L_UpKey_Fast_Prog
 	?NORMAL:
 	;GONGLI NONGLI CHANGE
@@ -1471,6 +1493,8 @@ T_UpKey_Alarm_Set:
 L_Up_Time_Hr_Prog:
 	JSR		L_Update_Time_Hr_Prog
 	JSR		L_Load_Speech_Hr_Prog	
+	LDA		#0
+	STA		R_Time_Sec
 	JMP		L_Dis_Time_Prog
 L_Up_Time_Min_Prog:		;分
 	JSR		L_Update_Time_Min_Prog		;分	
@@ -1561,6 +1585,10 @@ L_End_Judge_Down_3S_Prog:		;3S
 L_Down_Prog:
 	BBS4	Sys_Flag_A,L_Judge_Down_3S_Prog	
 	SMB4	Sys_Flag_A		;
+	JSR		L_Key_Beep_Prog	
+	BBR4	Sys_Flag_B,?CON
+	JMP		L_Clr_Snz_Prog
+	?CON:
 	SMBx	Flag_DownK,Bit_DownK		
     RTS
 L_Star_Down_Enter3S:		;	long-key down		;3S	
@@ -1577,6 +1605,7 @@ L_Star_Down_Enter3S:		;	long-key down		;3S
 	LDA		#0
 	STA		R_Fast_Time
 	
+	SMB0	Sys_Flag_B
 	SMB6	Sys_Flag_D
 
 	BRA		L_DownKey_Fast_Prog
@@ -1638,6 +1667,8 @@ T_DownKey_Alarm_Set:
 L_Down_Time_Hr_Prog:
 	JSR		L_Dec_Time_Hr_Prog
 	JSR		L_Load_Speech_Hr_Prog
+	LDA		#0
+	STA		R_Time_Sec
 	JMP		L_Dis_Time_Prog
 
 L_Down_Time_Min_Prog:		;分
@@ -1669,7 +1700,7 @@ L_AlarmTime_Hr_Down_Common:
 	JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm1_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min1-Time_Str_Addr)
-L_AlarmTime_Hr_Down_Common:
+L_AlarmTime_Min_Down_Common:
 	JSR		L_Dec_To_60_Prog
 	JSR		L_Load_Speech_Min_Prog
 	JMP		L_Dis_AlarmTime_Prog
@@ -1683,7 +1714,7 @@ L_Down_Alarm2_Hr_Prog:		;时
 	; JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm2_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min2-Time_Str_Addr)
-	BRA		L_AlarmTime_Hr_Down_Common
+	BRA		L_AlarmTime_Min_Down_Common
 	; JSR		L_Dec_To_60_Prog
 	; JSR		L_Load_Speech_Min_Prog
 	; JMP		L_Dis_AlarmTime_Prog
@@ -1697,7 +1728,7 @@ L_Down_Alarm3_Hr_Prog:		;时
 	; JMP		L_Dis_AlarmTime_Prog
 L_Down_Alarm3_Min_Prog:		;分	
 	LDX		#(R_Alarm_Min3-Time_Str_Addr)
-	BRA		L_AlarmTime_Hr_Down_Common
+	BRA		L_AlarmTime_Min_Down_Common
 	; JSR		L_Dec_To_60_Prog
 	; JSR		L_Load_Speech_Min_Prog
 	; JMP		L_Dis_AlarmTime_Prog
@@ -1714,10 +1745,16 @@ L_End_Judge_Snz_3S_Prog:		;3S
 L_Snz_Prog:
 	BBS4	Sys_Flag_A,L_Judge_Snz_3S_Prog	
 	SMB4	Sys_Flag_A		;
+	JSR		L_Key_Beep_Prog	
+	; BBS4	Sys_Flag_B,L_Clr_Snz_Prog
 	SMBx	Flag_SnzK,Bit_SnzK		
 
     RTS
 L_Star_Snz_Enter3S:		;	long-key snz		;3S	
+	LDA		R_SnoozeTime_Minute
+	BEQ		?CON
+	JSR		L_Clr_Snz_Prog
+	?CON:
 	RMBx	Flag_SnzK,Bit_SnzK			;3S	
 	RTS		
 

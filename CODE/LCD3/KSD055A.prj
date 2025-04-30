@@ -294,7 +294,8 @@ def GND PA5 S	    ;声控报时
 ;------------------------------------
 ; Option
 ;------------------------------------
-switch XXX PD2  LCD1 group
+switch XXX PD0  LCD3 group
+switch XXX PD1  LCD3 ;group
 
 switch  VDD PA0   LOCK  group
 switch  PB1 PA0  Al_Set
@@ -309,11 +310,11 @@ switch  PD3 PA1 ALW6
 ;switch GND PA5  OFF group
 ;switch VDD PA5  ON
 
-switch XXX PD0  XXX group
-switch VDD PD0  PD0
+switch XXX PD2  XXX group
+switch VDD PD2  PD2
 
-switch XXX PD1  XXX group
-switch VDD PD1  PD1
+switch XXX PD3  XXX group
+switch VDD PD3  PD3
 
 switch XXX PD2  XXX group
 switch VDD PD2  PD2_NONG
