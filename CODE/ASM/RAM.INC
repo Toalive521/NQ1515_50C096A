@@ -48,7 +48,7 @@ LCDRAM				DS	6*4
 ;---------------------------------------------------------------------
 TMP					DS	1		;98
 
-FLAG				DS	1
+FLAG				DS	1		;99
 Flag_NongLi		EQU		FLAG		
 Bit_NongLi		EQU		0			;农历标志位	
 Flag_3sDAlarm	EQU		FLAG
@@ -96,6 +96,8 @@ BIT_KEYSTOP		EQU		3
 Sys_Flag_A			ds	1		;0	
 ;bit0 = half sec flag, bit1 =1 Sec Flag ��bit2 =lcd init flag , bit3=�����־
 ;bit4 = key hold flag, bit5 = 12/24Сʱ��־��bit6=1/4��flag , bit7= C/F
+FLAG_24HR		EQU		Sys_Flag_A
+BIT_24HR		EQU		5			;24С
 Sys_Flag_B			ds	1		;1
 ;bit0=Fast flag, bit1=��Ч����־��bit2=Add1 flag, bit3=�������ֱ�־
 ;bit4=Alarm Arrive,bit5=16Hz, bit6=���ֱ�־, bit7=������/�رձ�־

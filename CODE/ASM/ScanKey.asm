@@ -188,10 +188,10 @@ L_Judge_Chime_Prog:
 	SMB6	Sys_Flag_C
 	BBS4	Sys_Flag_C,L_Close_Chime
 	SMB4	Sys_Flag_C
-	jmp		L_Dis_Chime_Dot
+	jmp		L_Judge_Dis_Chime_Dot
 L_Close_Chime:
 	RMB4	Sys_Flag_C
-	jsr		L_Clr_Chime_Dot
+	jsr		L_Judge_Dis_Chime_Dot
 L_End_Judge_Chime_Prog:	
 	RTS	
 L_Set_KeyYear_PressFlag:
@@ -1228,18 +1228,19 @@ L_Change_Alarm_567:
 	LDA		R_Alarm_Way
 	BEQ		?AlarmWay_1
 
-
 	CLC
 	ROL		R_Alarm_Way
 	BBR3	R_Alarm_Way,?SKIP
 	LDA		#0
 	STA		R_Alarm_Way
 	?SKIP:
-	JMP		L_Dis_AlarmFlag_Prog
+	; JMP		L_Dis_AlarmFlag_Prog
+	bra		?End
 	; LDA		R_Alarm_Way
-
 	?AlarmWay_1:
 	SMB0	R_Alarm_Way		;AlarmWay_1
+	?End:
+	JSR		L_Dis_AlarmTime_ACXing_Normal
 	JMP		L_Dis_AlarmFlag_Prog
 	RTS
 ;===================================

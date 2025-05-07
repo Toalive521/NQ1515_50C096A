@@ -1100,13 +1100,13 @@ time_set21:
 	ENDM
 
 ;=================================================
-LBS		MACRO	Com,Seg
-	.if(LCDRAM.mod.6=0)
-	SMB@<(Seg.mod.8)> 80H+Com*6+(Seg/8)
-	.else
-	SMB@<(Seg.mod.8)> 80H+Com*5+(Seg/8)
-	.endif
-	ENDM
+; LBS		MACRO	Com,Seg
+; 	.if(LCDRAM.mod.6=0)
+; 	SMB@<(Seg.mod.8)> 80H+Com*6+(Seg/8)
+; 	.else
+; 	SMB@<(Seg.mod.8)> 80H+Com*5+(Seg/8)
+; 	.endif
+; 	ENDM
 
 ;=================================================
 JUDGE_LCD_TIME_HRH	MACRO

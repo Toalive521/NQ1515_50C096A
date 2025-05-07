@@ -144,8 +144,61 @@ L_Dis_Hour_Prog:
 	AND		#0FH
 	LDX		P_Temp+1	;#Digit6	
 	JMP		L_Dis_8Bit_DigitDot_Prog
+;==============================================
 
-
+; 	JUDGE_LCD_AM1
+; 	STX		P_Temp+4
+; 	JUDGE_LCD_PM1
+; 	STX		P_Temp+5
+; 	JUDGE_LCD_TIME_HRH
+; 	LDA		R_Time_Hr
+; L_Dis_Hr_Common:
+;     STX     P_Temp+6
+;     STA     P_Temp+7
+;     xJB     FLAG_24HR,BIT_24HR,L_Dis_TimeHr_24
+;     SEC
+; 	SED
+; 	SBC		#$12
+; 	CLD
+; 	BCC		L_Dis_Hour_12AM
+; 	STA		P_Temp+7
+;     ; CLR_TIME_AM
+; 	LDX		P_Temp+4
+; 	JSR		F_ClrpSymbol
+; 	; DIS_TIME_PM
+; 	LDX		P_Temp+5
+; 	JSR		F_DispSymbol
+; L_Dis_Hour_12AM:
+;     ; DIS_TIME_AM
+; 	LDX		P_Temp+4
+; 	JSR		F_DispSymbol
+;     ; CLR_TIME_PM
+; 	LDX		P_Temp+5
+; 	JSR		F_ClrpSymbol
+; L_TimeHr_0To12:	
+; 	LDA		P_Temp+7
+; 	BNE		L_Dis_HourDate_Prog
+; 	LDA		#$12
+; 	STA		P_Temp+7
+; 	BRA		L_Dis_HourDate_Prog
+; L_Dis_TimeHr_24:
+;     ; CLR_TIME_AM
+; 	LDX		P_Temp+4
+; 	JSR		F_ClrpSymbol
+;     ; CLR_TIME_PM
+; 	LDX		P_Temp+5
+; 	JSR		F_ClrpSymbol
+; L_Dis_HourDate_Prog:
+;     LDA		P_Temp+7
+; 	AND		#$F0
+; 	BNE		L_Dis_Hour_Prog
+; 	LDA		#$A0
+; 	ORA		P_Temp+7
+; 	STA		P_Temp+7
+; L_Dis_Hour_Prog:
+;     LDX     P_Temp+6
+;     LDA     P_Temp+7
+;     JMP     L_Dis_Digit12
 ;---------------------------------------------
 L_Dis_TimeMin_Prog:
 	LDA		#(R_Time_Min-Time_Str_Addr)
@@ -398,8 +451,8 @@ L_Dis_AlarmONOFF3_Prog:
 
 ;--------------------------------------------------------
 L_Dis_AlarmOff_Prog:	
-	; JUDGE_LCD_COL2
-	; JSR		F_ClrpSymbol
+	JUDGE_LCD_COL2
+	JSR		F_ClrpSymbol
 	JUDGE_LCD_AM2
 	JSR		F_ClrpSymbol	
 	JUDGE_LCD_PM2
@@ -418,8 +471,8 @@ L_Dis_AlarmOff_Prog:
 	JMP		L_Dis_8Bit_DigitDot_Prog	
 ;------------------------------------------------------------
 L_Dis_AlarmOn_Prog:	
-	; JUDGE_LCD_COL2
-	; JSR		F_ClrpSymbol
+	JUDGE_LCD_COL2
+	JSR		F_ClrpSymbol
 	JUDGE_LCD_AM2
 	JSR		F_ClrpSymbol	
 	JUDGE_LCD_PM2
