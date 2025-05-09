@@ -50,6 +50,7 @@ L_Dis_Col1_Prog:
 ;===========================================================
 L_Dis_TimeYear_Prog:		;Year_Disp
 	xJB		Flag_NongLi,Bit_NongLi,L_Dis2_TimeYear_Prog
+	xJB		Flag_3sDAlarm,Bit_3sDAlarm,L_Dis3_TimeYear_Prog
 	; LDX		#LCD1_YEAR
 	; JSR		F_DispSymbol
 	LDX		#LCD1_D910
@@ -61,6 +62,8 @@ L_Dis_TimeYear_Prog:		;Year_Disp
 L_Dis2_TimeYear_Prog:
 	LDX		#LCD2_D910
 	JSR		F_DispSymbol	;20
+	RTS
+L_Dis3_TimeYear_Prog:
 	RTS
 	; LDX		#LCD2_D910
 	; JSR		F_DispSymbol	;20
@@ -80,6 +83,7 @@ L_Dis_Time_NYear_Prog:
 ;===========================================================	
 L_Dis_Time_Prog:		;Time_Disp
 	xJNB	Flag_NongLi,Bit_NongLi,?CON1
+	xJNB	Flag_3sDAlarm,Bit_3sDAlarm,?CON1
 	LDA		R_Mode_Flag
 	CMP		#3
 	BEQ		L_Dis_Time_NYear_Prog
@@ -89,31 +93,23 @@ L_Dis_Time_Prog:		;Time_Disp
 	JSR		L_Dis_TimeMin_Prog	
 L_Dis_TimeHr_Prog:
 	JUDGE_LCD_TIME_HRH
-	STX		P_Temp+4
-	LDX		#(R_Time_Hr-Time_Str_Addr)	
-	LDA		Time_Addr,X
-	STA		P_Temp+7	
-	BBS5	Sys_Flag_A,L_Dis_TimeHr_24
-	SEC
+	LDA		R_Time_Hr
+L_Dis_Hr_Common:
+    STX     P_Temp+4
+    STA     P_Temp+7
+    xJB     FLAG_24HR,BIT_24HR,L_Dis_TimeHr_24
+    SEC
 	SED
 	SBC		#$12
 	CLD
 	BCC		L_Dis_Hour_12AM
 	STA		P_Temp+7
-	; RMB3	$96		;CLR AM1
-	; SMB3	$90		;DIS PM1
-	JUDGE_LCD_AM1
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_PM1
-	JSR		F_DispSymbol
-	JMP		L_TimeHr_0To12	;L_Dis_HourDate_Prog
+	JSR		D_Clr_Time_Am
+	JSR		D_Disp_Time_Pm
+	BRA		L_TimeHr_0To12
 L_Dis_Hour_12AM:
-	; SMB3	$96		;DIS AM1
-	; RMB3	$90		;CLR PM1
-	JUDGE_LCD_AM1
-	JSR		F_DispSymbol
-	JUDGE_LCD_PM1
-	JSR		F_ClrpSymbol
+	JSR		D_Disp_Time_Am
+	JSR		D_Clr_Time_Pm
 L_TimeHr_0To12:	
 	LDA		P_Temp+7
 	BNE		L_Dis_HourDate_Prog
@@ -121,84 +117,28 @@ L_TimeHr_0To12:
 	STA		P_Temp+7
 	BRA		L_Dis_HourDate_Prog
 L_Dis_TimeHr_24:
-	; RMB3	$96		;CLR AM1
-	; RMB3	$90		;CLR PM1
-	JUDGE_LCD_AM1
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_PM1
-	JSR		F_ClrpSymbol
+	JSR		D_Clr_Time_Am
+	JSR		D_Clr_Time_Pm
 L_Dis_HourDate_Prog:
-	LDA		P_Temp+7
+    LDA		P_Temp+7
 	AND		#$F0
 	BNE		L_Dis_Hour_Prog
 	LDA		#$A0
 	ORA		P_Temp+7
 	STA		P_Temp+7
 L_Dis_Hour_Prog:
-	LDA		P_Temp+7
-	; AND		#F0H
-	JSR		L_LSR4Bit_Prog	
-	LDX		P_Temp+4	;#Digit5
-	JSR		L_Dis_8Bit_DigitDot_Prog	
-	LDA		P_Temp+7
-	AND		#0FH
-	LDX		P_Temp+1	;#Digit6	
-	JMP		L_Dis_8Bit_DigitDot_Prog
-;==============================================
+    LDX     P_Temp+4
+    LDA     P_Temp+7
+    JMP     L_Dis_Digit12
 
-; 	JUDGE_LCD_AM1
-; 	STX		P_Temp+4
-; 	JUDGE_LCD_PM1
-; 	STX		P_Temp+5
-; 	JUDGE_LCD_TIME_HRH
-; 	LDA		R_Time_Hr
-; L_Dis_Hr_Common:
-;     STX     P_Temp+6
-;     STA     P_Temp+7
-;     xJB     FLAG_24HR,BIT_24HR,L_Dis_TimeHr_24
-;     SEC
-; 	SED
-; 	SBC		#$12
-; 	CLD
-; 	BCC		L_Dis_Hour_12AM
-; 	STA		P_Temp+7
-;     ; CLR_TIME_AM
-; 	LDX		P_Temp+4
-; 	JSR		F_ClrpSymbol
-; 	; DIS_TIME_PM
-; 	LDX		P_Temp+5
-; 	JSR		F_DispSymbol
-; L_Dis_Hour_12AM:
-;     ; DIS_TIME_AM
-; 	LDX		P_Temp+4
-; 	JSR		F_DispSymbol
-;     ; CLR_TIME_PM
-; 	LDX		P_Temp+5
-; 	JSR		F_ClrpSymbol
-; L_TimeHr_0To12:	
-; 	LDA		P_Temp+7
-; 	BNE		L_Dis_HourDate_Prog
-; 	LDA		#$12
-; 	STA		P_Temp+7
-; 	BRA		L_Dis_HourDate_Prog
-; L_Dis_TimeHr_24:
-;     ; CLR_TIME_AM
-; 	LDX		P_Temp+4
-; 	JSR		F_ClrpSymbol
-;     ; CLR_TIME_PM
-; 	LDX		P_Temp+5
-; 	JSR		F_ClrpSymbol
-; L_Dis_HourDate_Prog:
-;     LDA		P_Temp+7
-; 	AND		#$F0
-; 	BNE		L_Dis_Hour_Prog
-; 	LDA		#$A0
-; 	ORA		P_Temp+7
-; 	STA		P_Temp+7
-; L_Dis_Hour_Prog:
-;     LDX     P_Temp+6
-;     LDA     P_Temp+7
-;     JMP     L_Dis_Digit12
+L_Dis_Digit12:
+	PHA
+	JSR		L_LSR4Bit_Prog
+	JSR		L_Dis_8Bit_DigitDot_Prog
+	LDX		P_Temp+1
+	PLA
+	AND		#$0F
+	JMP		L_Dis_8Bit_DigitDot_Prog
 ;---------------------------------------------
 L_Dis_TimeMin_Prog:
 	LDA		#(R_Time_Min-Time_Str_Addr)
@@ -305,6 +245,7 @@ L_Judge_Alarm_ONOFF_Prog:
 	JMP		F_DispSymbol
 
 L_Dis_AlarmTime_ACXing_Normal:
+	xJB		Flag_3sDAlarm,Bit_3sDAlarm,?3sDAlarm
 	JSR		L_Judge_Alarm_ONOFF_Prog
 	JSR		L_Judge_Dis_Alarm_Prog
 	; JSR		L_Judge_Smart_Alarm_Disp
@@ -328,6 +269,11 @@ L_Dis_AlarmTime_ACXing_Normal:
 	JMP		L_Dis_AlarmTime2_Prog
 	?DISP3:
 	JMP		L_Dis_AlarmTime3_Prog
+	?3sDAlarm:
+	JSR		L_Dis_AlarmTime1_Prog
+	JSR		L_Dis_Alarm2_Prog
+	JMP		L_Dis_Alarm3_Prog
+	
 
 L_Dis_AlarmTime_ACXing_1:
 	JUDGE_LCD_ALARM2
@@ -369,6 +315,22 @@ L_Dis_AlarmTime_ACXing_9:
 	JMP		L_Dis_AlarmONOFF3_Prog
 	RTS
 ;--------------------------------------------------------
+L_Dis_Alarm2_Prog:
+	LDX		#
+
+	LDA		#(R_Alarm_Hr2-Time_Str_Addr)
+	LDX		#LCD3_ALARM2_HRH
+	JSR		L_Dis_2Digit_Prog
+	LDA		#(R_Alarm_Min2-Time_Str_Addr)
+	LDX		#LCD3_ALARM2_MINH	
+	JMP		L_Dis_2Digit_Prog
+L_Dis_Alarm3_Prog:
+	LDA		#(R_Alarm_Hr3-Time_Str_Addr)
+	LDX		#LCD3_ALARM3_HRH
+	JSR		L_Dis_2Digit_Prog
+	LDA		#(R_Alarm_Min3-Time_Str_Addr)
+	LDX		#LCD3_ALARM3_MINH	
+	JMP		L_Dis_2Digit_Prog
 L_Dis_AlarmTime_Prog:		;Alarm_Disp
 	xJB		Flag_KeyXing,Bit_BXing,?BXING
 	JMP		L_Dis_AlarmTime_ACXing_Prog
@@ -560,33 +522,35 @@ L_Judge_Disp_NongLi_Prog:
 L_Dis_MonthDay_Prog:		;Month_Disp
 	JSR		L_Judge_Disp_NongLi_Prog
 	xJB		FLAG_NongLiD,Bit_NongLiD,NongLi1
-	xJNB		Flag_NongLi,Bit_NongLi,?GONGLI
+	xJB		Flag_NongLi,Bit_NongLi,?NongLi
+	xJB		Flag_3sDAlarm,Bit_3sDAlarm,?NongLi
+	bra		?GONGLI
+	?NongLi:
 	JSR		L_Disp_Nongli
 	?GONGLI:
-	; LDX		P_Temp+11
+
 	JUDGE_LCD_GL
 	JSR		F_DispSymbol
-	; LDX		P_Temp+10
-	; JSR		F_DispSymbol
+
 	LDA		R_Time_Day
 	STA		P_Temp+7	
-	; LDA		P_Temp+9
+
 	JUDGE_LCD_TIME_DAY_H
 	STX		P_Temp+4
 	JSR		L_Dis_HourDate_Prog
 	JUDGE_LCD_TIME_MONTH_L
-	; LDX		P_Temp+8
+
 	LDA		R_Time_Month
 	AND		#$0F
 	JSR		L_Dis_8Bit_DigitDot_Prog
-	; LDX		P_Temp+10
+
 	JUDGE_LCD_TIME_MONTH_H
 	LDA		R_Time_Month
 	AND		#$F0
 	BEQ		?CLR
 	JSR		F_DispSymbol
 	RTS
-	; JMP		NongLi1
+
 ?CLR:	
 	JSR		F_ClrpSymbol
 	RTS
@@ -741,14 +705,7 @@ L_Dis_AlarmFlag_ALW5:		;Disp_6Day
 	JMP		D_Clr_Alarm_5Day
 
 ;********************************************
-;------------------------------------------		
-;L_Judge_Dis_Al_Flag:
-;	BBR0	Sys_Flag_B,L_Clr_Al_Flag
-;	SMB0	$8A		;DIS Al
-;	RTS
-;L_Clr_Al_Flag:
-;	RMB0	$8A		;Clr Al	
-;	RTS	
+
 ;------------------------------------------	
 L_Judge_Dis_Snz_Flag:
 	JUDGE_LCD_SNZ
@@ -1154,9 +1111,9 @@ L_Judge_Dis_Alarm_Prog:			;聪明钟
 ;===========================================================
 ;============Disp_Base======================================
 ;===========================================================
-; D_Disp_Time_Col:
-; 	JUDGE_LCD_COL1
-; 	JMP		F_DispSymbol
+D_Disp_Time_Col:
+	JUDGE_LCD_COL1
+	JMP		F_DispSymbol
 D_Disp_Time_Am:
 	JUDGE_LCD_AM1
 	JMP		F_DispSymbol
@@ -1221,6 +1178,15 @@ D_Disp_Alarm_Pm:
 
 ; 	RTS
 ;===========================================================
+D_Clr_Time_Col:
+	JUDGE_LCD_COL1
+	JMP		F_ClrpSymbol
+D_Clr_Time_Am:
+	JUDGE_LCD_AM1
+	JMP		F_ClrpSymbol
+D_Clr_Time_Pm:
+	JUDGE_LCD_PM1
+	JMP		F_ClrpSymbol
 
 D_Clr_Alarm_7Day:
 	JUDGE_LCD_ALARM4
