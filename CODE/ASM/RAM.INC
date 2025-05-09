@@ -44,9 +44,11 @@ DATA7			EQU	7
 ;***************************************
 	ORG	0080H
 Page0RamStarAddr	EQU		$	
-LCDRAM				DS	6*4
+LCDRAM				DS	6*6
 ;---------------------------------------------------------------------
-TMP					DS	1		;98
+PA3_Last		.DS		1
+PA4_Last		.DS		1
+; TMP					DS	1		;98
 
 FLAG				DS	1		;99
 Flag_NongLi		EQU		FLAG		
@@ -59,12 +61,15 @@ Bit_AXing		EQU		3			;A型按键标志位
 Bit_BXing		EQU		4			;B型按键标志位	
 Bit_CXing		EQU		5			;C型按键标志位	
 
-KNOB_OLD		.DS		1
-KNOB_LNG		.DS		1
-PA3_Now			.DS		1
-PA4_Now			.DS		1
-PA3_Last		.DS		1
-PA4_Last		.DS		1
+
+FLAG_AlarmSet		EQU		FLAG			;闹钟设置标志位	
+Bit_AlarmSet		EQU		7			;闹钟设置标志位	
+
+; KNOB_OLD		.DS		1
+; KNOB_LNG		.DS		1
+; PA3_Now			.DS		1
+; PA4_Now			.DS		1
+
 
 FLAG_2				DS	1
 Flag_TimeSetK	EQU		FLAG_2			;时间设置按键标志位	
@@ -78,18 +83,14 @@ Bit_DownK		EQU		3			;下按键标志位
 Flag_SnzK		EQU		FLAG_2			;SNZ按键标志位	
 Bit_SnzK		EQU		4			;SNZ按键标志位	
 
-FLAG_3				DS	1		;3	
-FLAG_AlarmSet		EQU		FLAG_3			;闹钟设置标志位	
-Bit_AlarmSet		EQU		0			;闹钟设置标志位	
+FLAG_NongLiD			EQU		FLAG_2
+Bit_NongLiD			EQU		5			;农历标志位
 
-FLAG_NongLiD			EQU		FLAG_3
-Bit_NongLiD			EQU		1			;农历标志位
+FLAG_RNOB		EQU		FLAG_2			;
+BIT_RNOB		EQU		6			;
 
-FLAG_RNOB		EQU		FLAG_3			;
-BIT_RNOB		EQU		2			;
-
-FLAG_KEYSTOP	EQU		FLAG_3
-BIT_KEYSTOP		EQU		3
+FLAG_KEYSTOP	EQU		FLAG_2
+BIT_KEYSTOP		EQU		7
 ; Flag_KeyHold	EQU		FLAG			;按键保持标志位	
 ; Bit_KeyHold	EQU		4			;按键保持标志位	
 
@@ -139,16 +140,14 @@ R_Alarm_Min2	   		DS	1	;
 R_Alarm_Min3	   		DS	1	;
 R_Alarm_Hr1		    	DS	1	;8	
 R_Alarm_Hr2		    	DS	1	;
-
 R_Alarm_Hr3		    	DS	1	;
 
 R_Alarm_Mode		    DS	1	;
-
 R_Alarm_Way				DS	1	;
-R_Alarm_Music			DS  1
+; R_Alarm_Music			DS  1
 ;---------------------------------------
 R_Key_Value				DS	1
-R_SlideKey_Value		DS	4	;
+R_SlideKey_Value		DS	1	;
 ;R_RT_L					DS	1
 ;R_RT_M					DS  1
 ;R_RT_H                 DS  1
@@ -158,10 +157,10 @@ R_SlideKey_Value		DS	4	;
 R_Measure_Temperature   DS  1
 R_Temperature          	DS	1
 R_Temperature_L         DS  1
-R_Temperature_F_M		DS	1
-R_Temperature_F_H	    DS  1	
+; R_Temperature_F_M		DS	1
+; R_Temperature_F_H	    DS  1	
 ;---------------------------------------  
-P_Temp					DS	10
+P_Temp					DS	11
 R_Temp				equ		P_Temp
 R_Tmp0				EQU		P_Temp+0
 R_Tmp1				EQU		P_Temp+1
@@ -186,7 +185,7 @@ R_GongLiDayH		EQU		P_Temp+10
 
 R_ReceiveBuffer			DS  2
 ;---------------------------------------
-R_SetDelay				DS	1	;
+; R_SetDelay				DS	1	;
 C_NeedSentence  		equ 1
 C_SampleRate    		equ 0FBH
 Num_xianzai				EQU	0CH
@@ -200,31 +199,51 @@ Num_xianzai				EQU	0CH
 .Udata
 ;---------------------------------------
 	ORG    1880H
-R_APM	    			DS  1
-R_SlideKey1_Value		DS	1	;
-R_SlideKey2_Value		DS	1	;
-R_RT_L					DS	1
-R_RT_M					DS  1
-R_RT_H                  DS  1
-R_RR_L					DS	1
-R_RR_M                  DS  1
-R_RR_H                  DS  1	
+R_APM	    			DS  1	;0
+R_SlideKey1_Value		DS	1	;1
+R_SlideKey2_Value		DS	1	;2
+R_RT_L					DS	1	;3
+R_RT_M					DS  1	;4
+R_RT_H                  DS  1	;5
+R_RR_L					DS	1	;6
+R_RR_M                  DS  1	;7
+R_RR_H                  DS  1	;8
 
-R_Light_Time			DS	1   ;4
-R_Snooze_Times			DS	1   ;5
-R_SnoozeTime_Minute		DS	1   ;6
-R_KeyHold_Time	    	DS	1   ;8
-R_Fast_Time	    		DS	1   ;9
-R_Reset_Time			DS	1   ;7
-R_Strong_Time			DS	1   ;7
-P_PC_IO_Backup      	DS	1	;C
-P_PC_Backup       		DS	1	;D
-P_PD_IO_Backup      	DS	1	;E
-P_PD_Backup       		DS	1	;F
+R_Light_Time			DS	1   ;9
+R_Snooze_Times			DS	1   ;A
+R_SnoozeTime_Minute		DS	1   ;B
+R_KeyHold_Time	    	DS	1   ;C
+R_Fast_Time	    		DS	1   ;D
+R_Reset_Time			DS	1   ;E
+R_Strong_Time			DS	1   ;F
+		ORG    1890H
+; R_Time_Week	    		DS	1	;6
+P_PC_IO_Backup      	DS	1	;0
+P_PC_Backup       		DS	1	;1
+P_PD_IO_Backup      	DS	1	;2
+P_PD_Backup       		DS	1	;3
 
-;R_NongLiTimeMonth		DS  1
-;R_NongLiTimeDay			DS  1
-;R_MonthBeginRun			DS  1
+; R_Measure_Temperature   DS  1	;4
+; R_Temperature          	DS	1	;5
+; R_Temperature_L         DS  1	;6
+R_Temperature_F_M		DS	1	;7
+R_Temperature_F_H	    DS  1	;8
+; R_Key_Value				DS	1	;9
+; R_SlideKey_Value		DS	4	;D
+
+; R_ReceiveBuffer			DS  2
+KNOB_OLD		.DS		1
+KNOB_LNG		.DS		1
+PA3_Now			.DS		1
+PA4_Now			.DS		1
+; PA3_Last		.DS		1
+; PA4_Last		.DS		1
+
+R_Alarm_Music			DS  1
+
+; R_NongLiTimeMonth		DS  1	;E
+; R_NongLiTimeDay			DS  1	;F
+; R_MonthBeginRun			DS  1
 ;
 ;R_YearBeginDayM			DS  1
 ;R_YearBeginDayD			DS  1
@@ -232,8 +251,9 @@ P_PD_Backup       		DS	1	;F
 ;R_MonthBeginDayH		DS  1
 ;R_GongLiDayL			DS  1	
 ;R_GongLiDayH			DS  1
+R_SetDelay				DS	1	;
 ;---------------------------------------
-	ORG    1890H
+	ORG    18A0H
 ;---------------------------------------
 
 .ENDS

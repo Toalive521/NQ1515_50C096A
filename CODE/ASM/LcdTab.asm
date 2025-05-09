@@ -7,7 +7,9 @@ c0	equ	0
 c1	equ	1
 c2	equ	2
 c3	equ	3
+
 c4	equ	4
+c5	equ	5
 ;;--------SEG------------
 s0	equ	0	
 
@@ -992,7 +994,7 @@ Lcd2_bit:
 
 ;LCD2_D17:	equ	$-LCD2_table1
 ;LCD2_D21:	equ	$-LCD2_table1
-	db_c_s	c0,s23	;;BC
+	db_c_y	c0,s23	;;BC
 	db_c_y	c0,s0	;;G
 
 ;LCD2_D22:	equ	$-LCD2_table1
@@ -1093,4 +1095,665 @@ Lcd2_bit:
 ; ;;LCD2_end_here
 
 
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+LCD3_table1:
+Lcd3_byte
+LCD3_TIME_HRH:	equ	$-LCD3_table1	;HRH
+LCD3_D1:	equ	$-LCD3_table1
+	db_c_s	c5,s13	;;ADEG
+	db_c_s	c4,s13	;;B
+	db_c_s	c3,s13	;;C
+	db_c_s	c0,s0	;;D
+	db_c_s	c0,s0	;;E
+	db_c_s	c0,s0	;;F
+	db_c_s	c0,s0	;;G	
+LCD3_TIME_HRL:	equ	$-LCD3_table1	;HRL
+LCD3_D2:	equ	$-LCD3_table1
+	db_c_s	c5,s15	;;A
+	db_c_s	c4,s16	;;B
+	db_c_s	c3,s16	;;C
+	db_c_s	c3,s15	;;D
+	db_c_s	c3,s14	;;E
+	db_c_s	c4,s14	;;F
+	db_c_s	c4,s15	;;G
+LCD3_TIME_MINH:	equ	$-LCD3_table1	;MINH
+LCD3_D3:	equ	$-LCD3_table1
+	db_c_s	c5,s18	;;A
+	db_c_s	c5,s19	;;B
+	db_c_s	c3,s20	;;C
+	db_c_s	c3,s19	;;D
+	db_c_s	c3,s18	;;E
+	db_c_s	c4,s18	;;F
+	db_c_s	c4,s19	;;G
+LCD3_TIME_MINL:	equ	$-LCD3_table1	;MINL
+LCD3_D4:	equ	$-LCD3_table1
+	db_c_s	c5,s21	;;A
+	db_c_s	c5,s23	;;B
+	db_c_s	c4,s23	;;C
+	db_c_s	c4,s22	;;D
+	db_c_s	c3,s21	;;E
+	db_c_s	c4,s20	;;F
+	db_c_s	c4,s21	;;G
+LCD3_ALARM_HRH:	equ	$-LCD3_table1	;ALARMHH
+LCD3_D5:	equ	$-LCD3_table1
+	db_c_s	c5,s29	;;ADEG
+	db_c_s	c5,s30	;;B
+	db_c_s	c4,s29	;;C
+	db_c_s	c0,s0	;;D
+	db_c_s	c0,s0	;;E
+	db_c_s	c0,s0	;;F
+	db_c_s	c0,s0	;;G	
+LCD3_ALARM_HRL:	equ	$-LCD3_table1	;ALARMHL
+LCD3_D6:	equ	$-LCD3_table1
+	db_c_s	c5,s32	;;A
+	db_c_s	c5,s33	;;B
+	db_c_s	c4,s33	;;C
+	db_c_s	c4,s31	;;D
+	db_c_s	c4,s30	;;E
+	db_c_s	c5,s31	;;F
+	db_c_s	c4,s32	;;G
+LCD3_ALARM_MINH:	equ	$-LCD3_table1	;ALARM_MINH
+LCD3_D7:	equ	$-LCD3_table1
+	db_c_s	c5,s36	;;A
+	db_c_s	c5,s37	;;B
+	db_c_s	c4,s38	;;C
+	db_c_s	c4,s37	;;D
+	db_c_s	c4,s35	;;E
+	db_c_s	c5,s35	;;F
+	db_c_s	c4,s36	;;G
+LCD3_ALARM_MINL:	equ	$-LCD3_table1	;ALARM_MINH
+LCD3_D8:	equ	$-LCD3_table1
+	db_c_s	c5,s39	;;A
+	db_c_s	c5,s41	;;B
+	db_c_s	c4,s41	;;C
+	db_c_s	c4,s40	;;D
+	db_c_s	c4,s39	;;E
+	db_c_s	c5,s38	;;F
+	db_c_s	c5,s40	;;G
+
+; LCD3_D910:	equ	$-LCD3_table1
+LCD3_ALARM2_HRH:	equ	$-LCD3_table1	;ALARMHH
+LCD3_D9:	equ	$-LCD3_table1
+	db_c_s	c3,s29	;;ADEG
+	db_c_s	c3,s30	;;B
+	db_c_s	c2,s29	;;C
+	db_c_s	c0,s0	;;D
+	db_c_s	c0,s0	;;E
+	db_c_s	c0,s0	;;F
+	db_c_s	c0,s0	;;G
+LCD3_ALARM2_HRL:	equ	$-LCD3_table1	;ALARMHH
+LCD3_D10:	equ	$-LCD3_table1
+	db_c_s	c3,s32	;;A
+	db_c_s	c3,s33	;;B
+	db_c_s	c2,s33	;;C
+	db_c_s	c2,s31	;;D
+	db_c_s	c2,s30	;;E
+	db_c_s	c3,s31	;;F
+	db_c_s	c2,s32	;;G
+
+; LCD3_TIME_YEAR_H:	equ	$-lcd_table1	;
+LCD3_ALARM2_MINH:	equ	$-LCD3_table1	;ALARM_MINH
+LCD3_D11:	equ	$-LCD3_table1
+	db_c_s	c3,s36	;;A
+	db_c_s	c3,s37	;;B
+	db_c_s	c2,s38	;;C
+	db_c_s	c2,s37	;;D
+	db_c_s	c2,s35	;;E
+	db_c_s	c3,s35	;;F
+	db_c_s	c2,s36	;;G
+; LCD3_TIME_YEAR_L:	equ	$-lcd_table1	;
+LCD3_ALARM2_MINL:	equ	$-LCD3_table1	;ALARM_MINL
+LCD3_D12:	equ	$-LCD3_table1
+	db_c_s	c3,s39	;;A
+	db_c_s	c3,s41	;;B
+	db_c_s	c2,s41	;;C
+	db_c_s	c2,s40	;;D
+	db_c_s	c2,s39	;;E
+	db_c_s	c3,s38	;;F
+	db_c_s	c3,s40	;;G
+
+; LCD3_TIME_MONTH_H:	equ	$-LCD3_table1	;MONTHH
+LCD3_ALARM3_HRH:	equ	$-LCD3_table1	;ALARMHH
+LCD3_D13:	equ	$-LCD3_table1
+	db_c_s	c1,s29	;;ADEG
+	db_c_s	c1,s30	;;B
+	db_c_s	c0,s29	;;C
+	db_c_s	c0,s0	;;D
+	db_c_s	c0,s0	;;E
+	db_c_s	c0,s0	;;F
+	db_c_s	c0,s0	;;G
+
+
+; LCD3_TIME_MONTH_L:	equ	$-LCD3_table1	;MONTHL
+LCD3_ALARM3_HRL:	equ	$-LCD3_table1	;ALARMHH
+LCD3_D14:	equ	$-LCD3_table1
+	db_c_s	c1,s32	;;A
+	db_c_s	c1,s33	;;B
+	db_c_s	c0,s33	;;C
+	db_c_s	c0,s31	;;D
+	db_c_s	c0,s30	;;E
+	db_c_s	c1,s31	;;F
+	db_c_s	c0,s32	;;G
+
+; LCD3_TIME_DAY_H:	equ	$-LCD3_table1		;DAYH
+LCD3_ALARM3_MINH:	equ	$-LCD3_table1	;ALARM_MINH
+LCD3_D15:	equ	$-LCD3_table1
+	db_c_s	c1,s36	;;A
+	db_c_s	c1,s37	;;B
+	db_c_s	c0,s38	;;C
+	db_c_s	c0,s37	;;D	
+	db_c_s	c0,s35	;;E
+	db_c_s	c1,s35	;;F
+	db_c_s	c0,s36	;;G		
+; LCD3_TIME_DAY_L:	equ	$-LCD3_table1		;DAYL
+LCD3_ALARM3_MINL:	equ	$-LCD3_table1	;ALARM_MINH
+LCD3_D16:	equ	$-LCD3_table1
+	db_c_s	c1,s39	;;A
+	db_c_s	c1,s41	;;B
+	db_c_s	c0,s41	;;C
+	db_c_s	c0,s40	;;D
+	db_c_s	c0,s39	;;E
+	db_c_s	c1,s38	;;F
+	db_c_s	c1,s40	;;G
+
+LCD3_TIME_MONTH_H:	equ	$-LCD2_table1	;MONTHH
+LCD3_D17:	equ	$-LCD3_table1
+	db_c_s	c1,s4	;;A
+	; db_c_s	c1,s41	;;B
+	; db_c_s	c0,s41	;;C
+	; db_c_s	c0,s40	;;D
+	; db_c_s	c0,s39	;;E
+	; db_c_s	c1,s38	;;F
+	; db_c_s	c1,s40	;;G
+LCD3_TIME_MONTH_L:	equ	$-LCD3_table1	;MONTHL
+LCD3_D18:	equ	$-LCD3_table1
+	db_c_s	c2,s12	;;A
+	db_c_s	c1,s12	;;B
+	db_c_s	c0,s12	;;C
+	db_c_s	c0,s5	;;D
+	db_c_s	c0,s4	;;E
+	db_c_s	c2,s5	;;F
+	db_c_s	c1,s5	;;G
+
+LCD3_TIME_DAY_H:	equ	$-LCD3_table1	;DAYH
+LCD3_D19:	equ	$-LCD3_table1
+	db_c_s	c2,s13	;;ADG
+	db_c_s	c2,s14	;;B
+	db_c_s	c0,s14	;;C
+	db_c_s	c0,s0		;;D
+	db_c_s	c1,s13	;;E
+	db_c_s	c0,s0		;;F
+	db_c_s	c0,s0		;;G
+
+LCD3_TIME_DAY_L:	equ	$-LCD3_table1	;DAYL
+LCD3_D20:	equ	$-LCD3_table1
+	db_c_s	c2,s16	;;A
+	db_c_s	c1,s16	;;B
+	db_c_s	c0,s16	;;C
+	db_c_s	c0,s15	;;D
+	db_c_s	c1,s14	;;E
+	db_c_s	c2,s15	;;F
+	db_c_s	c1,s15	;;G
+
+
+LCD3_TIME_NMONTH_H:	equ	$-LCD2_table1	;MONTHH
+LCD3_D21:	equ	$-LCD3_table1
+	db_c_s	c1,s17	;;A
+	; db_c_s	c1,s41	;;B
+	; db_c_s	c0,s41	;;C
+	; db_c_s	c0,s40	;;D
+	; db_c_s	c0,s39	;;E
+	; db_c_s	c1,s38	;;F
+	; db_c_s	c1,s40	;;G
+LCD3_TIME_NMONTH_L:	equ	$-LCD3_table1	;MONTHL
+LCD3_D22:	equ	$-LCD3_table1
+	db_c_s	c2,s19	;;A
+	db_c_s	c1,s19	;;B
+	db_c_s	c0,s19	;;C
+	db_c_s	c0,s18	;;D
+	db_c_s	c0,s17	;;E
+	db_c_s	c2,s18	;;F
+	db_c_s	c1,s18	;;G
+
+LCD3_TIME_NDAY_H:	equ	$-LCD3_table1	;DAYH
+LCD3_D23:	equ	$-LCD3_table1
+	db_c_s	c2,s20	;;ADG
+	db_c_s	c2,s21	;;B
+	db_c_s	c0,s21	;;C
+	db_c_s	c0,s0		;;D
+	db_c_s	c1,s20	;;E
+	db_c_s	c0,s0		;;F
+	db_c_s	c0,s0		;;G
+
+LCD3_TIME_NDAY_L:	equ	$-LCD3_table1	;DAYL
+LCD3_D24:	equ	$-LCD3_table1
+	db_c_s	c3,s22	;;A
+	db_c_s	c1,s23	;;B
+	db_c_s	c0,s23	;;C
+	db_c_s	c0,s22	;;D
+	db_c_s	c1,s21	;;E
+	db_c_s	c2,s22	;;F
+	db_c_s	c1,s22	;;G
+
+; LCD3_TEMP_HHBC:	equ	$-LCD3_table1	;TEMPHH
+LCD3_D25:	equ	$-LCD3_table1
+LCD3_D25_BC:	equ	$-LCD3_table1
+	db_c_s	c2,s23	;;BC
+LCD3_D25_G:	equ	$-LCD3_table1
+	db_c_s	c0,s0	;;G
+
+LCD3_TEMPH:	equ	$-LCD3_table1		;TEMPH
+LCD3_D26:	equ	$-LCD3_table1
+	db_c_s	c5,s24	;;A
+	db_c_s	c4,s24	;;B
+	db_c_s	c2,s24	;;C
+	db_c_s	c0,s24	;;D
+	db_c_s	c1,s24	;;E
+	db_c_s	c3,s23	;;F
+	db_c_s	c3,s24	;;G
+
+LCD3_TEMPL:	equ	$-LCD3_table1	;TEMPL
+;LCD3_D19:	equ	$-LCD3_table1
+LCD3_D27:	equ	$-LCD3_table1
+	db_c_s	c5,s25	;;A
+	db_c_s	c5,s26	;;B
+	db_c_s	c2,s25	;;C
+	db_c_s	c0,s25	;;D
+	db_c_s	c1,s25	;;E
+	db_c_s	c4,s25	;;F
+	db_c_s	c3,s25	;;G
+
+LCD3_TEMP_CF:	equ	$-LCD3_table1
+;LCD3_D20:	equ	$-LCD3_table1
+LCD3_D28:	equ	$-LCD3_table1
+	db_c_s	c4,s26	;;AEF
+	db_c_s	c0,s0	;;B
+	db_c_s	c0,s0	;;C	
+DOT3_TEMP_C:	equ	$-LCD3_table1	;DOT_C
+	db_c_s	c4,s27	;;D
+	db_c_s	c0,s0	;;E
+	db_c_s	c0,s0	;;F		
+DOT3_TEMP_F:	equ	$-LCD3_table1	;DOT_F
+	db_c_s	c5,s27	;;G
+
+
+LCD3_TEMPD:	equ	$-LCD3_table1	;TEMPD
+;LCD3_D21:	equ	$-LCD3_table1
+LCD3_D29:	equ	$-LCD3_table1
+	db_c_s	c3,s27	;;A
+	db_c_s	c2,s27	;;B
+	db_c_s	c0,s27	;;C
+	db_c_s	c1,s26	;;D
+	db_c_s	c2,s26	;;E
+	db_c_s	c3,s26	;;F
+	db_c_s	c1,s27	;;G
+
+LCD3_WEEK:	equ	$-LCD3_table1	;week
+	db_c_s	c5,s5	;;MON
+	db_c_s	c5,s12	;;TUE
+	db_c_s	c5,s14	;;WED
+	db_c_s	c5,s16	;;THU
+	db_c_s	c5,s17	;;FRI
+	db_c_s	c5,s20	;;SAT
+	db_c_s	c5,s22	;;SUN
+
+LCD3_ALARM:	equ	$-LCD3_table1
+LCD3_ALARM1:	equ	$-LCD3_table1
+	db_c_s	c5,s34	;;ALA1
+LCD3_ALARM2:	equ	$-LCD3_table1
+	db_c_s	c3,s34	;;ALA2
+LCD3_ALARM3:	equ	$-LCD3_table1
+	db_c_s	c1,s34	;;ALA3
+LCD3_ALARM4:	equ	$-LCD3_table1
+	db_c_s	c5,s4	;;每天
+LCD3_ALARM5:	equ	$-LCD3_table1
+	db_c_s	c4,s4	;;单休
+LCD3_ALARM6:	equ	$-LCD3_table1
+	db_c_s	c3,s4	;;双休
+
+LCD3_DOT:	equ	$-LCD3_table1
+LCD3_COL1:	equ	$-LCD3_table1
+	db_c_s	c3,s17	;;COL1
+LCD3_COL2:	equ	$-LCD3_table1
+	db_c_s	c4,s34	;;COL2
+LCD3_COL3:	equ	$-LCD3_table1
+	db_c_s	c2,s34	;;COL3
+LCD3_COL4:	equ	$-LCD3_table1
+	db_c_s	c0,s34	;;COL3
+
+; LCD3_ICON:	equ	$-LCD3_table1
+LCD3_AM1:	equ	$-LCD3_table1
+	db_c_s	c4,s12	;;TIME_AM1
+LCD3_PM1:	equ	$-LCD3_table1
+	db_c_s	c3,s12	;;TIME_PM1
+LCD3_SNZ:	equ	$-LCD3_table1
+	db_c_s	c4,s17	;;ZZ
+LCD3_CHM:	equ	$-LCD3_table1
+	db_c_s	c4,s5	;;SK
+LCD3_BZ:	equ	$-LCD3_table1
+	db_c_s	c3,s5	;;BZ
+LCD3_AM2:	equ	$-LCD3_table1
+	db_c_s	c5,s28	;;ALARM_AM2
+LCD3_PM2:	equ	$-LCD3_table1
+	db_c_s	c4,s28	;;ALARM_PM2
+LCD3_AM3:	equ	$-LCD3_table1
+	db_c_s	c3,s28	;;ALARM_AM3
+LCD3_PM3:	equ	$-LCD3_table1
+	db_c_s	c2,s28	;;ALARM_PM3
+LCD3_AM4:	equ	$-LCD3_table1
+	db_c_s	c1,s28	;;ALARM_AM4
+LCD3_PM4:	equ	$-LCD3_table1
+	db_c_s	c0,s28	;;ALARM_PM4
+
+LCD3_GL:	equ	$-LCD3_table1
+	db_c_s	c2,s4	;;GL
+LCD3_NL:	equ	$-LCD3_table1
+	db_c_s	c2,s17	;;NL
+
+LCD3_MD:	equ	$-LCD3_table1
+	db_c_s	c0,s30	;;MD	
+LCD3_RUN:	equ	$-LCD3_table1
+	db_c_s	c0,s20	;;RUN	
+LCD3_GRUN:	equ	$-LCD3_table1
+	db_c_s	c0,s13	;;GRUN	
+; ;;LCD3_end_here
+; ;;;;;;;;;;;;;;;
+Lcd3_bit:
+;LCD3_D1:	equ	$-LCD3_table1
+	db_c_y	c5,s13	;;ADEG
+	db_c_y	c4,s13	;;B
+	db_c_y	c3,s13	;;C
+	db_c_y	c0,s0	;;D
+	db_c_y	c0,s0	;;E
+	db_c_y	c0,s0	;;F
+	db_c_y	c0,s0	;;G	
+
+;LCD3_D2:	equ	$-LCD3_table1
+	db_c_y	c5,s15	;;A
+	db_c_y	c4,s16	;;B
+	db_c_y	c3,s16	;;C
+	db_c_y	c3,s15	;;D
+	db_c_y	c3,s14	;;E
+	db_c_y	c4,s14	;;F
+	db_c_y	c4,s15	;;G
+
+;LCD3_D3:	equ	$-LCD3_table1
+	db_c_y	c5,s18	;;A
+	db_c_y	c5,s19	;;B
+	db_c_y	c3,s20	;;C
+	db_c_y	c3,s19	;;D
+	db_c_y	c3,s18	;;E
+	db_c_y	c4,s18	;;F
+	db_c_y	c4,s19	;;G
+
+;LCD3_D4:	equ	$-LCD3_table1
+	db_c_y	c5,s21	;;A
+	db_c_y	c5,s23	;;B
+	db_c_y	c4,s23	;;C
+	db_c_y	c4,s22	;;D
+	db_c_y	c3,s21	;;E
+	db_c_y	c4,s20	;;F
+	db_c_y	c4,s21	;;G
+
+;LCD3_D5:	equ	$-LCD3_table1
+	db_c_y	c5,s29	;;ADEG
+	db_c_y	c5,s30	;;B
+	db_c_y	c4,s29	;;C
+	db_c_y	c0,s0	;;D
+	db_c_y	c0,s0	;;E
+	db_c_y	c0,s0	;;F
+	db_c_y	c0,s0	;;G	
+
+;LCD3_D6:	equ	$-LCD3_table1
+	db_c_y	c5,s32	;;A
+	db_c_y	c5,s33	;;B
+	db_c_y	c4,s33	;;C
+	db_c_y	c4,s31	;;D
+	db_c_y	c4,s30	;;E
+	db_c_y	c5,s31	;;F
+	db_c_y	c4,s32	;;G
+
+;LCD3_D7:	equ	$-LCD3_table1
+	db_c_y	c5,s36	;;A
+	db_c_y	c5,s37	;;B
+	db_c_y	c4,s38	;;C
+	db_c_y	c4,s37	;;D
+	db_c_y	c4,s35	;;E
+	db_c_y	c5,s35	;;F
+	db_c_y	c4,s36	;;G
+
+;LCD3_D8:	equ	$-LCD3_table1
+	db_c_y	c5,s39	;;A
+	db_c_y	c5,s41	;;B
+	db_c_y	c4,s41	;;C
+	db_c_y	c4,s40	;;D
+	db_c_y	c4,s39	;;E
+	db_c_y	c5,s38	;;F
+	db_c_y	c5,s40	;;G
+
+; LCD3_D9:	equ	$-LCD3_table1
+	db_c_y	c3,s29	;;ADEG
+	db_c_y	c3,s30	;;B
+	db_c_y	c2,s29	;;C
+	db_c_y	c0,s0	;;D
+	db_c_y	c0,s0	;;E
+	db_c_y	c0,s0	;;F
+	db_c_y	c0,s0	;;G
+
+; LCD3_D10:	equ	$-LCD3_table1
+	db_c_y	c3,s32	;;A
+	db_c_y	c3,s33	;;B
+	db_c_y	c2,s33	;;C
+	db_c_y	c2,s31	;;D
+	db_c_y	c2,s30	;;E
+	db_c_y	c3,s31	;;F
+	db_c_y	c2,s32	;;G
+
+;LCD3_D11:	equ	$-LCD3_table1
+		db_c_y	c3,s36	;;A
+		db_c_y	c3,s37	;;B
+		db_c_y	c2,s38	;;C
+		db_c_y	c2,s37	;;D
+		db_c_y	c2,s35	;;E
+		db_c_y	c3,s35	;;F
+		db_c_y	c2,s36	;;G
+
+;LCD3_D12:	equ	$-LCD3_table1
+		db_c_y	c3,s39	;;A
+		db_c_y	c3,s41	;;B
+		db_c_y	c2,s41	;;C
+		db_c_y	c2,s40	;;D
+		db_c_y	c2,s39	;;E
+		db_c_y	c3,s38	;;F
+		db_c_y	c3,s40	;;G
+
+; LCD3_D13:	equ	$-LCD3_table1
+	db_c_y	c1,s29	;;ADEG
+	db_c_y	c1,s30	;;B
+	db_c_y	c0,s29	;;C
+	db_c_y	c0,s0	;;D
+	db_c_y	c0,s0	;;E
+	db_c_y	c0,s0	;;F
+	db_c_y	c0,s0	;;G
+
+;LCD3_D14:	equ	$-LCD3_table1
+	db_c_y	c1,s32	;;A
+	db_c_y	c1,s33	;;B
+	db_c_y	c0,s33	;;C
+	db_c_y	c0,s31	;;D
+	db_c_y	c0,s30	;;E
+	db_c_y	c1,s31	;;F
+	db_c_y	c0,s32	;;G
+
+;LCD3_D15:	equ	$-LCD3_table1
+	db_c_y	c1,s36	;;ADG
+	db_c_y	c1,s37	;;B
+	db_c_y	c0,s38	;;C
+	db_c_y	c0,s37	;;D	
+	db_c_y	c0,s35	;;E
+	db_c_y	c1,s35	;;F
+	db_c_y	c0,s36	;;G		
+
+;LCD3_D16:	equ	$-LCD3_table1
+	db_c_y	c1,s39	;;A
+	db_c_y	c1,s41	;;B
+	db_c_y	c0,s41	;;C
+	db_c_y	c0,s40	;;D
+	db_c_y	c0,s39	;;E
+	db_c_y	c1,s38	;;F
+	db_c_y	c1,s40	;;G
+
+; LCD3_D17:	equ	$-LCD3_table1
+	db_c_y	c1,s4	;;A
+	; db_c_s	c1,s41	;;B
+	; db_c_s	c0,s41	;;C
+	; db_c_s	c0,s40	;;D
+	; db_c_s	c0,s39	;;E
+	; db_c_s	c1,s38	;;F
+	; db_c_s	c1,s40	;;G
+
+; LCD3_D18:	equ	$-LCD3_table1
+	db_c_y	c2,s12	;;A
+	db_c_y	c1,s12	;;B
+	db_c_y	c0,s12	;;C
+	db_c_y	c0,s5	;;D
+	db_c_y	c0,s4	;;E
+	db_c_y	c2,s5	;;F
+	db_c_y	c1,s5	;;G
+
+
+; LCD3_D19:	equ	$-LCD3_table1
+	db_c_y	c2,s13	;;ADG
+	db_c_y	c2,s14	;;B
+	db_c_y	c0,s14	;;C
+	db_c_y	c0,s0		;;D
+	db_c_y	c1,s13	;;E
+	db_c_y	c0,s0		;;F
+	db_c_y	c0,s0		;;G
+
+
+; LCD3_D20:	equ	$-LCD3_table1
+	db_c_y	c2,s16	;;A
+	db_c_y	c1,s16	;;B
+	db_c_y	c0,s16	;;C
+	db_c_y	c0,s15	;;D
+	db_c_y	c1,s14	;;E
+	db_c_y	c2,s15	;;F
+	db_c_y	c1,s15	;;G
+
+;LCD3_D21:	equ	$-LCD3_table1
+	db_c_y	c1,s17	;;BC
+	; db_c_y	c0,s0	;;G
+
+;LCD3_D22:	equ	$-LCD3_table1
+	db_c_y	c2,s19	;;A
+	db_c_y	c1,s19	;;B
+	db_c_y	c0,s19	;;C
+	db_c_y	c0,s18	;;D
+	db_c_y	c0,s17	;;E
+	db_c_y	c2,s18	;;F
+	db_c_y	c1,s18	;;G
+
+;LCD3_D23:	equ	$-LCD3_table1
+	db_c_y	c2,s20	;;A
+	db_c_y	c2,s21	;;B
+	db_c_y	c0,s21	;;C
+	db_c_y	c0,s0	;;D
+	db_c_y	c1,s20	;;E
+	db_c_y	c0,s0	;;F
+	db_c_y	c0,s0	;;G
+
+;LCD3_D24:	equ	$-LCD3_table1
+	db_c_y	c3,s22	;;AEF
+	db_c_y	c1,s23	;;B
+	db_c_y	c0,s23	;;C	
+	db_c_y	c0,s22	;;D
+	db_c_y	c1,s21	;;E
+	db_c_y	c2,s22	;;F		
+	db_c_y	c1,s22	;;G
+
+; LCD3_D25:	equ	$-LCD3_table1
+	db_c_y	c2,s23	;;BC
+	db_c_y	c0,s0	;;G
+
+; LCD3_D26:	equ	$-LCD3_table1
+	db_c_y	c5,s24	;;A
+	db_c_y	c4,s24	;;B
+	db_c_y	c2,s24	;;C
+	db_c_y	c0,s24	;;D
+	db_c_y	c1,s24	;;E
+	db_c_y	c3,s23	;;F
+	db_c_y	c3,s24	;;G
+
+
+;LCD3_D27:	equ	$-LCD3_table1
+	db_c_y	c5,s25	;;
+	db_c_y	c5,s26	;;
+	db_c_y	c2,s25	;;
+	db_c_y	c0,s25	;;
+	db_c_y	c1,s25	;;
+	db_c_y	c4,s25	;;
+	db_c_y	c3,s25	;;
+; LCD3_D28:	equ	$-LCD3_table1
+	db_c_y	c4,s26	;;AEF
+	db_c_y	c0,s0	;;B
+	db_c_y	c0,s0	;;C	
+	db_c_y	c4,s27	;;D
+	db_c_y	c0,s0	;;E
+	db_c_y	c0,s0	;;F		
+	db_c_y	c5,s27	;;G
+;LCD3_D29:	equ	$-LCD3_table1
+	db_c_y	c3,s27	;;
+	db_c_y	c2,s27	;;
+	db_c_y	c0,s27	;;
+	db_c_y	c1,s26	;;
+	db_c_y	c2,s26	;;
+	db_c_y	c3,s26	;;
+	db_c_y	c1,s27	;;
+; LCD3_WEEK:	equ	$-lcd_table1	;week
+	db_c_y	c5,s5	;;MON
+	db_c_y	c5,s12	;;TUE
+	db_c_y	c5,s14	;;WED
+	db_c_y	c5,s16	;;THU
+	db_c_y	c5,s17	;;FRI
+	db_c_y	c5,s20	;;SAT
+	db_c_y	c5,s22	;;SUN
+
+
+	db_c_y	c5,s34	;;ALA1
+	db_c_y	c3,s34	;;ALA2
+	db_c_y	c1,s34	;;ALA3
+
+	db_c_y	c5,s4	;;每天
+	db_c_y	c4,s4	;;单休
+	db_c_y	c3,s4	;;双休
+
+	db_c_y	c3,s17	;;COL1
+	db_c_y	c4,s34	;;COL2
+	db_c_y	c2,s34	;;COL3
+	db_c_y	c0,s34	;;COL4
+
+	db_c_y	c4,s12	;;TIME_AM1
+	db_c_y	c3,s12	;;TIME_PM1
+	db_c_y	c4,s17	;;ZZ
+	db_c_y	c4,s5	;;SK
+	db_c_y	c3,s5	;;BZ
+	db_c_y	c5,s28	;;ALARM_AM2
+	db_c_y	c4,s28	;;ALARM_PM2
+	db_c_y	c3,s28	;;ALARM_AM3
+	db_c_y	c2,s28	;;ALARM_PM3
+	db_c_y	c1,s28	;;ALARM_AM4
+	db_c_y	c0,s28	;;ALARM_PM4
+	db_c_y	c2,s4	;;GL
+	db_c_y	c2,s17	;;NL
+	db_c_y	c0,s30	;;MD	
+	db_c_y	c0,s20	;;RUN	
+	db_c_y	c0,s13	;;GRUN	
+; ;;LCD3_end_here
+	
 

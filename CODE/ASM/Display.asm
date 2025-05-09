@@ -724,33 +724,21 @@ L_Dis_AlarmFlag_Prog:		;Alarm_Day_Disp
 	BBS0	R_Alarm_Way,L_Dis_AlarmFlag_ALD
 	BBS1	R_Alarm_Way,L_Dis_AlarmFlag_ALW5
 L_Dis_AlarmFlag_ALW6:		;Disp_6Day
-	JUDGE_LCD_ALARM4
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM5
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM6
-	JMP		F_DispSymbol
+	JSR		D_Clr_Alarm_7Day
+	JSR		D_Clr_Alarm_6Day
+	JMP		D_Disp_Alarm_5Day
 L_Clr_All_AlarmFlag:
-	JUDGE_LCD_ALARM4
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM5
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM6
-	JMP		F_ClrpSymbol
+	JSR		D_Clr_Alarm_7Day
+	JSR		D_Clr_Alarm_6Day
+	JMP		D_Clr_Alarm_5Day
 L_Dis_AlarmFlag_ALD:		;Disp_7Day
-	JUDGE_LCD_ALARM4
-	JSR		F_DispSymbol
-	JUDGE_LCD_ALARM5
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM6
-	JMP		F_ClrpSymbol
+	JSR		D_Disp_Alarm_7Day
+	JSR		D_Clr_Alarm_6Day
+	JMP		D_Clr_Alarm_5Day
 L_Dis_AlarmFlag_ALW5:		;Disp_6Day
-	JUDGE_LCD_ALARM4
-	JSR		F_ClrpSymbol
-	JUDGE_LCD_ALARM5
-	JSR		F_DispSymbol
-	JUDGE_LCD_ALARM6
-	JMP		F_ClrpSymbol
+	JSR		D_Disp_Alarm_6Day
+	JSR		D_Clr_Alarm_7Day
+	JMP		D_Clr_Alarm_5Day
 
 ;********************************************
 ;------------------------------------------		
@@ -873,6 +861,17 @@ L_Clr_Next_to_2Digit:
 	JMP		L_Dis_8Bit_DigitDot_Prog
 L_End_SysFlash_BXing_Prog:
 	RTS
+
+;-----------------------------------------
+L_Clr_Alarm_Digit_Prog:
+	JSR		L_Clr_Col1_Prog
+	BBS2	Sys_Flag_B,L_End_SysFlash_BXing_Prog
+	JUDGE_LCD_ALARM_HRH
+	; LDX		#LCD1_D5
+	JSR		L_Clr_Next_to_2Digit
+	JUDGE_LCD_ALARM_MINH
+	; LDX		#LCD1_D7
+	JMP		L_Clr_Next_to_2Digit	
 ;-----------------------------------------	
 L_Clr_Year_Month_Day_Digit_Prog:
 	JSR		L_Clr_Col1_Prog
@@ -892,16 +891,6 @@ L_Clr_Year_Month_Day_Digit_Prog:
 	JUDGE_LCD_TIME_DAY_H
 	; LDX		#LCD1_D15
 	JMP		L_Clr_Next_to_2Digit		
-;-----------------------------------------
-L_Clr_Alarm_Digit_Prog:
-	JSR		L_Clr_Col1_Prog
-	BBS2	Sys_Flag_B,L_End_SysFlash_BXing_Prog
-	JUDGE_LCD_ALARM_HRH
-	; LDX		#LCD1_D5
-	JSR		L_Clr_Next_to_2Digit
-	JUDGE_LCD_ALARM_MINH
-	; LDX		#LCD1_D7
-	JMP		L_Clr_Next_to_2Digit	
 ;===========================================================	
 L_Flash_12Dight:
 	; LDX		#LCD1_D1
@@ -1168,12 +1157,12 @@ L_Judge_Dis_Alarm_Prog:			;聪明钟
 ; D_Disp_Time_Col:
 ; 	JUDGE_LCD_COL1
 ; 	JMP		F_DispSymbol
-; D_Disp_Time_Am:
-; 	JUDGE_LCD_AM1
-; 	JMP		F_DispSymbol
-; D_Disp_Time_Pm:
-; 	JUDGE_LCD_PM1
-; 	JMP		F_DispSymbol
+D_Disp_Time_Am:
+	JUDGE_LCD_AM1
+	JMP		F_DispSymbol
+D_Disp_Time_Pm:
+	JUDGE_LCD_PM1
+	JMP		F_DispSymbol
 
 ; D_Disp_Alarm_Col:
 ; 	JUDGE_LCD_COL2
@@ -1187,15 +1176,15 @@ L_Judge_Dis_Alarm_Prog:			;聪明钟
 ; D_Disp_Alarm_Dot3:
 ; 	JUDGE_LCD_ALARM3
 ; 	JMP		F_DispSymbol
-; D_Disp_Alarm_7Day:
-; 	JUDGE_LCD_ALARM4
-; 	JMP		F_DispSymbol
-; D_Disp_Alarm_6Day:
-; 	JUDGE_LCD_ALARM6
-; 	JMP		F_DispSymbol
-; D_Disp_Alarm_5Day:
-; 	JUDGE_LCD_ALARM5
-; 	JMP		F_DispSymbol
+D_Disp_Alarm_7Day:
+	JUDGE_LCD_ALARM4
+	JMP		F_DispSymbol
+D_Disp_Alarm_6Day:
+	JUDGE_LCD_ALARM6
+	JMP		F_DispSymbol
+D_Disp_Alarm_5Day:
+	JUDGE_LCD_ALARM5
+	JMP		F_DispSymbol
 
 ; D_Disp_Dot_Snz:
 ; 	JUDGE_LCD_SNZ
@@ -1207,13 +1196,13 @@ L_Judge_Dis_Alarm_Prog:			;聪明钟
 ; 	JUDGE_LCD_BZ
 ; 	JMP		F_DispSymbol
 
-; D_Disp_Alarm_Am:
-; 	JUDGE_LCD_AM2
-; 	JMP		F_DispSymbol
+D_Disp_Alarm_Am:
+	JUDGE_LCD_AM2
+	JMP		F_DispSymbol
 
-; D_Disp_Alarm_Pm:
-; 	JUDGE_LCD_PM2
-; 	JMP		F_DispSymbol
+D_Disp_Alarm_Pm:
+	JUDGE_LCD_PM2
+	JMP		F_DispSymbol
 ; D_Disp_Dot_Year:
 ; 	JUDGE_LCD_YEAR
 ; 	JMP		F_DispSymbol
@@ -1233,8 +1222,15 @@ L_Judge_Dis_Alarm_Prog:			;聪明钟
 ; 	RTS
 ;===========================================================
 
-
-
+D_Clr_Alarm_7Day:
+	JUDGE_LCD_ALARM4
+	JMP		F_ClrpSymbol
+D_Clr_Alarm_6Day:
+	JUDGE_LCD_ALARM6
+	JMP		F_ClrpSymbol
+D_Clr_Alarm_5Day:
+	JUDGE_LCD_ALARM5
+	JMP		F_ClrpSymbol
 
 ;===========================================================
 

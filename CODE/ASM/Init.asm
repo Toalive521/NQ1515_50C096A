@@ -34,6 +34,15 @@ L_Judge_Longli_Prog:
 	RTS
 	_3sDAlarm:
 	BS		Flag_3sDAlarm,Bit_3sDAlarm,1
+
+	LDA		lcdcom
+	AND		#$F0
+	ORA		#$05
+	STA		lcdcom
+
+	lda		#4
+	sta		frame
+
 	IOH		PD,001H,0
 	RTS
 

@@ -708,58 +708,78 @@ L_Scan_SlideKey_Prog:		;拨键
 L_Scan_SlideKey_Prog_:
 	DIS_KEY_IRQ						;��PA�ж�ʹ��
 	
-
-
 	SMB1	PB
 	IOOUT	PD,008H,0
 	IOH		PD,008H,0
 	
+	LDA		#0
+	STA		P_Temp
 	; LDA		PA
 	; ORA		#003H
 	LDA		#$FF
 	STA		PA
-	
+
+	CLC
+
 	
 	LDA		PA
 	AND		#003H
-	STA		P_Temp
+	STA		P_Temp		;全部OUTPUT_1,若为0则为拨键在此
+
+	; CLC
+	ROL		P_Temp
+	ROL		P_Temp
 
 	RMB1	PB
 	IOL		PD,008H,0
 
 	LDA		PA
 	AND		#003H
-	STA		P_Temp+1
+	ORA		P_Temp
+	STA		P_Temp
+
+	ROL		P_Temp
+	ROL		P_Temp
+	; STA		P_Temp+1
 
 	SMB1	PB
 
 	LDA		PA
 	AND		#003H
-	STA		P_Temp+2
+	ORA		P_Temp
+	STA		P_Temp
+	; STA		P_Temp+2
+
+	ROL		P_Temp
+	ROL		P_Temp
 
 	RMB1	PB
 	IOH		PD,008H,0
 
 	LDA		PA
 	AND		#003H
-	STA		P_Temp+3
-	
+	ORA		P_Temp
+	STA		P_Temp
+	; STA		P_Temp+3
 
+	; ROR		P_Temp
+	; ROR		P_Temp
+	
 	LDA		P_Temp
 	CMP		R_SlideKey_Value
 	BNE		?CON
 
-	LDA		P_Temp+1
-	CMP		R_SlideKey_Value+1
-	BNE		?CON
+	; LDA		P_Temp+1
+	; CMP		R_SlideKey_Value+1
+	; BNE		?CON
 
-	LDA		P_Temp+2
-	CMP		R_SlideKey_Value+2
-	BNE		?CON
+	; LDA		P_Temp+2
+	; CMP		R_SlideKey_Value+2
+	; BNE		?CON
 
-	LDA		P_Temp+3
-	CMP		R_SlideKey_Value+3
-	BNE		?CON
+	; LDA		P_Temp+3
+	; CMP		R_SlideKey_Value+3
+	; BNE		?CON
 
 	BRA		?_con
 	; JSR		L_PC45_Output0
@@ -767,14 +787,14 @@ L_Scan_SlideKey_Prog_:
 	LDA		P_Temp
 	STA		R_SlideKey_Value
 
-	LDA		P_Temp+1
-	STA		R_SlideKey_Value+1
+	; LDA		P_Temp+1
+	; STA		R_SlideKey_Value+1
 
-	LDA		P_Temp+2
-	STA		R_SlideKey_Value+2
+	; LDA		P_Temp+2
+	; STA		R_SlideKey_Value+2
 
-	LDA		P_Temp+3
-	STA		R_SlideKey_Value+3
+	; LDA		P_Temp+3
+	; STA		R_SlideKey_Value+3
 	; LDA		P_PC_IO_Backup
 	; and		#11101111B
 	; ora		#00100000B	
@@ -827,12 +847,16 @@ L_End_Scan_SlideKey_Prog:
 ;----------------------------------------------	
 L_Judge_SlideKey1_Prog:
 	; xJB		P_Temp,0,L_Time_Set_Mode_Prog
-	LDA		R_SlideKey_Value
-	AND		#$01
-	BEQ		L_Time_Set_Mode_Prog
-	xJB		R_SlideKey_Value+1,0,L_Time_Mode_Prog
-	xJB		R_SlideKey_Value+2,0,L_Alarm_Set_Mode_Prog
-	xJB		R_SlideKey_Value+3,0,L_Date_Set_Mode_Prog
+	BBR6	R_SlideKey_Value,L_Time_Set_Mode_Prog
+	BBS4	R_SlideKey_Value,L_Time_Mode_Prog
+	BBS2	R_SlideKey_Value,L_Alarm_Set_Mode_Prog
+	BBS0	R_SlideKey_Value,L_Date_Set_Mode_Prog
+	; LDA		R_SlideKey_Value
+	; AND		#$01
+	; BEQ		L_Time_Set_Mode_Prog
+	; xJB		R_SlideKey_Value+1,0,L_Time_Mode_Prog
+	; xJB		R_SlideKey_Value+2,0,L_Alarm_Set_Mode_Prog
+	; xJB		R_SlideKey_Value+3,0,L_Date_Set_Mode_Prog
 	RTS		
 
 	LDA		R_SlideKey1_Value
@@ -877,13 +901,17 @@ L_Time_Set_Mode_Prog:
 	JMP		L_ChangMode_Prog
 ;===============================================		
 L_Judge_SlideKey2_Prog:
-	LDA		R_SlideKey_Value
-	AND		#$02
-	BEQ		L_Alarm_Off_Prog
-	; xJB		P_Temp,1,L_Alarm_Off_Prog
-	xJB		R_SlideKey_Value+1,1,L_Daily_Alarm_On_Prog
-	xJB		R_SlideKey_Value+2,1,L_WorkingDay5_Alarm_On_Prog
-	xJB		R_SlideKey_Value+3,1,L_WorkingDay6_Alarm_On_Prog
+	BBR7	R_SlideKey_Value,L_Alarm_Off_Prog
+	BBS5	R_SlideKey_Value,L_Daily_Alarm_On_Prog
+	BBS3	R_SlideKey_Value,L_WorkingDay5_Alarm_On_Prog
+	BBS1	R_SlideKey_Value,L_WorkingDay6_Alarm_On_Prog
+	; LDA		R_SlideKey_Value
+	; AND		#$02
+	; BEQ		L_Alarm_Off_Prog
+	; ; xJB		P_Temp,1,L_Alarm_Off_Prog
+	; xJB		R_SlideKey_Value+1,1,L_Daily_Alarm_On_Prog
+	; xJB		R_SlideKey_Value+2,1,L_WorkingDay5_Alarm_On_Prog
+	; xJB		R_SlideKey_Value+3,1,L_WorkingDay6_Alarm_On_Prog
 	RTS
 
 	LDA		R_SlideKey2_Value
@@ -1240,7 +1268,7 @@ L_Change_Alarm_567:
 	?AlarmWay_1:
 	SMB0	R_Alarm_Way		;AlarmWay_1
 	?End:
-	JSR		L_Dis_AlarmTime_ACXing_Normal
+	JSR		L_Dis_AlarmTime_Prog
 	JMP		L_Dis_AlarmFlag_Prog
 	RTS
 ;===================================

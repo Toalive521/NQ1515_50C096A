@@ -1,7 +1,7 @@
 ; 253 Byte
 ;----------------------------------------------------------
 R_LcdDisplayBuffer:		equ	$1800
-D_LcdRam		equ		6*4
+D_LcdRam		equ		6*6
 ;C_MiDigit	equ		0
 ;----------------------------------------------------------
 T_LcdFontTab:
@@ -117,6 +117,7 @@ F_DispPro:		;Xcc -> ofs, Acc -> data(ֱ�Ӹ�����ʾ����)
 F_GetComSeg:
 		; BBS0	Sys_Flag_D,?LCD2
 		xJB	Flag_NongLi,Bit_NongLi,?LCD2
+		xJB Flag_3sDAlarm,Bit_3sDAlarm,?LCD3
 		lda	lcd_byte,x
 		sta	lcd_tmp_mask
 		lda	lcd_bit,x
@@ -127,7 +128,13 @@ F_GetComSeg:
 		sta	lcd_tmp_mask
 		lda	Lcd2_bit,x
 		sta	lcd_tmp_bit
-		rts			
+		rts		
+?LCD3:
+		lda	Lcd3_byte,x
+		sta	lcd_tmp_mask
+		lda	Lcd3_bit,x
+		sta	lcd_tmp_bit
+		rts	
 ;-------------------------------------------------------------------------
 F_DispSymbol:		;input Xcc -> ofs
 		jsr	F_GetComSeg	
