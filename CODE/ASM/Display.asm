@@ -316,8 +316,8 @@ L_Dis_AlarmTime_ACXing_9:
 	RTS
 ;--------------------------------------------------------
 L_Dis_Alarm2_Prog:
-	LDX		#
-
+	LDX		#LCD3_COL3
+	JSR		F_DispSymbol
 	LDA		#(R_Alarm_Hr2-Time_Str_Addr)
 	LDX		#LCD3_ALARM2_HRH
 	JSR		L_Dis_2Digit_Prog
@@ -325,6 +325,7 @@ L_Dis_Alarm2_Prog:
 	LDX		#LCD3_ALARM2_MINH	
 	JMP		L_Dis_2Digit_Prog
 L_Dis_Alarm3_Prog:
+	LDX		#LCD3_COL4
 	LDA		#(R_Alarm_Hr3-Time_Str_Addr)
 	LDX		#LCD3_ALARM3_HRH
 	JSR		L_Dis_2Digit_Prog

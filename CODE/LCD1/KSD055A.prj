@@ -1,0 +1,440 @@
+$[LoadFile]$
+KSD055A.tap 0 8000
+
+$[ListFile]$
+KSD055A.9ls
+
+$[LcdComSeg]$
+bmp	C0S4.bmp
+bmp	C0S5.bmp
+bmp	C0S12.bmp
+bmp	C0S13.bmp
+bmp	C0S14.bmp
+bmp	C0S15.bmp
+bmp	C0S16.bmp
+bmp	C0S17.bmp
+bmp	C0S18.bmp
+bmp	C0S19.bmp
+bmp	C0S20.bmp
+bmp	C0S21.bmp
+bmp	C0S22.bmp
+bmp	C0S23.bmp
+bmp	C0S24.bmp
+bmp	C0S25.bmp
+bmp	C0S27.bmp
+bmp	C0S28.bmp
+bmp	C0S29.bmp
+bmp	C0S30.bmp
+bmp	C0S31.bmp
+bmp	C0S32.bmp
+bmp	C0S33.bmp
+bmp	C0S34.bmp
+bmp	C0S35.bmp
+bmp	C0S36.bmp
+bmp	C0S37.bmp
+bmp	C0S38.bmp
+bmp	C0S39.bmp
+bmp	C0S40.bmp
+bmp	C0S41.bmp
+bmp	C1S4.bmp
+bmp	C1S5.bmp
+bmp	C1S12.bmp
+bmp	C1S13.bmp
+bmp	C1S14.bmp
+bmp	C1S15.bmp
+bmp	C1S16.bmp
+bmp	C1S17.bmp
+bmp	C1S18.bmp
+bmp	C1S19.bmp
+bmp	C1S20.bmp
+bmp	C1S21.bmp
+bmp	C1S22.bmp
+bmp	C1S23.bmp
+bmp	C1S24.bmp
+bmp	C1S25.bmp
+bmp	C1S26.bmp
+bmp	C1S27.bmp
+bmp	C1S28.bmp
+bmp	C1S29.bmp
+bmp	C1S30.bmp
+bmp	C1S31.bmp
+bmp	C1S32.bmp
+bmp	C1S33.bmp
+bmp	C1S34.bmp
+bmp	C1S35.bmp
+bmp	C1S36.bmp
+bmp	C1S37.bmp
+bmp	C1S38.bmp
+bmp	C1S39.bmp
+bmp	C1S40.bmp
+bmp	C1S41.bmp
+bmp	C2S4.bmp
+bmp	C2S5.bmp
+bmp	C2S12.bmp
+bmp	C2S13.bmp
+bmp	C2S14.bmp
+bmp	C2S15.bmp
+bmp	C2S16.bmp
+bmp	C2S17.bmp
+bmp	C2S18.bmp
+bmp	C2S19.bmp
+bmp	C2S20.bmp
+bmp	C2S21.bmp
+bmp	C2S22.bmp
+bmp	C2S23.bmp
+bmp	C2S24.bmp
+bmp	C2S25.bmp
+bmp	C2S26.bmp
+bmp	C2S27.bmp
+bmp	C2S28.bmp
+bmp	C2S29.bmp
+bmp	C2S30.bmp
+bmp	C2S31.bmp
+bmp	C2S32.bmp
+bmp	C2S33.bmp
+bmp	C2S34.bmp
+bmp	C2S35.bmp
+bmp	C2S36.bmp
+bmp	C2S37.bmp
+bmp	C2S38.bmp
+bmp	C2S39.bmp
+bmp	C2S40.bmp
+bmp	C2S41.bmp
+bmp	C3S4.bmp
+bmp	C3S5.bmp
+bmp	C3S12.bmp
+bmp	C3S13.bmp
+bmp	C3S14.bmp
+bmp	C3S15.bmp
+bmp	C3S16.bmp
+bmp	C3S17.bmp
+bmp	C3S18.bmp
+bmp	C3S19.bmp
+bmp	C3S20.bmp
+bmp	C3S21.bmp
+bmp	C3S22.bmp
+bmp	C3S23.bmp
+bmp	C3S24.bmp
+bmp	C3S25.bmp
+bmp	C3S26.bmp
+bmp	C3S27.bmp
+bmp	C3S28.bmp
+bmp	C3S29.bmp
+bmp	C3S30.bmp
+bmp	C3S31.bmp
+bmp	C3S32.bmp
+bmp	C3S33.bmp
+bmp	C3S34.bmp
+bmp	C3S35.bmp
+bmp	C3S36.bmp
+bmp	C3S37.bmp
+bmp	C3S38.bmp
+bmp	C3S39.bmp
+bmp	C3S40.bmp
+bmp	C3S41.bmp
+bmp	C4S4.bmp
+bmp	C4S5.bmp
+bmp	C4S12.bmp
+bmp	C4S13.bmp
+bmp	C4S14.bmp
+bmp	C4S15.bmp
+bmp	C4S16.bmp
+bmp	C4S17.bmp
+bmp	C4S18.bmp
+bmp	C4S19.bmp
+bmp	C4S20.bmp
+bmp	C4S21.bmp
+bmp	C4S22.bmp
+bmp	C4S23.bmp
+bmp	C4S24.bmp
+bmp	C4S25.bmp
+bmp	C4S26.bmp
+bmp	C4S27.bmp
+bmp	C4S28.bmp
+bmp	C4S29.bmp
+bmp	C4S30.bmp
+bmp	C4S31.bmp
+bmp	C4S32.bmp
+bmp	C4S33.bmp
+bmp	C4S34.bmp
+bmp	C4S35.bmp
+bmp	C4S36.bmp
+bmp	C4S37.bmp
+bmp	C4S38.bmp
+bmp	C4S39.bmp
+bmp	C4S40.bmp
+bmp	C4S41.bmp
+bmp	C5S4.bmp
+bmp	C5S5.bmp
+bmp	C5S12.bmp
+bmp	C5S13.bmp
+bmp	C5S14.bmp
+bmp	C5S15.bmp
+bmp	C5S16.bmp
+bmp	C5S17.bmp
+bmp	C5S18.bmp
+bmp	C5S19.bmp
+bmp	C5S20.bmp
+bmp	C5S21.bmp
+bmp	C5S22.bmp
+bmp	C5S23.bmp
+bmp	C5S24.bmp
+bmp	C5S25.bmp
+bmp	C5S26.bmp
+bmp	C5S27.bmp
+bmp	C5S28.bmp
+bmp	C5S29.bmp
+bmp	C5S30.bmp
+bmp	C5S31.bmp
+bmp	C5S32.bmp
+bmp	C5S33.bmp
+bmp	C5S34.bmp
+bmp	C5S35.bmp
+bmp	C5S36.bmp
+bmp	C5S37.bmp
+bmp	C5S38.bmp
+bmp	C5S39.bmp
+bmp	C5S40.bmp
+bmp	C5S41.bmp
+def	0	4	44	220	0
+def	0	5	48	244	1
+def	0	12	64	220	2
+def	0	13	76	196	3
+def	0	14	120	220	4
+def	0	15	136	244	5
+def	0	16	152	220	6
+def	0	17	220	224	7
+def	0	18	224	248	8
+def	0	19	240	224	9
+def	0	20	252	200	10
+def	0	21	296	224	11
+def	0	22	312	248	12
+def	0	23	328	224	13
+def	0	24	376	248	14
+def	0	25	408	248	15
+def	0	27	464	240	16
+def	0	28	348	164	17
+def	0	29	380	164	18
+def	0	30	388	164	19
+def	0	31	392	176	20
+def	0	32	392	160	21
+def	0	33	404	164	22
+def	0	34	412	156	23
+def	0	35	420	164	24
+def	0	36	424	160	25
+def	0	37	424	176	26
+def	0	38	436	164	27
+def	0	39	444	164	28
+def	0	40	448	176	29
+def	0	41	460	164	30
+def	1	4	32	192	31
+def	1	5	48	216	32
+def	1	12	64	192	33
+def	1	13	100	220	34
+def	1	14	132	220	35
+def	1	15	136	216	36
+def	1	16	152	192	37
+def	1	17	208	196	38
+def	1	18	224	220	39
+def	1	19	240	196	40
+def	1	20	276	224	41
+def	1	21	308	224	42
+def	1	22	312	220	43
+def	1	23	328	196	44
+def	1	24	372	224	45
+def	1	25	404	224	46
+def	1	26	452	252	47
+def	1	27	452	236	48
+def	1	28	348	144	49
+def	1	29	364	144	50
+def	1	30	380	148	51
+def	1	31	388	148	52
+def	1	32	392	144	53
+def	1	33	404	148	54
+def	1	34	476	152	55
+def	1	35	420	148	56
+def	1	36	424	144	57
+def	1	37	436	148	58
+def	1	38	444	148	59
+def	1	39	448	144	60
+def	1	40	448	160	61
+def	1	41	460	148	62
+def	2	4	0	184	63
+def	2	5	44	192	64
+def	2	12	48	188	65
+def	2	13	104	188	66
+def	2	14	120	192	67
+def	2	15	132	192	68
+def	2	16	136	188	69
+def	2	17	172	184	70
+def	2	18	220	196	71
+def	2	19	224	192	72
+def	2	20	280	192	73
+def	2	21	296	196	74
+def	2	22	308	196	75
+def	2	23	360	196	76
+def	2	24	392	224	77
+def	2	25	424	224	78
+def	2	26	448	240	79
+def	2	27	464	224	80
+def	2	28	348	112	81
+def	2	29	380	112	82
+def	2	30	388	112	83
+def	2	31	392	124	84
+def	2	32	392	108	85
+def	2	33	404	112	86
+def	2	34	412	104	87
+def	2	35	420	112	88
+def	2	36	424	108	89
+def	2	37	424	124	90
+def	2	38	436	112	91
+def	2	39	444	112	92
+def	2	40	448	124	93
+def	2	41	460	112	94
+def	3	4	8	76	95
+def	3	5	12	128	96
+def	3	12	76	88	97
+def	3	13	120	116	98
+def	3	14	140	116	99
+def	3	15	148	160	100
+def	3	16	184	116	101
+def	3	17	204	88	102
+def	3	18	220	116	103
+def	3	19	228	160	104
+def	3	20	264	116	105
+def	3	21	284	116	106
+def	3	22	312	192	107
+def	3	23	372	196	108
+def	3	24	376	220	109
+def	3	25	408	220	110
+def	3	26	448	224	111
+def	3	27	452	220	112
+def	3	28	348	92	113
+def	3	29	364	92	114
+def	3	30	380	96	115
+def	3	31	388	96	116
+def	3	32	392	92	117
+def	3	33	404	96	118
+def	3	34	476	100	119
+def	3	35	420	96	120
+def	3	36	424	92	121
+def	3	37	436	96	122
+def	3	38	444	96	123
+def	3	39	448	92	124
+def	3	40	448	108	125
+def	3	41	460	96	126
+def	4	4	48	40	127
+def	4	5	32	108	128
+def	4	12	76	68	129
+def	4	13	120	64	130
+def	4	14	140	64	131
+def	4	15	148	108	132
+def	4	16	184	64	133
+def	4	17	196	40	134
+def	4	18	220	64	135
+def	4	19	228	108	136
+def	4	20	284	64	137
+def	4	21	292	108	138
+def	4	22	292	160	139
+def	4	23	324	116	140
+def	4	24	392	196	141
+def	4	25	404	196	142
+def	4	26	436	188	143
+def	4	27	456	212	144
+def	4	28	348	60	145
+def	4	29	380	60	146
+def	4	30	388	60	147
+def	4	31	392	72	148
+def	4	32	392	56	149
+def	4	33	404	60	150
+def	4	34	412	52	151
+def	4	35	420	60	152
+def	4	36	424	56	153
+def	4	37	424	72	154
+def	4	38	436	60	155
+def	4	39	444	60	156
+def	4	40	448	72	157
+def	4	41	460	60	158
+def	5	4	12	4	159
+def	5	5	92	16	160
+def	5	12	124	12	161
+def	5	13	80	56	162
+def	5	14	160	8	163
+def	5	15	148	56	164
+def	5	16	200	8	165
+def	5	17	244	8	166
+def	5	18	228	56	167
+def	5	19	264	64	168
+def	5	20	284	4	169
+def	5	21	292	56	170
+def	5	22	332	4	171
+def	5	23	324	64	172
+def	5	24	376	192	173
+def	5	25	408	192	174
+def	5	26	424	196	175
+def	5	27	456	200	176
+def	5	28	348	40	177
+def	5	29	364	40	178
+def	5	30	380	44	179
+def	5	31	388	44	180
+def	5	32	392	40	181
+def	5	33	404	44	182
+def	5	34	476	44	183
+def	5	35	420	44	184
+def	5	36	424	40	185
+def	5	37	436	44	186
+def	5	38	444	44	187
+def	5	39	448	40	188
+def	5	40	448	56	189
+def	5	41	460	44	190
+
+$[YgKey]$
+;------------------------------------
+; Key definition
+;out in key
+;------------------------------------
+def VDD	PA0	M		;
+def VDD PA1 N		;
+def VDD PA2 B		;
+def VDD PA3 V		;
+def VDD PA4 C   	;
+def VDD PA5 X		;
+
+def VDD PA7 Z		;
+
+
+def GND PA5 S	    ;声控报时
+;------------------------------------
+; Option
+;------------------------------------
+switch VDD PD0  LCD1 group
+
+switch  VDD PA0   LOCK group
+switch  PB1 PA0  Al_Set
+switch  PD3 PA0  D_Set
+switch  XXX PA0  T_Set
+       
+switch  XXX PA1 AL_OF group
+switch  VDD PA1 ALD
+switch  PB1 PA1 ALW5
+switch  PD3 PA1 ALW6
+
+;switch GND PA5  OFF group
+;switch VDD PA5  ON
+
+switch XXX PD2  XXX group
+switch VDD PD2  PD3
+
+switch XXX PD3  XXX group
+switch VDD PD3  PD3
+
+switch XXX PD2  XXX group
+switch VDD PD2  PD2_NONG
+      
+$[CPUOPTION]$
+EXOSC XTAL
+
+$[YgSound]$
+PP
+PN
+
